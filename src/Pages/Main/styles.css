@@ -9,7 +9,16 @@
   margin: 0 auto;
 }
 
-.container-main .list-petshops {
+.container-main .petshops {
+  margin-top: 25px;
+}
+
+.container-main .petshops .header-list-petshops {
+  font-size: 15px;
+  color: #2D2D2D;
+}
+
+.container-main .petshops .list-petshops {
   max-width: 920px;
   display: grid;
   grid-gap: 15px;
