@@ -1,0 +1,25 @@
+.logo-petcare {
+  display: flex;
+}
+
+.logo-petcare .petcare-logo {
+  color: #7bbb5e;
+  max-width: 45px;
+  max-height: 45px;
+  width: 100%;
+}
+
+.logo-petcare span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #7bbb5e;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+@media only screen and (max-width: 625px) and (min-width: 0px) {
+  .logo-petcare span {
+    display: none;
+  }
+}
