@@ -12,12 +12,14 @@ export default function HeaderMainPage({ hideBtns }) {
                     <Logo />
                 </div>
                 <nav className="nav-header-main">
-                    <a href="/entrar" className="entrar-a">
-                        <div className="btn-entrar">
-                            <span>Entrar</span>
-                        </div>
-                    </a>
-                    <a href="/cadastrar" className="cadastrar-btn">Cadastre seu pet shop</a>
+                    {hideBtns ? ('') : (
+                        <a href="/entrar" className="entrar-a">
+                            <div className="btn-entrar">
+                                <span>Entrar</span>
+                            </div>
+                        </a>
+                    )}
+                    {hideBtns ? ('') : (<a href="/cadastrar" className="cadastrar-btn">Cadastre seu pet shop</a>)}
                 </nav>
             </div>
         </header>
