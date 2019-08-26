@@ -73,6 +73,7 @@
   width: 100%;
   padding: 5px 10px;
   border-radius: 5px;
+  font-size: 15px;
 }
 
 .container-main .petshops .header-list-petshops .actions-content-list-petshop .search-listpetshop .form-search button {
