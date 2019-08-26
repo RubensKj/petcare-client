@@ -35,6 +35,33 @@
   transition: 100ms;
 }
 
+.header-main-container .nav-header-main .actions-header {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  grid-auto-flow: column;
+}
+
+.header-main-container .nav-header-main .actions-header a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+  transition: 0.1s;
+  cursor: pointer;
+  height: 35px;
+  border-radius: 5px;
+}
+
+.header-main-container .nav-header-main .actions-header a svg {
+  stroke: #717171;
+}
+
+.header-main-container .nav-header-main .actions-header a:hover > svg {
+  stroke: #7bbb5e;
+}
+
 .header-main-container .nav-header-main .entrar-a {
   display: flex;
   justify-content: center;
