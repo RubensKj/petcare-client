@@ -1,0 +1,38 @@
+.button-load-more-no-content {
+  display: none !important;
+}
+
+.button-load-more-to-pages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ebeced;
+  border-radius: 5px;
+  height: 45px;
+  cursor: pointer;
+  transition: 100ms;
+  margin: 0 30px;
+  margin-bottom: 25px;
+}
+
+.button-load-more-to-pages button {
+  border: none;
+  background: transparent;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #ec910a;
+  transition: 100ms;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.button-load-more-to-pages:hover {
+  background: #ec910a;
+}
+
+.button-load-more-to-pages:hover> button {
+  color: #fff;
+}

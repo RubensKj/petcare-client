@@ -1,0 +1,56 @@
+.service {
+  display: flex;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,.1);
+  border: 1px solid #ebeced;
+  cursor: pointer;
+  user-select: none;
+}
+
+.service .service-information {
+  display: grid;
+  margin: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px 2px;
+  width: 100%;
+}
+
+.service .service-information .title-service, .service .service-information .description-service {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.service .service-information .title-service h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 18px;
+  color: #ec910a;
+}
+
+.service .service-information .description-service p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #B3B6CB;
+  font-size: 15px;
+}
+
+.service .service-information .price-service {
+  display: flex;
+  color: #394458;
+  font-size: 16px;
+}
+
+.service .service-information .price-service .unity {
+  margin-right: 5px;
+}
+
+.selectedItem {
+  border: 1px solid #ec910a !important;
+  background: #fafafa;
+  /* background: #f3f4f7; */
+}

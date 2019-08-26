@@ -18,6 +18,91 @@
   color: #2D2D2D;
 }
 
+.container-main .petshops .header-list-petshops .actions-content-list-petshop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 15px 0;
+}
+
+.container-main .petshops .header-list-petshops .actions-content-list-petshop .btn-actions-search {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.container-main .petshops .header-list-petshops .actions-content-list-petshop .btn-actions-search button {
+  border: none;
+  background: transparent;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  color: #717171;
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #ebeced;
+  transition: 0.1s;
+  cursor: pointer;
+  height: 35px;
+}
+
+.container-main .petshops .header-list-petshops .actions-content-list-petshop .btn-actions-search button:hover {
+  background: #f9f7f7;
+}
+
+.container-main .petshops .header-list-petshops .actions-content-list-petshop .search-listpetshop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  background: #fff;
+  border: 1px solid #ebeced;
+}
+
+.container-main .petshops .header-list-petshops .actions-content-list-petshop .search-listpetshop .form-search {
+  display: flex;
+  width: 350px;
+  height: 35px;
+}
+
+.container-main .petshops .header-list-petshops .actions-content-list-petshop .search-listpetshop .form-search input {
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.container-main .petshops .header-list-petshops .actions-content-list-petshop .search-listpetshop .form-search button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  max-width: 75px;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  color: #717171;
+  background: #fff;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-left: 1px solid #ebeced;
+  transition: 0.1s;
+  cursor: pointer;
+}
+
+.container-main .petshops .header-list-petshops .actions-content-list-petshop .search-listpetshop .form-search button svg {
+  stroke: #717171;
+}
+
+.container-main .petshops .header-list-petshops .actions-content-list-petshop .search-listpetshop .form-search button:hover {
+  background: #f9f7f7;
+}
+
 .container-main .petshops .list-petshops {
   max-width: 920px;
   display: grid;

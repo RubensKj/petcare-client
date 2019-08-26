@@ -16,11 +16,15 @@ export default function Main() {
               <h2>Pet shops</h2>
             </div>
             <div className="actions-content-list-petshop">
-              <button>Relevancia</button>
-              <button>Proximos</button>
+              <div className="btn-actions-search">
+                <button>Relevancia</button>
+                <button>Proximos</button>
+              </div>
               <div className="search-listpetshop">
-                <input type="text" />
-                <button>Pesquisar</button>
+                <form className="form-search">
+                  <input type="text" placeholder="Pesquisar por uma empresa." />
+                  <button><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="square" strokeLinejoin="arcs"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+                </form>
               </div>
             </div>
           </div>

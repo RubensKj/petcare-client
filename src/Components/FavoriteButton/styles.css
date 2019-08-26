@@ -1,0 +1,40 @@
+.button-favorite-design {
+  width: 140px;
+  height: 35px;
+  border-radius: 5px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 100ms;
+  box-shadow: 0 8px 16px rgba(0,0,0,.1);
+  border: 1px solid #ebeced;
+}
+
+.favorite:hover {
+  transform: translateY(-2px);
+  background: #f3f4f7;
+}
+
+.favorite:hover>svg {
+  fill: #FB4A4D;
+  color: #FB4A4D;
+}
+
+.favorite button {
+  border: none;
+  background: none;
+  color: #4c5765;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin-top: 1px;
+  margin-left: 8px;
+  font-size: 16px;
+  transition: 105ms;
+  cursor: pointer;
+}
+
+.favorite svg {
+  color: #4c5765;
+}
