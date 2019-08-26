@@ -114,7 +114,7 @@ export default function Preview(props) {
 
   return (
     <>
-      <HeaderMainPage />
+      <HeaderMainPage props={props} />
       <div className="container-page-sidebar">
         <div className="box-color-area" />
         <div className="content-preview">
