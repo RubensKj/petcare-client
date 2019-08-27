@@ -1,3 +1,19 @@
+#content-list-favorites::-webkit-scrollbar {
+  height: 8px;
+}
+
+#content-list-favorites::-webkit-scrollbar-track {
+  background: #ebeced; 
+}
+
+#content-list-favorites::-webkit-scrollbar-thumb {
+  background: #717171; 
+}
+
+#content-list-favorites::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
 .container-main {
   display: flex;
   flex-direction: column;
@@ -9,11 +25,19 @@
   margin: 0 auto;
 }
 
-.container-main .petshops {
+.container-main .favorites-petshops {
   margin-top: 25px;
+  max-width: 920px;
+  width: 100%;
 }
 
-.container-main .petshops .header-list-petshops {
+.container-main .petshops {
+  margin-top: 25px;
+  max-width: 920px;
+  width: 100%;
+}
+
+.container-main .favorites-petshops .header-list-favorites, .container-main .petshops .header-list-petshops {
   font-size: 15px;
   color: #2D2D2D;
 }
@@ -104,7 +128,7 @@
   background: #f9f7f7;
 }
 
-.container-main .petshops .list-petshops {
+.container-main .favorites-petshops .content-list-favorites .list-favorites, .container-main .petshops .list-petshops {
   max-width: 920px;
   display: grid;
   grid-gap: 15px;
@@ -115,4 +139,56 @@
   margin-top: 25px;
   margin-bottom: 50px;
   transition: all 0.2s ease 0s;
+}
+
+.container-main .favorites-petshops .content-list-favorites {
+  width: 100%;
+  overflow: hidden;
+  overflow-x: auto;
+  padding: 0 10px;
+}
+
+.container-main .favorites-petshops .content-list-favorites .list-favorites {
+  max-width: 920px;
+  display: grid;
+  grid-gap: 15px;
+  margin: 20px auto 20px;
+  column-gap: 15px;
+  grid-template-columns: 1fr;
+  width: fit-content;
+  margin-top: 25px;
+  transition: all 0.2s ease 0s;
+  grid-auto-flow: column;
+}
+
+@media only screen and (max-width: 920px) and (min-width: 500px) {
+  .container-main .petshops .list-petshops {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 660px) and (min-width: 610px) {
+  .container-main .petshops .header-list-petshops .actions-content-list-petshop .search-listpetshop .form-search {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 610px) and (min-width: 0px) {
+  .container-main .petshops .header-list-petshops .actions-content-list-petshop {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container-main .petshops .header-list-petshops .actions-content-list-petshop .btn-actions-search, .container-main .petshops .header-list-petshops .actions-content-list-petshop .search-listpetshop .form-search {
+    width: 100%;
+  }
+
+  .container-main .petshops .header-list-petshops .actions-content-list-petshop .search-listpetshop {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .container-main .petshops .list-petshops {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

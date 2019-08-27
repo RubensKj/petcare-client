@@ -22,7 +22,7 @@ export default function Profile() {
             <TransitionOfSetting title="Informações de endereço" description="Utilizado para o Pet Care achar os pet shops mais perto de você :)" style={{ marginTop: 20 + 'px' }} />
             <Input type="text" style={{ marginTop: 20 + 'px' }} placeholder="Endereço" />
             <Input type="number" placeholder="Número" />
-            <Input type="text" placeholder="Complemento" />
+            <Input type="text" placeholder="Complemento" messageBottom="" />
             <Input type="text" placeholder="CEP" />
             <div className="city-states">
               <div className="city-input inputed">
