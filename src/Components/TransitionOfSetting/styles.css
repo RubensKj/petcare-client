@@ -1,0 +1,33 @@
+.info-header-settings {
+  width: 100%;
+  border-top: 1px solid #ebeced;
+  padding: 10px 15px;
+}
+
+.info-header-settings .content-header-settings h3 {
+  color: #2D2D2D;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.info-header-settings .content-header-settings span {
+  padding: 0 5px;
+  color: #4c5765;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: 0.2s all;
+}
+
+.info-header-settings .content-error-settings {
+  padding: 0 15px;
+}
+
+.info-header-settings .content-error-settings span {
+  display: block;
+  font-size: 18px;
+  color: #FB4A4D;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: 0.2s all;
+}

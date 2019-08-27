@@ -1,0 +1,35 @@
+.input-area {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 12px;
+}
+
+.input-area span {
+  font-size: 15px;
+  color: #4c5765;
+  user-select: none;
+  overflow: hidden;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.input-area .input-div {
+  display: flex;
+  justify-content: left;
+  width: 100%;
+  height: 45px;
+  border-radius: 5px;
+  border: 1px solid #d1d5da;
+}
+
+.input-div .input-basic {
+  background: transparent;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  width: 100%;
+  margin: 0 15px;
+  color: #394458;
+}
