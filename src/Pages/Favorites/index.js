@@ -19,6 +19,12 @@ export default function Favorites() {
             </div>
             <div className="list-favorites">
               <CompanyCard />
+              <CompanyCard />
+              <CompanyCard />
+              <CompanyCard />
+              <CompanyCard />
+              <CompanyCard />
+              <CompanyCard />
             </div>
           </div>
         </div>

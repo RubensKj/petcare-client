@@ -4,7 +4,8 @@
   border-radius: 10px;
   transition: transform 0.2s;
   border: 1px solid #ebeced;
-  width: 275px;
+  min-width: 275px;
+  width: 100%;
 }
 
 .link-company:hover {

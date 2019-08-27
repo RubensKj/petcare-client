@@ -11,6 +11,8 @@
 
 .container-favorites .content-favorites {
   margin-top: 25px;
+  max-width: 920px;
+  width: 100%;
 }
 
 .container-favorites .content-favorites .content-list-favorites {
@@ -38,8 +40,20 @@
   grid-column-gap: 15px;
   column-gap: 15px;
   grid-template-columns: repeat(3, 1fr);
-  width: fit-content;
+  width: 100%;
   margin-top: 25px;
   margin-bottom: 50px;
   transition: all 0.2s ease 0s;
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 0px) {
+  .container-favorites .content-favorites .content-list-favorites .list-favorites {
+    grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+  }
+}
+
+@media only screen and (max-width: 639px) and (min-width: 0px) {
+  .container-favorites .content-favorites .content-list-favorites .list-favorites {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
