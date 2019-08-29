@@ -1,7 +1,6 @@
 import React from 'react';
 
 import HeaderMainPage from '../../Components/HeaderMainPage';
-import Footer from '../../Components/Footer';
 import CompanyCard from '../../Components/CompanyCard';
 
 import './styles.css';
