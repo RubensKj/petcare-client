@@ -55,8 +55,8 @@ export default function Main() {
             </div>
             <div className="actions-content-list-petshop">
               <div className="btn-actions-search">
-                <button>Relevancia</button>
-                <button>Proximos</button>
+                <button>Relevância</button>
+                <button>Próximos</button>
               </div>
               <div className="search-listpetshop">
                 <form className="form-search">

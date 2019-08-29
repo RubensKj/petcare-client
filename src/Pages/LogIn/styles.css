@@ -1,0 +1,204 @@
+.container-login {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 920px;
+  width: 100%;
+  margin: 85px auto 0;
+  transition: margin 0.2s;
+}
+
+.container-login .content-login-page {
+  max-width: 450px;
+  width: 100%;
+}
+
+.container-login .content-login-page .box-login {
+  background: #fff;
+  border-radius: 10px;
+  /* box-shadow: 0 8px 16px rgba(0,0,0,.1); */
+  box-shadow: 0px 0px 80px 0px rgba(77, 84, 124, 0.09);
+  border: 1px solid #ebeced;
+  max-width: 450px;
+  width: 100%;
+  margin: 0 auto;
+  transition: max-width 0.8s;
+}
+
+.container-login .content-login-page .box-login .login-form {
+  margin-top: 25px;
+  padding: 0 25px 25px;
+}
+
+.container-login .content-login-page .box-login .login-form .error-area {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 12px;
+}
+
+.container-login .content-login-page .box-login .login-form .error-login {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  margin-top: 2px;
+  margin-left: 8px;
+  color: #d33;
+}
+
+.container-login .content-login-page .box-login .login-form .input-area {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 12px;
+}
+
+.container-login .content-login-page .box-login .login-form .input-area label {
+  font-size: 16px;
+  margin-top: 2px;
+  margin-left: 8px;
+  color: #ec910a;
+  user-select: none;
+}
+
+.container-login .content-login-page .box-login .login-form .input-area .input-div {
+  display: flex;
+  justify-content: left;
+  width: 100%;
+  height: 45px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  border: 1px solid #d1d5da;
+}
+
+.container-login .content-login-page .box-login .login-form .input-area .input-div input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  margin: 0 15px;
+  color: #394458;
+}
+
+.container-login .content-login-page .box-login .login-form .button-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+  margin-top: 20px;
+  border-radius: 5px;
+  background: #ec910a;
+  border: 1px solid #ebeced;
+  transition: opacity 0.2s;
+  cursor: pointer;
+}
+
+.container-login .content-login-page .box-login .login-form .button-area button {
+  width: 100%;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Cadastrar Box */
+
+.container-login .content-login-page .box-ref-signup {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,.1);
+  border: 1px solid #ebeced;
+  max-width: 450px;
+  width: 100%;
+  margin: 25px auto 0;
+}
+
+.container-login .content-login-page .box-ref-signup .content-signup-box {
+  padding: 15px 25px;
+}
+
+.container-login .content-login-page .box-ref-signup .content-signup-box .header-ref-signup {
+  font-size: 17px;
+  color: #4c5765;
+  margin-left: 5px;
+}
+
+.container-login .content-login-page .box-ref-signup .content-signup-box .button-signup-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+  margin-top: 12px;
+  border-radius: 5px;
+  background: #ec910a;
+  border: 1px solid #ebeced;
+  transition: opacity 0.2s;
+  cursor: pointer;
+}
+
+.container-login .content-login-page .box-ref-signup .content-signup-box .button-signup-area a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 13.3px;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+}
+
+.icon-image img {
+  width: 350px;
+}
+
+/* Hovers */
+
+.container-login .content-login-page .box-login .login-form .button-area:hover, .container-login .box-ref.signup .content-signup-box .button-signup-area:hover {
+  opacity: 0.9;
+}
+
+/* Mobile */
+
+@media only screen and (max-width: 1024px) and (min-width: 480px) {
+  .icon-image {
+    display: none;
+  }
+
+  .container-login {
+    margin: 25px auto 25px !important;
+    justify-content: center;
+    padding: 0 25px;
+  }
+
+  .container-login .content-login-page .box-login, .container-login .box-ref-signup {
+    max-width: none !important;
+  }
+}
+
+@media only screen and (max-width: 479px) and (min-width: 0px) {
+  .icon-image {
+    display: none;
+  }
+
+  .container-login  {
+    margin: 0 auto 25px !important;
+    justify-content: center;
+  }
+
+  .container-login .content-login-page  .box-login {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+  }
+}
