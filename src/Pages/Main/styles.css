@@ -154,7 +154,7 @@
   grid-gap: 15px;
   margin: 20px auto 20px;
   column-gap: 15px;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(3, 1fr);
   width: fit-content;
   margin-top: 25px;
   transition: all 0.2s ease 0s;

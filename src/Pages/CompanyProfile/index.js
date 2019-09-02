@@ -18,62 +18,81 @@ import './styles.css';
 
 export default function Preview(props) {
 
-  // LIST
-  const [products, setProducts] = useState([]);
+  // COMPANY
+  const [company, setCompany] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+
+  // SERVICES
   const [services, setServices] = useState([]);
+  const [servicesActPage, setServicesActPage] = useState(0);
+  const [servicesTotalPage, setServicesTotalPage] = useState(0);
+  const [isLoadingServices, setIsLoadingServices] = useState(false);
 
-  // PAGES SERVICES 
-  const [actPageService, setActPageService] = useState(0);
-  const [totalPagesService, setTotalPagesService] = useState(0);
-  const [isLoadingService, setIsLoadingService] = useState(false);
+  // PRODUCTS
 
-  // PAGES PRODUCTS 
-  const [actPageProduct, setActPageProduct] = useState(0);
-  const [totalPagesProduct, setTotalPagesProduct] = useState(0);
-  const [isLoadingProduct, setIsLoadingProduct] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [productsActPage, setProductsActPage] = useState(0);
+  const [productsTotalPage, setProductsTotalPage] = useState(0);
+  const [isLoadingProducts, setIsLoadingProducts] = useState(false);
 
-  async function loadServices(page) {
-    setIsLoadingService(true);
-    await api.get(`/services/${page}`).then(res => {
+  async function loadServicesFromCompanies(id, page) {
+    setIsLoadingServices(true);
+    await api.get(`/company-services/${id}/${page}`).then(res => {
+      setServicesActPage(res.data.number);
+      setServicesTotalPage(res.data.totalPages);
       setServices(res.data.content);
-      setTotalPagesService(res.data.totalPages);
-      setIsLoadingService(false)
+      setIsLoadingServices(false);
       if (res.data.totalPages <= 1) {
         let btn = document.querySelector(".btn-loadServices");
         btn.classList.add("button-load-more-no-content");
       }
-    });
+    })
   }
 
-  async function loadProducts(page) {
-    setIsLoadingProduct(true);
-    await api.get(`/products/${page}`).then(res => {
+  async function loadProductsFromCompanies(id, page) {
+    setIsLoadingProducts(true);
+    await api.get(`/company-products/${id}/${page}`).then(res => {
+      setProductsActPage(res.data.number);
+      setProductsTotalPage(res.data.totalPages);
       setProducts(res.data.content);
-      setTotalPagesProduct(res.data.totalPages);
-      setIsLoadingProduct(false);
+      setIsLoadingProducts(false);
       if (res.data.totalPages <= 1) {
         let btn = document.querySelector(".btn-loadProducts");
         btn.classList.add("button-load-more-no-content");
       }
-    });
+    })
   }
 
   useEffect(() => {
-    //if (!isLoading) {
-    //  const rate = Math.floor(state.data.rate);
-    //  for (var i = 0; i < rate; i++) {
-    //    let paws = document.querySelectorAll(".paw-preview");
-    //    paws[i].classList.add('faw-rating');
-    //  }
-    //}
-  }, [])
+    setIsLoading(true);
+    async function loadCompanyById(id) {
+      await api.get(`/companies-list/${id}`).then(res => {
+        setCompany(res.data);
+        setIsLoading(false);
+        const rate = Math.floor(company.rate);
+        for (var i = 0; i < rate; i++) {
+          let paws = document.querySelectorAll(".paw-preview");
+          paws[i].classList.add('faw-rating');
+        }
+      });
+    }
+    loadCompanyById(props.match.params.id);
+    if (company.id) {
+      loadServicesFromCompanies(company.id, 0);
+      loadProductsFromCompanies(company.id, 0);
+    }
+  }, [props.match.params.id, company.id, company.rate])
+
+
+  // FUNCTIONS
 
   async function handleLoadMoreServices(page) {
-    if (totalPagesService > page) {
-      await api.get(`/services/${page}`).then(res => {
+    if (page < servicesTotalPage) {
+      await api.get(`/company-services/${company.id}/${page}`).then(res => {
+        setServicesActPage(res.data.number);
+        setServicesTotalPage(res.data.totalPages);
         setServices(services.concat(res.data.content));
-        setActPageService(page);
-      });
+      })
     } else {
       let btn = document.querySelector(".btn-loadServices");
       btn.classList.add("button-load-more-no-content");
@@ -81,11 +100,12 @@ export default function Preview(props) {
   }
 
   async function handleLoadMoreProducts(page) {
-    if (totalPagesProduct > page) {
-      await api.get(`/products/${page}`).then(res => {
+    if (page < productsTotalPage) {
+      await api.get(`/company-products/${company.id}/${page}`).then(res => {
+        setProductsActPage(res.data.number);
+        setProductsTotalPage(res.data.totalPages);
         setProducts(products.concat(res.data.content));
-        setActPageProduct(page);
-      });
+      })
     } else {
       let btn = document.querySelector(".btn-loadProducts");
       btn.classList.add("button-load-more-no-content");
@@ -107,10 +127,6 @@ export default function Preview(props) {
     }
     selectedDiv.classList.toggle("selectedItem");
   }
-
-
-  const company = '';
-  const isLoading = true;
 
   return (
     <>
@@ -150,7 +166,7 @@ export default function Preview(props) {
             <div className="address-status">
               <div className="address-area">
                 <h3>Endereço</h3>
-                {isLoading ? (<Loading boxShadow="none" />) : ((company.addresses ? (company.addresses.map(address => (<AddressInfo key={address.id} text={address.street + ', ' + address.placeNumber + ' - ' + (address.complement ? (address.complement + ' ') : ('')) + address.neighborhood + ', ' + address.city + ' - ' + address.cep} />))) : (<AddressInfo text="Esta empresa não possui nenhum endereço." />)))}
+                {isLoading ? (<Loading boxShadow="none" />) : (company.address ? (<AddressInfo key={company.address.id} text={company.address.street + ', ' + company.address.placeNumber + ' - ' + (company.address.complement ? (company.address.complement + ' ') : ('')) + company.address.neighborhood + ', ' + company.address.city + ' - ' + company.address.cep} />) : (<AddressInfo text="Esta empresa não possui nenhum endereço." />))}
               </div>
               <div className="status-area">
                 <h3>Horário</h3>
@@ -165,24 +181,24 @@ export default function Preview(props) {
               <h3>Serviços</h3>
             </div>
             <div className="transion-small" />
-            {isLoadingService ? (<Loading />) : (
+            {isLoadingServices ? (<Loading />) : (
               <>
                 <div className="grid-services">
                   {services.map(service => <ServiceCardToUser key={service.id} service={service} onClick={event => selectItem(event, service)} />)}
                 </div>
-                <BottomLoadMore setClassName="btn-loadServices" text="Carregar mais produtos" onClick={() => handleLoadMoreServices(actPageService + 1)} />
+                <BottomLoadMore setClassName="btn-loadServices" text="Carregar mais produtos" onClick={() => handleLoadMoreServices(servicesActPage + 1)} />
               </>
             )}
             <div className="title-area">
               <h3>Produtos</h3>
             </div>
             <div className="transion-small" />
-            {isLoadingProduct ? (<Loading />) : (
+            {isLoadingProducts ? (<Loading />) : (
               <>
                 <div className="grid-products">
                   {products.map(product => <ProductCard key={product.id} product={product} />)}
                 </div>
-                <BottomLoadMore setClassName="btn-loadProducts" text="Carregar mais produtos" onClick={() => handleLoadMoreProducts(actPageProduct + 1)} />
+                <BottomLoadMore setClassName="btn-loadProducts" text="Carregar mais produtos" onClick={() => handleLoadMoreProducts(productsActPage + 1)} />
               </>
             )}
           </div>

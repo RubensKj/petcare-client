@@ -1,3 +1,10 @@
+/* Paw rating */
+
+.faw-rating {
+  stroke: #dabb72 !important;
+  color: #dabb72 !important;
+}
+
 /* Loading Styles */
 
 .content-company .products-area .loading-api {

@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import HeaderMainPage from '../../Components/HeaderMainPage';
 import CompanyCard from '../../Components/CompanyCard';
 
+import api from '../../Services/api';
+
 import './styles.css';
 
 export default function Main() {
+  const [companies, setCompanies] = useState([]);
+  const [IsLoading, setIsLoading] = useState(false);
+
+  async function loadCompanies(page) {
+    await api.get(`/companies/${page}`).then(res => {
+      console.log(res.data);
+      setCompanies(res.data.content);
+      setIsLoading(false);
+    });
+  }
+
+  useEffect(() => {
+    setIsLoading(true);
+    loadCompanies(0);
+  }, [])
+
   return (
     <>
       <HeaderMainPage />
@@ -18,33 +36,7 @@ export default function Main() {
           </div>
           <div id="content-list-favorites" className="content-list-favorites">
             <div className="list-favorites">
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
+              {/* <CompanyCard /> */}
             </div>
           </div>
         </div>
@@ -67,12 +59,7 @@ export default function Main() {
             </div>
           </div>
           <div className="list-petshops">
-            <CompanyCard text="Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker." />
-            <CompanyCard />
-            <CompanyCard />
-            <CompanyCard />
-            <CompanyCard />
-            <CompanyCard />
+            {companies.map(company => <CompanyCard key={company.id} company={company} />)}
           </div>
         </div>
       </div>
