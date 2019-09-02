@@ -4,42 +4,64 @@ import HeaderMainPage from '../../Components/HeaderMainPage';
 import CompanyCard from '../../Components/CompanyCard';
 
 import api from '../../Services/api';
+import { useSelector } from 'react-redux';
 
 import './styles.css';
 
 export default function Main() {
+  // USER
+  const state = useSelector(state => state.User);
+
+  // COMPANIES
   const [companies, setCompanies] = useState([]);
-  const [IsLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // FAVORITES
+  const [favoritesCompanies, setFavoritesCompanies] = useState([]);
+  const [containsFavorites, setContainsFavorites] = useState(false);
 
   async function loadCompanies(page) {
     await api.get(`/companies/${page}`).then(res => {
-      console.log(res.data);
       setCompanies(res.data.content);
       setIsLoading(false);
+    });
+  }
+
+  async function loadFavorites(page) {
+    await api.get(`/users/favorites-list/${page}`).then(res => {
+      setFavoritesCompanies(res.data.content);
     });
   }
 
   useEffect(() => {
     setIsLoading(true);
     loadCompanies(0);
-  }, [])
+    if(state.data.favorites.length >= 1) {
+      setContainsFavorites(true);
+      loadFavorites(0);
+    }
+  }, [state.data.favorites])
 
   return (
     <>
       <HeaderMainPage />
       <div className="container-main">
-        <div className="favorites-petshops">
-          <div className="header-list-favorites">
-            <div className="title-list">
-              <h2>Meus Favoritos</h2>
+        {containsFavorites ? (
+          <>
+            <div className="favorites-petshops">
+              <div className="header-list-favorites">
+                <div className="title-list">
+                  <h2>Meus Favoritos</h2>
+                </div>
+              </div>
+              <div id="content-list-favorites" className="content-list-favorites">
+                <div className="list-favorites">
+                  {favoritesCompanies.map(company => <CompanyCard key={company.id} company={company} />)}
+                </div>
+              </div>
             </div>
-          </div>
-          <div id="content-list-favorites" className="content-list-favorites">
-            <div className="list-favorites">
-              {/* <CompanyCard /> */}
-            </div>
-          </div>
-        </div>
+          </>
+        ) : ('')}
         <div className="petshops">
           <div className="header-list-petshops">
             <div className="title-list">

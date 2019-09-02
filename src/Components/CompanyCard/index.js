@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PawLogo from '../../Assets/PawLogo';
-import PetShopDogLogo from '../../Assets/PetShopDogLogo.svg';
+import PetShopDogLogo from '../../Assets/PetShopCompanyLogo.svg';
 
 import './styles.css';
 

@@ -13,14 +13,20 @@ import PawLogo from '../../Assets/PawLogo';
 import PetShopDogLogo from '../../Assets/PetShopDogLogo.svg';
 
 import api from '../../Services/api';
+import { useSelector } from 'react-redux';
 
 import './styles.css';
 
 export default function Preview(props) {
+  // USER
+  const state = useSelector(state => state.User);
 
   // COMPANY
   const [company, setCompany] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  
+  // FAVORITE
+  const [isFavorite, setIsFavorite] = useState(false);
 
   // SERVICES
   const [services, setServices] = useState([]);
@@ -65,6 +71,9 @@ export default function Preview(props) {
 
   useEffect(() => {
     setIsLoading(true);
+    if(state.data.favorites) {
+      setIsFavorite(state.data.favorites.includes(company.id));
+    }
     async function loadCompanyById(id) {
       await api.get(`/companies-list/${id}`).then(res => {
         setCompany(res.data);
@@ -81,7 +90,7 @@ export default function Preview(props) {
       loadServicesFromCompanies(company.id, 0);
       loadProductsFromCompanies(company.id, 0);
     }
-  }, [props.match.params.id, company.id, company.rate])
+  }, [props.match.params.id, company.id, company.rate, state.data])
 
 
   // FUNCTIONS
@@ -128,6 +137,17 @@ export default function Preview(props) {
     selectedDiv.classList.toggle("selectedItem");
   }
 
+  async function handleFavorite(e) {
+    e.preventDefault();
+    if(!isFavorite) {
+      await api.post(`/users/favorite/${company.id}`);
+      setIsFavorite(true);
+    } else {
+      await api.post(`/users/removeFavorite/${company.id}`);
+      setIsFavorite(false);
+    }
+  }
+
   return (
     <>
       <HeaderMainPage props={props} />
@@ -136,7 +156,7 @@ export default function Preview(props) {
         <div className="content-preview">
           <div className="buttons-actions">
             <div className="actions">
-              <FavoriteButton favorite={false} />
+              <FavoriteButton favorite={isFavorite} onClick={handleFavorite} />
               <div className="report button-design" role="button">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="arcs"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
                 <button>Denunciar</button>

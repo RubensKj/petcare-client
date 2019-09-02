@@ -2,18 +2,35 @@ import React, { useEffect, useState } from 'react';
 
 import Logo from "../../Assets/PetCareLogo";
 
+import { useDispatch } from 'react-redux';
+import { setUser, setIsLoading } from '../../Store/Actions/User';
+
+import api from '../../Services/api';
 import { isAuthenticated } from '../../Services/auth';
 
 import "./styles.css";
 
-export default function HeaderMainPage({ hideBtns }) {
+export default function HeaderMainPage() {
+    // REDUX TO USER
+    // const state = useSelector(state => state.User);
+    const dispatch = useDispatch();
+
     const [isAuth, setIsAuth] = useState(false);
 
     useEffect(() => {
         if (isAuthenticated()) {
             setIsAuth(true);
+
+            async function loadUserLogged() {
+                dispatch(setIsLoading(true));
+                await api.get('/users/profile-user').then(res => {
+                    dispatch(setUser(res.data));
+                    dispatch(setIsLoading(false));
+                })
+            }
+            loadUserLogged();
         }
-    }, []);
+    }, [dispatch]);
 
     async function handleLogOut() {
         localStorage.removeItem('jwtToken');

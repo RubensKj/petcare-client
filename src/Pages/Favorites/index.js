@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import HeaderMainPage from '../../Components/HeaderMainPage';
 import CompanyCard from '../../Components/CompanyCard';
 
+import api from '../../Services/api';
+
 import './styles.css';
 
 export default function Favorites() {
+  const [favoritesCompanies, setFavoritesCompanies] = useState([]);
+
+  async function loadFavorites(page) {
+    await api.get(`/users/favorites-list/${page}`).then(res => {
+      setFavoritesCompanies(res.data.content);
+    });
+  }
+
+  useEffect(() => {
+    loadFavorites(0);
+  }, []);
+
   return (
     <>
       <HeaderMainPage />
@@ -17,13 +31,7 @@ export default function Favorites() {
               <div className="transition-small" />
             </div>
             <div className="list-favorites">
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
-              <CompanyCard />
+              {favoritesCompanies.map(company => <CompanyCard key={company.id} company={company} />)}
             </div>
           </div>
         </div>

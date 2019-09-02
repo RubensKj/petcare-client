@@ -1,3 +1,8 @@
+.favorited-by-user svg {
+  fill: #FB4A4D !important;
+  color: #FB4A4D !important;
+}
+
 .button-favorite-design {
   width: 140px;
   height: 35px;
