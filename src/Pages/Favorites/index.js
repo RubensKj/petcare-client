@@ -31,7 +31,7 @@ export default function Favorites() {
               <div className="transition-small" />
             </div>
             <div className="list-favorites">
-              {favoritesCompanies.map(company => <CompanyCard key={company.id} company={company} />)}
+              {favoritesCompanies ? (favoritesCompanies.map(company => <CompanyCard key={company.id} company={company} />)) : ('')}
             </div>
           </div>
         </div>
