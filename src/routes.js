@@ -9,6 +9,7 @@ import CompanyProfile from './Pages/CompanyProfile';
 import Profile from './Pages/Profile';
 import Favorites from './Pages/Favorites';
 import Cart from './Pages/Cart';
+import Evaluation from './Pages/Evaluation';
 
 const Routes = () => (
   <BrowserRouter>
@@ -21,6 +22,7 @@ const Routes = () => (
       <Route path='/profile' component={Profile} />
       <Route path='/favoritos' component={Favorites} />
       <Route path='/sacola' component={Cart} />
+      <Route path='/avaliacao' component={Evaluation} />
     </Switch>
   </BrowserRouter>
 );

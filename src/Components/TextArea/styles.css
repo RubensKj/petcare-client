@@ -1,0 +1,24 @@
+.description-area {
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 12px;
+  padding: 10px 15px;
+  border: 1px solid #d1d5da;
+}
+
+.description-area textarea {
+  background: transparent;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  color: #394458;
+  max-width: 100%;
+  min-width: 100%;
+  width: 100%;
+  min-height: 55px;
+  max-height: 190px;
+  height: 100%;
+}
