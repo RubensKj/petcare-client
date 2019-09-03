@@ -70,13 +70,19 @@
   color: #B3B6CB;
 }
 
-.container-evaluation .content-evaluation .form-evaluation .info-form .image-paw #first:hover {
+#first:hover {
   stroke: #dabb72;
   color: #dabb72;
   cursor: pointer;
 }
 
-.container-evaluation .content-evaluation .form-evaluation .info-form .image-paw #second:hover {
+#second:hover {
+  stroke: #dabb72;
+  color: #dabb72;
+  cursor: pointer;
+}
+
+#second:hover > .container-evaluation .content-evaluation .form-evaluation .info-form .image-paw #first {
   stroke: #dabb72;
   color: #dabb72;
   cursor: pointer;

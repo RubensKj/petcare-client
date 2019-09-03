@@ -22,8 +22,8 @@ export default function Content() {
             <div className="info-form">
               <h2>Nome da empresa</h2>
               <div className="image-paw">
-                <Paw width="25px" height="25px" idName="first" />
-                <Paw width="25px" height="25px" idName="second" />
+                <Paw width="25px" height="25px" idName="first" className="first-paw" />
+                <Paw width="25px" height="25px" idName="second" className="second-paw" />
                 <Paw width="25px" height="25px" idName="third" />
                 <Paw width="25px" height="25px" idName="fourth" />
                 <Paw width="25px" height="25px" idName="fifth" />
