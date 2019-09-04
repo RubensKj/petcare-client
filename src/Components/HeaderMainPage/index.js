@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import Logo from "../../Assets/PetCareLogo";
 
@@ -15,14 +15,10 @@ export default function HeaderMainPage() {
     // const state = useSelector(state => state.User);
     const dispatch = useDispatch();
 
-    const [isAuth, setIsAuth] = useState(false);
-
     useEffect(() => {
+        dispatch(setIsLoading(true));
         if (isAuthenticated()) {
-            setIsAuth(true);
-
             async function loadUserLogged() {
-                dispatch(setIsLoading(true));
                 await api.get('/users/profile-user').then(res => {
                     dispatch(setUser(res.data));
                     dispatch(setIsLoading(false));
@@ -34,7 +30,7 @@ export default function HeaderMainPage() {
 
     async function handleLogOut() {
         localStorage.removeItem('jwtToken');
-        // api deslogar (a fazer)...
+        await api.post('/auth/logout');
     }
 
     return (
@@ -44,7 +40,7 @@ export default function HeaderMainPage() {
                     <Logo />
                 </div>
                 <nav className="nav-header-main">
-                    {isAuth ? (
+                    {isAuthenticated ? (
                         <>
                             <div className="actions-header">
                                 <a href="/favoritos"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="square" strokeLinejoin="arcs"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></a>

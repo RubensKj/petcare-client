@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import HeaderMainPage from '../../Components/HeaderMainPage';
+import EmptyContent from '../../Components/EmptyContent';
 import Loading from '../../Components/Loading';
 import FavoriteButton from '../../Components/FavoriteButton';
 import AddressInfo from '../../Components/AddressInfo';
@@ -16,6 +17,7 @@ import api from '../../Services/api';
 import { useSelector } from 'react-redux';
 
 import './styles.css';
+import { isAuthenticated } from '../../Services/auth';
 
 export default function Preview(props) {
   // USER
@@ -139,12 +141,16 @@ export default function Preview(props) {
 
   async function handleFavorite(e) {
     e.preventDefault();
-    if (!isFavorite) {
-      await api.post(`/users/favorite/${company.id}`);
-      setIsFavorite(true);
+    if (isAuthenticated()) {
+      if (!isFavorite) {
+        await api.post(`/users/favorite/${company.id}`);
+        setIsFavorite(true);
+      } else {
+        await api.post(`/users/removeFavorite/${company.id}`);
+        setIsFavorite(false);
+      }
     } else {
-      await api.post(`/users/removeFavorite/${company.id}`);
-      setIsFavorite(false);
+      props.history.push('/entrar')
     }
   }
 
@@ -215,9 +221,11 @@ export default function Preview(props) {
             <div className="transion-small" />
             {isLoadingServices ? (<Loading />) : (
               <>
-                <div className="grid-services">
-                  {services.map(service => <ServiceCardToUser key={service.id} service={service} onClick={event => selectItem(event, service)} />)}
-                </div>
+                {services.length > 0 ? (
+                  <div className="grid-services">
+                    {services.map(service => <ServiceCardToUser key={service.id} service={service} onClick={event => selectItem(event, service)} />)}
+                  </div>
+                ) : (<EmptyContent title="Lista de serviços" description="A empresa não possui nenhum serviço." svg={<svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="#dddddd" strokeWidth="2" strokeLinecap="square" strokeLinejoin="arcs"><path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z" /><path d="M14 3v5h5M16 13H8M16 17H8M10 9H8" /></svg>} />)}
                 <BottomLoadMore setClassName="btn-loadServices" text="Carregar mais produtos" onClick={() => handleLoadMoreServices(servicesActPage + 1)} />
               </>
             )}
@@ -227,9 +235,11 @@ export default function Preview(props) {
             <div className="transion-small" />
             {isLoadingProducts ? (<Loading />) : (
               <>
-                <div className="grid-products">
-                  {products.map(product => <ProductCard key={product.id} product={product} />)}
-                </div>
+                {products.length > 0 ? (
+                  <div className="grid-products">
+                    {products.map(product => <ProductCard key={product.id} product={product} />)}
+                  </div>
+                ) : (<EmptyContent title="Lista de produtos" description="A empresa não possui nenhum produto." svg={<svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="#dddddd" strokeWidth="2" strokeLinecap="square" strokeLinejoin="arcs"><circle cx="10" cy="20.5" r="1" /><circle cx="18" cy="20.5" r="1" /><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1" /></svg>} />)}
                 <BottomLoadMore setClassName="btn-loadProducts" text="Carregar mais produtos" onClick={() => handleLoadMoreProducts(productsActPage + 1)} />
               </>
             )}

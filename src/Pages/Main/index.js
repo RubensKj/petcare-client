@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import HeaderMainPage from '../../Components/HeaderMainPage';
+import Loading from '../../Components/Loading';
 import CompanyCard from '../../Components/CompanyCard';
 
 import api from '../../Services/api';
@@ -36,7 +37,7 @@ export default function Main() {
   useEffect(() => {
     setIsLoading(true);
     loadCompanies(0);
-    if(state.data.favorites.length >= 1) {
+    if (state.data.favorites.length >= 1) {
       setContainsFavorites(true);
       loadFavorites(0);
     }
@@ -80,9 +81,11 @@ export default function Main() {
               </div>
             </div>
           </div>
-          <div className="list-petshops">
-            {companies.map(company => <CompanyCard key={company.id} company={company} />)}
-          </div>
+          {isLoading ? (<Loading />) : (
+            <div className="list-petshops">
+              {companies.map(company => <CompanyCard key={company.id} company={company} />)}
+            </div>
+          )}
         </div>
       </div>
     </>

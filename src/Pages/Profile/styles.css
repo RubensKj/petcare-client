@@ -9,6 +9,10 @@
   margin: 0 auto;
 }
 
+.container-profile .loading-api {
+  margin-top: 80px;
+}
+
 .container-profile .inputs-change-profile {
   margin-top: 25px;
 }

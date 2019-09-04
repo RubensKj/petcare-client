@@ -128,6 +128,12 @@
   background: #f9f7f7;
 }
 
+.container-main .petshops .loading-api {
+  display: flex;
+  justify-content: center;
+  margin-top: 55px;
+}
+
 .container-main .favorites-petshops .content-list-favorites .list-favorites, .container-main .petshops .list-petshops {
   max-width: 920px;
   display: grid;
