@@ -1,0 +1,30 @@
+.container-nothing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto;
+  width: 100%;
+  max-width: 350px;
+}
+
+.container-nothing .content-nothing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.container-nothing .content-nothing .svg-icon-nothing {
+  margin-bottom: 10px;
+}
+
+.container-nothing .content-nothing .text-nothing .title-for-nothing {
+  font-size: 22px;
+  color: #2D2D2D;
+}
+
+.container-nothing .content-nothing .text-nothing span {
+  font-size: 16px;
+  color: #4c5765;
+}

@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
+import { PrivateRoute } from './Components/PrivateRoute';
+
 import LogIn from './Pages/LogIn';
 import SignUp from './Pages/SignUp';
 
@@ -11,6 +13,8 @@ import Favorites from './Pages/Favorites';
 import Cart from './Pages/Cart';
 import Evaluation from './Pages/Evaluation';
 
+import WrongURL from './Pages/WrongURL';
+
 const Routes = () => (
   <BrowserRouter>
     <Switch>
@@ -18,11 +22,13 @@ const Routes = () => (
       <Route path='/cadastrar' component={SignUp} />
 
       <Route exact path='/' component={Main} />
-      <Route path='/companies/:id' component={CompanyProfile} />
-      <Route path='/profile' component={Profile} />
-      <Route path='/favoritos' component={Favorites} />
-      <Route path='/sacola' component={Cart} />
-      <Route path='/avaliacao' component={Evaluation} />
+      <Route exact path='/companies/:id' component={CompanyProfile} />
+      <PrivateRoute exact path='/profile' component={Profile} />
+      <PrivateRoute exact path='/favoritos' component={Favorites} />
+      <PrivateRoute exact path='/sacola' component={Cart} />
+      <PrivateRoute exact path='/avaliacao' component={Evaluation} />
+
+      <Route path='*' component={WrongURL} />
     </Switch>
   </BrowserRouter>
 );

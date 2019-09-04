@@ -55,8 +55,13 @@
 }
 
 .container-evaluation .content-evaluation .form-evaluation .info-form h2 {
-  margin: 10px 0px 10px 0px;
+  margin: 10px 0;
   color: #7bbb5e;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
 }
 
 .container-evaluation .content-evaluation .form-evaluation .info-form .image-paw {
@@ -94,4 +99,5 @@
 
 .container-evaluation .content-evaluation .form-evaluation .info-form .message-before-text-area {
   color: #4c5765;
+  margin-bottom: 5px;
 }

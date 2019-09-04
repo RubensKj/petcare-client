@@ -24,7 +24,7 @@ export default function Preview(props) {
   // COMPANY
   const [company, setCompany] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  
+
   // FAVORITE
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -71,7 +71,7 @@ export default function Preview(props) {
 
   useEffect(() => {
     setIsLoading(true);
-    if(state.data.favorites) {
+    if (state.data.favorites) {
       setIsFavorite(state.data.favorites.includes(company.id));
     }
     async function loadCompanyById(id) {
@@ -139,7 +139,7 @@ export default function Preview(props) {
 
   async function handleFavorite(e) {
     e.preventDefault();
-    if(!isFavorite) {
+    if (!isFavorite) {
       await api.post(`/users/favorite/${company.id}`);
       setIsFavorite(true);
     } else {
@@ -191,6 +191,14 @@ export default function Preview(props) {
               <div className="status-area">
                 <h3>Horário</h3>
                 {isLoading ? (<Loading boxShadow="none" />) : (<StatusInfo text={company.status} />)}
+              </div>
+            </div>
+            <div className="description-area-company-profile">
+              <div className="content-description-company-profile">
+                <div className="title-description-company">
+                  <h3>Descrição</h3>
+                </div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
               </div>
             </div>
           </div>

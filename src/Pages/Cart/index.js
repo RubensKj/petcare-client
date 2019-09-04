@@ -53,6 +53,10 @@ export default function Cart() {
               <hr />
               <div className="products-checkout">
                 <ProductCheckout />
+                <ProductCheckout />
+                <ProductCheckout />
+                <ProductCheckout />
+                <ProductCheckout />
               </div>
               <hr />
               <div className="total-products">

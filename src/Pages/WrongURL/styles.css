@@ -1,0 +1,20 @@
+.container-wrong-url {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1366px;
+  width: 100%;
+  padding: 0 30px;
+  margin: 0 auto;
+}
+
+.container-wrong-url .content-wront-url {
+  margin-top: 25px;
+  max-width: 920px;
+  width: 100%;
+}
+
+.container-wrong-url .content-wront-url .container-nothing {
+  margin-top: 65px;
+}

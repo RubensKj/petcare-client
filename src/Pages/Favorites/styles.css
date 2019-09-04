@@ -46,6 +46,10 @@
   transition: all 0.2s ease 0s;
 }
 
+.container-favorites .content-favorites .content-list-favorites .container-nothing {
+  margin-top: 65px;
+}
+
 @media only screen and (max-width: 1024px) and (min-width: 0px) {
   .container-favorites .content-favorites .content-list-favorites .list-favorites {
     grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));

@@ -7,6 +7,7 @@ import TransitionOfSetting from "../../Components/TransitionOfSetting";
 import Paw from "../../Assets/PawLogoForEvaluation";
 import TextArea from "../../Components/TextArea";
 import ButtonForm from "../../Components/ButtonForm";
+import ButtonAction from "../../Components/ButtonToOnClick";
 
 export default function Content() {
   return (
@@ -31,6 +32,7 @@ export default function Content() {
               <h4 className="message-before-text-area">Deixe um comentário</h4>
               <TextArea placeholder="Mensagem (Opcional)" />
               <ButtonForm text="Avaliar" />
+              <ButtonAction text="Cancelar" />
             </div>
           </form>
         </div>
