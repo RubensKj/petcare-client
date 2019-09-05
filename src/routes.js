@@ -12,6 +12,7 @@ import Profile from './Pages/Profile';
 import Favorites from './Pages/Favorites';
 import Cart from './Pages/Cart';
 import Evaluation from './Pages/Evaluation';
+import SearchResult from './Pages/SearchResult';
 
 import WrongURL from './Pages/WrongURL';
 
@@ -23,6 +24,7 @@ const Routes = () => (
 
       <Route exact path='/' component={Main} />
       <Route exact path='/companies/:id' component={CompanyProfile} />
+      <Route exact path='/pet-shops:search' component={SearchResult} />
       <PrivateRoute exact path='/profile' component={Profile} />
       <PrivateRoute exact path='/favoritos' component={Favorites} />
       <PrivateRoute exact path='/sacola' component={Cart} />

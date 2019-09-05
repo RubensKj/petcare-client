@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 
 import './styles.css';
 
-export default function Main() {
+export default function Main(props) {
   // USER
   const state = useSelector(state => state.User);
 
@@ -20,6 +20,9 @@ export default function Main() {
   // FAVORITES
   const [favoritesCompanies, setFavoritesCompanies] = useState([]);
   const [containsFavorites, setContainsFavorites] = useState(false);
+  
+  // SEARCH TEXT
+  const [searchText, setSearchText] = useState('');
 
   async function loadCompanies(page) {
     await api.get(`/companies/${page}`).then(res => {
@@ -34,6 +37,13 @@ export default function Main() {
     });
   }
 
+  function handleSearch(e) {
+    e.preventDefault();
+    if(searchText.length > 0) {
+      props.history.push(`/pet-shops?search=${searchText}`);
+    }
+  }
+
   useEffect(() => {
     setIsLoading(true);
     loadCompanies(0);
@@ -41,7 +51,7 @@ export default function Main() {
       setContainsFavorites(true);
       loadFavorites(0);
     }
-  }, [state.data.favorites])
+  }, [state.data.favorites]);
 
   return (
     <>
@@ -74,8 +84,8 @@ export default function Main() {
                 <button>Próximos</button>
               </div>
               <div className="search-listpetshop">
-                <form className="form-search">
-                  <input type="text" placeholder="Pesquisar por uma empresa." />
+                <form className="form-search" onSubmit={(e) => handleSearch(e)}>
+                  <input type="text" name="search" placeholder="Pesquisar por uma empresa." onChange={(e) => setSearchText(e.target.value)} />
                   <button><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" strokeLinecap="square" strokeLinejoin="arcs"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
                 </form>
               </div>
