@@ -16,8 +16,8 @@ export default function HeaderMainPage() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(setIsLoading(true));
         if (isAuthenticated()) {
+            dispatch(setIsLoading(true));
             async function loadUserLogged() {
                 await api.get('/users/profile-user').then(res => {
                     dispatch(setUser(res.data));

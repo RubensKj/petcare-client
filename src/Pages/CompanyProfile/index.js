@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import HeaderMainPage from '../../Components/HeaderMainPage';
+import DropDownCart from '../../Components/DropDownCart';
 import EmptyContent from '../../Components/EmptyContent';
 import Loading from '../../Components/Loading';
 import FavoriteButton from '../../Components/FavoriteButton';
@@ -123,18 +124,39 @@ export default function Preview(props) {
     }
   }
 
+  // // STATE FOR THE CARD OF SERVICES
+  // const [cart, setCart] = useState([]);
+  // // EVERYTIME CART IS CHANGED IT WILL BE SETTED ON LOCALSTORAGE
+  // useEffect(() => {
+  //   localStorage.setItem('cartStore', JSON.stringify(cart));
+  // }, [cart]);
+
+  function handleTest() {
+    let cart = JSON.parse(localStorage.getItem('cartStore'))
+    console.log("Testandoo")
+    console.log(cart)
+  }
+
   function selectItem(event, service) {
+    // isSelected
     let selectedDiv = event.currentTarget;
-    if (!selectedDiv.classList.className === "selectedItem") {
-      if (localStorage.getItem('cart') !== null) {
-        let cart = localStorage.getItem('cart');
-        cart.push(service);
-        localStorage.setItem('cart', JSON.stringify(cart));
+
+    let cart = JSON.parse(localStorage.getItem('cartStore'))
+    
+    if (cart !== null) {
+      let cartWithInfos = [...cart];
+      if (!cartWithInfos.includes(service.id)) {
+        cartWithInfos.push(service);
+        localStorage.setItem('cartStore', JSON.stringify(cartWithInfos));
       } else {
-        let cart = [];
-        cart.push(service);
-        localStorage.setItem('cart', JSON.stringify(cart));
+        cartWithInfos.filter(item => item !== service)
+        localStorage.setItem('cartStore', JSON.stringify(cartWithInfos));
       }
+    } else {
+      console.log("entrou2")
+      let cartArray = [];
+      cartArray.push(service);
+      localStorage.setItem('cartStore', JSON.stringify(cartArray));
     }
     selectedDiv.classList.toggle("selectedItem");
   }
@@ -157,92 +179,94 @@ export default function Preview(props) {
   return (
     <>
       <HeaderMainPage props={props} />
-      <div className="container-page-sidebar">
-        <div className="box-color-area" />
-        <div className="content-preview">
-          <div className="buttons-actions">
-            <div className="actions">
-              <FavoriteButton favorite={isFavorite} onClick={handleFavorite} />
-              <div className="report button-design" role="button">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="arcs"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
-                <button>Denunciar</button>
+      <div className="container-company-profile">
+        <div className="content-company-profile">
+          <div className="box-color-area" />
+          <div className="content-preview">
+            <div className="buttons-actions">
+              <div className="actions">
+                <FavoriteButton favorite={isFavorite} onClick={handleFavorite} />
+                <div className="report button-design" role="button">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="arcs"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
+                  <button onClick={handleTest} >Denunciar</button>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="box-main-information">
-            <div className="img-area">
-              <img src={company.avatar ? (company.avatar) : (PetShopDogLogo)} alt="Company Logo" />
-            </div>
-            <div className="title-joinedDate">
-              {isLoading ? (<Loading />) : (
+            <div className="box-main-information">
+              <div className="img-area">
+                <img src={company.avatar ? (company.avatar) : (PetShopDogLogo)} alt="Company Logo" />
+              </div>
+              <div className="title-joinedDate">
+                {isLoading ? (<Loading />) : (
+                  <>
+                    <h1>{company.companyName}</h1>
+                    <div className="evaluation-paws-preview">
+                      <PawLogo className="paw-preview" />
+                      <PawLogo className="paw-preview" />
+                      <PawLogo className="paw-preview" />
+                      <PawLogo className="paw-preview" />
+                      <PawLogo className="paw-preview" />
+                      <span>{company.rate === 5 ? ("5.0") : (company.rate)}</span>
+                    </div>
+                  </>
+                )}
+              </div>
+              <div className="transion-small" />
+              <div className="address-status">
+                <div className="address-area">
+                  <h3>Endereço</h3>
+                  {isLoading ? (<Loading boxShadow="none" />) : (company.address ? (<AddressInfo key={company.address.id} text={company.address.street + ', ' + company.address.placeNumber + ' - ' + (company.address.complement ? (company.address.complement + ' ') : ('')) + company.address.neighborhood + ', ' + company.address.city + ' - ' + company.address.cep} />) : (<AddressInfo text="Esta empresa não possui nenhum endereço." />))}
+                </div>
+                <div className="status-area">
+                  <h3>Horário</h3>
+                  {isLoading ? (<Loading boxShadow="none" />) : (<StatusInfo text={company.status} />)}
+                </div>
+              </div>
+              {company.description ? (
                 <>
-                  <h1>{company.companyName}</h1>
-                  <div className="evaluation-paws-preview">
-                    <PawLogo className="paw-preview" />
-                    <PawLogo className="paw-preview" />
-                    <PawLogo className="paw-preview" />
-                    <PawLogo className="paw-preview" />
-                    <PawLogo className="paw-preview" />
-                    <span>{company.rate === 5 ? ("5.0") : (company.rate)}</span>
+                  <div className="description-area-company-profile">
+                    <div className="content-description-company-profile">
+                      <div className="title-description-company">
+                        <h3>Descrição</h3>
+                      </div>
+                      <p>{company.description}</p>
+                    </div>
                   </div>
+                </>
+              ) : ('')}
+            </div>
+          </div>
+          <div className="content-company">
+            <div className="products-area">
+              <div className="title-area">
+                <h3>Serviços</h3>
+              </div>
+              <div className="transion-small" />
+              {isLoadingServices ? (<Loading />) : (
+                <>
+                  {services.length > 0 ? (
+                    <div className="grid-services">
+                      {services.map(service => <ServiceCardToUser key={service.id} service={service} onClick={event => selectItem(event, service)} />)}
+                    </div>
+                  ) : (<EmptyContent title="Lista de serviços" description="A empresa não possui nenhum serviço." svg={<svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="#dddddd" strokeWidth="2" strokeLinecap="square" strokeLinejoin="arcs"><path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z" /><path d="M14 3v5h5M16 13H8M16 17H8M10 9H8" /></svg>} />)}
+                  <BottomLoadMore setClassName="btn-loadServices" text="Carregar mais produtos" onClick={() => handleLoadMoreServices(servicesActPage + 1)} />
+                </>
+              )}
+              <div className="title-area">
+                <h3>Produtos</h3>
+              </div>
+              <div className="transion-small" />
+              {isLoadingProducts ? (<Loading />) : (
+                <>
+                  {products.length > 0 ? (
+                    <div className="grid-products">
+                      {products.map(product => <ProductCard key={product.id} product={product} />)}
+                    </div>
+                  ) : (<EmptyContent title="Lista de produtos" description="A empresa não possui nenhum produto." svg={<svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="#dddddd" strokeWidth="2" strokeLinecap="square" strokeLinejoin="arcs"><circle cx="10" cy="20.5" r="1" /><circle cx="18" cy="20.5" r="1" /><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1" /></svg>} />)}
+                  <BottomLoadMore setClassName="btn-loadProducts" text="Carregar mais produtos" onClick={() => handleLoadMoreProducts(productsActPage + 1)} />
                 </>
               )}
             </div>
-            <div className="transion-small" />
-            <div className="address-status">
-              <div className="address-area">
-                <h3>Endereço</h3>
-                {isLoading ? (<Loading boxShadow="none" />) : (company.address ? (<AddressInfo key={company.address.id} text={company.address.street + ', ' + company.address.placeNumber + ' - ' + (company.address.complement ? (company.address.complement + ' ') : ('')) + company.address.neighborhood + ', ' + company.address.city + ' - ' + company.address.cep} />) : (<AddressInfo text="Esta empresa não possui nenhum endereço." />))}
-              </div>
-              <div className="status-area">
-                <h3>Horário</h3>
-                {isLoading ? (<Loading boxShadow="none" />) : (<StatusInfo text={company.status} />)}
-              </div>
-            </div>
-            {company.description ? (
-              <>
-                <div className="description-area-company-profile">
-                  <div className="content-description-company-profile">
-                    <div className="title-description-company">
-                      <h3>Descrição</h3>
-                    </div>
-                    <p>{company.description}</p>
-                  </div>
-                </div>
-              </>
-            ) : ('')}
-          </div>
-        </div>
-        <div className="content-company">
-          <div className="products-area">
-            <div className="title-area">
-              <h3>Serviços</h3>
-            </div>
-            <div className="transion-small" />
-            {isLoadingServices ? (<Loading />) : (
-              <>
-                {services.length > 0 ? (
-                  <div className="grid-services">
-                    {services.map(service => <ServiceCardToUser key={service.id} service={service} onClick={event => selectItem(event, service)} />)}
-                  </div>
-                ) : (<EmptyContent title="Lista de serviços" description="A empresa não possui nenhum serviço." svg={<svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="#dddddd" strokeWidth="2" strokeLinecap="square" strokeLinejoin="arcs"><path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z" /><path d="M14 3v5h5M16 13H8M16 17H8M10 9H8" /></svg>} />)}
-                <BottomLoadMore setClassName="btn-loadServices" text="Carregar mais produtos" onClick={() => handleLoadMoreServices(servicesActPage + 1)} />
-              </>
-            )}
-            <div className="title-area">
-              <h3>Produtos</h3>
-            </div>
-            <div className="transion-small" />
-            {isLoadingProducts ? (<Loading />) : (
-              <>
-                {products.length > 0 ? (
-                  <div className="grid-products">
-                    {products.map(product => <ProductCard key={product.id} product={product} />)}
-                  </div>
-                ) : (<EmptyContent title="Lista de produtos" description="A empresa não possui nenhum produto." svg={<svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="#dddddd" strokeWidth="2" strokeLinecap="square" strokeLinejoin="arcs"><circle cx="10" cy="20.5" r="1" /><circle cx="18" cy="20.5" r="1" /><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1" /></svg>} />)}
-                <BottomLoadMore setClassName="btn-loadProducts" text="Carregar mais produtos" onClick={() => handleLoadMoreProducts(productsActPage + 1)} />
-              </>
-            )}
           </div>
         </div>
       </div>

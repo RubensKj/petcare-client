@@ -17,12 +17,21 @@
 
 /* 7bbb5e */
 
-.box-color-area {
-  background: #7bbb5e;
-  height: 250px;
+.container-company-profile {
+  display: flex;
 }
 
-.content-preview {
+.container-company-profile .content-company-profile {
+  width: 100%;
+}
+
+.container-company-profile .box-color-area {
+  background: #7bbb5e;
+  height: 250px;
+  z-index: -1;
+}
+
+.container-company-profile .content-preview {
   display: flex;
   justify-content: center;
   position: relative;
@@ -229,7 +238,7 @@
 }
 
 .content-preview .box-main-information .description-area-company-profile .content-description-company-profile .title-description-company {
-  font-size: 16px;
+  font-size: 14px;
   margin-top: 2px;
   margin-left: 8px;
   color: #ec910a;

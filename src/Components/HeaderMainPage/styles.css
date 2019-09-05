@@ -7,6 +7,7 @@
   background: #fff;
   border-bottom: 1px solid #ebeced;
   box-shadow: 0 8px 16px rgba(0,0,0,.1);
+  z-index: 1000;
 }
 
 .header-main-container .content-header {
@@ -43,7 +44,7 @@
   grid-auto-flow: column;
 }
 
-.header-main-container .nav-header-main .actions-header a {
+.header-main-container .nav-header-main .actions-header a, .header-main-container .nav-header-main .actions-header button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,11 +55,11 @@
   border-radius: 5px;
 }
 
-.header-main-container .nav-header-main .actions-header a svg {
+.header-main-container .nav-header-main .actions-header a svg, .header-main-container .nav-header-main .actions-header button svg {
   stroke: #717171;
 }
 
-.header-main-container .nav-header-main .actions-header a:hover > svg {
+.header-main-container .nav-header-main .actions-header a:hover > svg, .header-main-container .nav-header-main .actions-header button:hover > svg {
   stroke: #7bbb5e;
 }
 

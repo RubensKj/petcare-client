@@ -4,7 +4,7 @@ import './styles.css';
 
 export default function ServiceCardToUser({ service, onClick }) {
   return (
-    <div className="service" onClick={onClick}>
+    <div className="service" role="button" onClick={onClick}>
       <div className="service-information">
         <div className="title-service">
           <h3>{service.name}</h3>
