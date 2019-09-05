@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import HeaderMainPage from '../../Components/HeaderMainPage';
-import DropDownCart from '../../Components/DropDownCart';
 import EmptyContent from '../../Components/EmptyContent';
 import Loading from '../../Components/Loading';
 import FavoriteButton from '../../Components/FavoriteButton';
@@ -124,41 +123,72 @@ export default function Preview(props) {
     }
   }
 
-  // // STATE FOR THE CARD OF SERVICES
-  // const [cart, setCart] = useState([]);
-  // // EVERYTIME CART IS CHANGED IT WILL BE SETTED ON LOCALSTORAGE
-  // useEffect(() => {
-  //   localStorage.setItem('cartStore', JSON.stringify(cart));
-  // }, [cart]);
-
-  function handleTest() {
-    let cart = JSON.parse(localStorage.getItem('cartStore'))
-    console.log("Testandoo")
-    console.log(cart)
+  // CARD STATE
+  const INITIAL_STATE_CARD = {
+    nameCompany: '',
+    companyAddress: {
+      street: '',
+      placeNumber: '',
+      city: '',
+      complement: '',
+      neighborhood: '',
+      state: '',
+      cep: '',
+    },
+    email: '',
+    total: 0,
+    subTotal: 0,
+    servicesItens: [],
+    productsItens: [],
   }
 
-  function selectItem(event, service) {
-    // isSelected
-    let selectedDiv = event.currentTarget;
+  // // STATE FOR THE CARD OF SERVICES
+  const [cart, setCart] = useState(INITIAL_STATE_CARD);
 
-    let cart = JSON.parse(localStorage.getItem('cartStore'))
-    
-    if (cart !== null) {
-      let cartWithInfos = [...cart];
-      if (!cartWithInfos.includes(service.id)) {
-        cartWithInfos.push(service);
-        localStorage.setItem('cartStore', JSON.stringify(cartWithInfos));
+  // // EVERYTIME CART IS CHANGED IT WILL BE SETTED ON LOCALSTORAGE
+  useEffect(() => {
+    if (company.companyName === cart.nameCompany) {
+      localStorage.setItem('cartStore', JSON.stringify(cart));
+    }
+  }, [cart, company.companyName]);
+
+  function selectItem(event, service) {
+    if (isAuthenticated()) {
+      let selectedDiv = event.currentTarget;
+      let cartLocal = JSON.parse(localStorage.getItem('cartStore'));
+
+      if (cartLocal !== null) {
+        addCartStoreToLocalStorage(cartLocal, service, selectedDiv);
       } else {
-        cartWithInfos.filter(item => item !== service)
-        localStorage.setItem('cartStore', JSON.stringify(cartWithInfos));
+        localStorage.setItem('cartStore', JSON.stringify(cart));
+        let newCard = JSON.parse(localStorage.getItem('cartStore'));
+        addCartStoreToLocalStorage(newCard, service, selectedDiv);
       }
     } else {
-      console.log("entrou2")
-      let cartArray = [];
-      cartArray.push(service);
-      localStorage.setItem('cartStore', JSON.stringify(cartArray));
+      props.history.push('/entrar');
     }
-    selectedDiv.classList.toggle("selectedItem");
+  }
+
+  function addCartStoreToLocalStorage(cart, service, selectDiv) {
+    if(cart.nameCompany === "") {
+      addItemToCart(service);
+      selectDiv.classList.toggle("selectedItem");
+      return;
+    } 
+    if(cart.nameCompany === company.companyName) {
+      addItemToCart(service);
+      selectDiv.classList.toggle("selectedItem");
+    } else {
+      alert("Certeza?");
+    }
+  }
+
+  function addItemToCart(item) {
+    if (!cart.servicesItens.includes(item)) {
+      setCart({ ...cart, nameCompany: company.companyName, companyAddress: company.address, servicesItens: cart.servicesItens.concat(item) });
+    } else {
+      setCart({ ...cart, servicesItens: cart.servicesItens.filter(itemFromList => itemFromList !== item) });
+    }
   }
 
   async function handleFavorite(e) {
@@ -188,7 +218,7 @@ export default function Preview(props) {
                 <FavoriteButton favorite={isFavorite} onClick={handleFavorite} />
                 <div className="report button-design" role="button">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="arcs"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
-                  <button onClick={handleTest} >Denunciar</button>
+                  <button>Denunciar</button>
                 </div>
               </div>
             </div>

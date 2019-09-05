@@ -9,6 +9,10 @@
   margin: 0 auto;
 }
 
+.container-cart .container-nothing {
+  margin-top: 55px;
+}
+
 .container-cart .content-cart {
   display: flex;
   width: 100%;
