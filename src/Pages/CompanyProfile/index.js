@@ -170,12 +170,12 @@ export default function Preview(props) {
   }
 
   function addCartStoreToLocalStorage(cart, service, selectDiv) {
-    if(cart.nameCompany === "") {
+    if (cart.nameCompany === "") {
       addItemToCart(service);
       selectDiv.classList.toggle("selectedItem");
       return;
-    } 
-    if(cart.nameCompany === company.companyName) {
+    }
+    if (cart.nameCompany === company.companyName) {
       addItemToCart(service);
       selectDiv.classList.toggle("selectedItem");
     } else {

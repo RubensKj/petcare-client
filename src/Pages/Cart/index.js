@@ -67,7 +67,7 @@ export default function Cart() {
               <h1 className="title-order">Finalize seu pedido</h1>
               <div className="company-address">
                 <h2>Localização do estabelecimento</h2>
-                <p>{address.street + ', ' + address.placeNumber}</p>
+                <p>{address.street + ', ' + address.placeNumber + (address.complement ? (' - ' + address.complement) : (''))}</p>
                 <p>{address.neighborhood + ' - ' + address.city + '/' + address.state}</p>
                 <p>CEP: {address.cep}</p>
               </div>
