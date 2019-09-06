@@ -4,6 +4,14 @@ import './styles.css';
 
 export default function ModalDelete({ idDiv, handleDeleteCart }) {
 
+  const modal = document.getElementById(idDiv);
+
+  window.onclick = function(event) {
+    if (event.target === modal) {
+      modal.classList.remove('openModal');
+    }
+  }
+
   function handleCancel() {
     let modal = document.querySelector('.modal-delete');
     modal.classList.remove('openModal');
@@ -14,7 +22,7 @@ export default function ModalDelete({ idDiv, handleDeleteCart }) {
       <div id={idDiv} className="modal-delete">
         <div className="card-delete">
           <div className="content-card">
-            <h1>Atenção!</h1>
+            <h1>Deletar Carrinho?</h1>
             <span>Você tem certeza que quer deletar os itens que possuem em seu carrinho!</span>
           </div>
           <div className="buttons-actions">
