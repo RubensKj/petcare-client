@@ -62,7 +62,7 @@ export default function LogIn(props) {
 
   return (
     <>
-      <HeaderMainPage hideBtns={true} />
+      <HeaderMainPage props={props} />
       <div className="container-login">
         <div className="content-login-page">
           <div className="box-login">

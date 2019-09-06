@@ -55,7 +55,7 @@ export default function Main(props) {
 
   return (
     <>
-      <HeaderMainPage />
+      <HeaderMainPage props={props} />
       <div className="container-main">
         {containsFavorites ? (
           <>

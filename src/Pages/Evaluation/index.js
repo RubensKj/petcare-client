@@ -9,10 +9,10 @@ import TextArea from "../../Components/TextArea";
 import ButtonForm from "../../Components/ButtonForm";
 import ButtonAction from "../../Components/ButtonToOnClick";
 
-export default function Content() {
+export default function Content(props) {
   return (
     <>
-      <HeaderMainPage />
+      <HeaderMainPage props={props} />
       <div className="container-evaluation">
         <div className="content-evaluation">
           <TransitionOfSetting title="Deixe sua avaliação!" description="Deixe sua avaliação para o pet shop, para ajudar os outros usuários." />

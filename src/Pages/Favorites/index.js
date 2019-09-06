@@ -8,7 +8,7 @@ import api from '../../Services/api';
 
 import './styles.css';
 
-export default function Favorites() {
+export default function Favorites(props) {
   const [favoritesCompanies, setFavoritesCompanies] = useState([]);
 
   async function loadFavorites(page) {
@@ -23,7 +23,7 @@ export default function Favorites() {
 
   return (
     <>
-      <HeaderMainPage />
+      <HeaderMainPage props={props} />
       <div className="container-favorites">
         <div className="content-favorites">
           <div className="content-list-favorites">

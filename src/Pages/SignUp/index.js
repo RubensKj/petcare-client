@@ -100,7 +100,7 @@ export default function SignUp(props) {
 
   return (
     <>
-      <HeaderMainPage hideBtns={true} />
+      <HeaderMainPage props={props} />
       <div className="container-signup">
         <div className="box-signup">
           <HeaderBoxAuth message="Cadastre-se no PetCare" />

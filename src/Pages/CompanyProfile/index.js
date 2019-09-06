@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import HeaderMainPage from '../../Components/HeaderMainPage';
 import EmptyContent from '../../Components/EmptyContent';
+import ModalDelete from '../../Components/ModalDelete';
 import Loading from '../../Components/Loading';
 import FavoriteButton from '../../Components/FavoriteButton';
 import AddressInfo from '../../Components/AddressInfo';
@@ -179,16 +180,25 @@ export default function Preview(props) {
       addItemToCart(service);
       selectDiv.classList.toggle("selectedItem");
     } else {
-      alert("Certeza?");
+      let modal = document.getElementById('id-modal-delete-cart');
+      modal.classList.add('openModal');
     }
   }
 
   function addItemToCart(item) {
     if (!cart.servicesItens.includes(item)) {
-      setCart({ ...cart, nameCompany: company.companyName, companyAddress: company.address, servicesItens: cart.servicesItens.concat(item) });
+      setCart({ ...cart, nameCompany: company.companyName, subTotal: ((Math.round(cart.subTotal * 100) / 100) + item.price), total: ((Math.round(cart.subTotal * 100) / 100) + item.price), companyAddress: company.address, servicesItens: cart.servicesItens.concat(item) });
     } else {
-      setCart({ ...cart, servicesItens: cart.servicesItens.filter(itemFromList => itemFromList !== item) });
+      setCart({ ...cart, servicesItens: cart.servicesItens.filter(itemFromList => itemFromList !== item), subTotal: ((Math.round(cart.subTotal * 100) / 100) - item.price), total: ((Math.round(cart.subTotal * 100) / 100) - item.price) });
     }
+  }
+
+  function handleDeleteCart(e) {
+    e.preventDefault();
+    let modal = document.getElementById('id-modal-delete-cart');
+    
+    localStorage.setItem('cartStore', JSON.stringify(cart));
+    modal.classList.remove('openModal');
   }
 
   async function handleFavorite(e) {
@@ -211,6 +221,7 @@ export default function Preview(props) {
       <HeaderMainPage props={props} />
       <div className="container-company-profile">
         <div className="content-company-profile">
+          <ModalDelete idDiv="id-modal-delete-cart" handleDeleteCart={handleDeleteCart} />
           <div className="box-color-area" />
           <div className="content-preview">
             <div className="buttons-actions">

@@ -68,7 +68,7 @@ export default function Profile(props) {
 
   return (
     <>
-      <HeaderMainPage />
+      <HeaderMainPage props={props} />
       <div className="container-profile">
         {state.isLoading ? (<Loading />) : (
           <div className="inputs-change-profile">

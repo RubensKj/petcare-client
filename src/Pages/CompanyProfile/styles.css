@@ -5,6 +5,13 @@
   color: #dabb72 !important;
 }
 
+/* MODAL */
+
+.openModal {
+  display: block;
+}
+
+
 /* Loading Styles */
 
 .content-company .products-area .loading-api {

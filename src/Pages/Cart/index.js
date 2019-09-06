@@ -10,7 +10,7 @@ import DebitSVG from '../../Assets/Payments/debit-card.svg';
 
 import './styles.css';
 
-export default function Cart() {
+export default function Cart(props) {
 
   // CARD STATE
   const INITIAL_STATE_CARD = {
@@ -52,14 +52,14 @@ export default function Cart() {
 
   function handleDelete(e, item) {
     e.preventDefault();
-    setCart({ ...cart, servicesItens: cart.servicesItens.filter(itemFromList => itemFromList !== item) });
+    setCart({ ...cart, servicesItens: cart.servicesItens.filter(itemFromList => itemFromList !== item), subTotal: ((Math.round(cart.subTotal * 100) / 100) - item.price), total: ((Math.round(cart.subTotal * 100) / 100) - item.price) });
   }
 
   const address = cart.companyAddress;
 
   return (
     <>
-      <HeaderMainPage />
+      <HeaderMainPage props={props} />
       <div className="container-cart">
         {cartExistsWithItens ? (
           <div className="content-cart">
@@ -108,7 +108,7 @@ export default function Cart() {
                     <span className="product-value">Subtotal</span>
                   </div>
                   <div className="price-subtotal">
-                    <span>R$ {cart.subTotal}</span>
+                    <span>R$ {cart.subTotal.toFixed(2)}</span>
                   </div>
                 </div>
                 <hr />
@@ -117,7 +117,7 @@ export default function Cart() {
                     <span className="products-total">Total</span>
                   </div>
                   <div className="price-total">
-                    <span>R$ 0.00</span>
+                    <span>R$ {cart.total.toFixed(2)}</span>
                   </div>
                 </div>
               </form>

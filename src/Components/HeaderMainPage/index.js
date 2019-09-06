@@ -6,11 +6,11 @@ import { useDispatch } from 'react-redux';
 import { setUser, setIsLoading } from '../../Store/Actions/User';
 
 import api from '../../Services/api';
-import { isAuthenticated } from '../../Services/auth';
+import { isAuthenticated, logout } from '../../Services/auth';
 
 import "./styles.css";
 
-export default function HeaderMainPage() {
+export default function HeaderMainPage({ props }) {
     // REDUX TO USER
     // const state = useSelector(state => state.User);
     const dispatch = useDispatch();
@@ -25,11 +25,18 @@ export default function HeaderMainPage() {
                 await api.get('/users/profile-user').then(res => {
                     dispatch(setUser(res.data));
                     dispatch(setIsLoading(false));
-                })
+                }).catch(err => {
+                    console.log(JSON.stringify(err));
+                    console.log(JSON.stringify(err.message));
+                    if (err.message === "Request failed with status code 401") {
+                        logout();
+                        props.history.push('/entrar');
+                    }
+                });
             }
             loadUserLogged();
         }
-    }, [dispatch]);
+    }, [dispatch, props.history]);
 
     async function handleLogOut() {
         localStorage.removeItem('jwtToken');
