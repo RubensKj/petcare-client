@@ -40,7 +40,7 @@ export default function Main(props) {
   function handleSearch(e) {
     e.preventDefault();
     if(searchText.length > 0) {
-      props.history.push(`/pet-shops?search=${searchText}`);
+      props.history.push(`/lista-resultados/${searchText}`);
     }
   }
 

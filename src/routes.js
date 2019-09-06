@@ -23,8 +23,8 @@ const Routes = () => (
       <Route path='/cadastrar' component={SignUp} />
 
       <Route exact path='/' component={Main} />
-      <Route exact path='/companies/:id' component={CompanyProfile} />
-      <Route exact path='/pet-shops:search' component={SearchResult} />
+      <Route exact path='/pet-shops/:id' component={CompanyProfile} />
+      <Route exact path='/lista-resultados/:search' component={SearchResult} />
       <PrivateRoute exact path='/profile' component={Profile} />
       <PrivateRoute exact path='/favoritos' component={Favorites} />
       <PrivateRoute exact path='/sacola' component={Cart} />

@@ -102,3 +102,10 @@
 .modal-delete .card-delete .buttons-actions .cancel-button:hover {
   background: #f9f9f9;
 }
+
+@media only screen and (max-width: 500px) and (min-width: 0px) {
+  .modal-delete {
+    padding: 0 15px;
+    padding-top: 170px;
+  }
+}

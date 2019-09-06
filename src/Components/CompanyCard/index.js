@@ -7,7 +7,7 @@ import './styles.css';
 
 export default function CompanyCard({ company }) {
   return (
-    <a href={`/companies/${company.id}`} className="link-company">
+    <a href={`/pet-shops/${company.id}`} className="link-company">
       <div className="box-company">
         <div className="image-area">
           <img src={company.avatar ? (company.avatar) : (PetShopDogLogo)} alt="Company Logo" />
