@@ -20,6 +20,7 @@
   display: grid;
   grid-gap: 15px;
   margin: 20px auto 20px;
+  padding: 10px;
   grid-column-gap: 15px;
   column-gap: 15px;
   grid-template-columns: repeat(3, 1fr);

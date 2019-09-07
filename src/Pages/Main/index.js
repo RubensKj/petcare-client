@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import HeaderMainPage from '../../Components/HeaderMainPage';
+import Subtitle from '../../Components/Subtitle';
 import Loading from '../../Components/Loading';
 import CompanyCard from '../../Components/CompanyCard';
 
@@ -61,9 +62,7 @@ export default function Main(props) {
           <>
             <div className="favorites-petshops">
               <div className="header-list-favorites">
-                <div className="title-list">
-                  <h2>Meus Favoritos</h2>
-                </div>
+                <Subtitle text="Meus Favoritos" />
               </div>
               <div id="content-list-favorites" className="content-list-favorites">
                 <div className="list-favorites">
@@ -75,9 +74,7 @@ export default function Main(props) {
         ) : ('')}
         <div className="petshops">
           <div className="header-list-petshops">
-            <div className="title-list">
-              <h2>Pet shops</h2>
-            </div>
+            <Subtitle text="Pet shops" />
             <div className="actions-content-list-petshop">
               <div className="btn-actions-search">
                 <button>Relevância</button>
