@@ -1,0 +1,22 @@
+.area-price-order {
+  width: 100%;
+  padding: 10px 15px;
+  border-top: 1px solid #ebeced;
+  border-bottom: 1px solid #ebeced;
+}
+
+.area-price-order .content-order-price-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.area-price-order .content-order-price-area .static-text {
+  color: #394458;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.area-price-order .content-order-price-area .info-text {
+  color: #394458;
+}

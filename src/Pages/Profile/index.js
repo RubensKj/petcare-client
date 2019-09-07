@@ -8,6 +8,7 @@ import ButtonForm from '../../Components/ButtonForm';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { addValue, setErrors } from '../../Store/Actions/User';
+import { setTitleAlert, setDescriptionAlert, setSuccessedAlert } from '../../Store/Actions/Alert';
 
 import './styles.css';
 import api from '../../Services/api';
@@ -21,46 +22,49 @@ export default function Profile(props) {
 
     const { completeName, phoneNumber } = state.data;
     const { street, placeNumber, complement, neighborhood, cep, city } = state.data.address;
-    if (!completeName || !phoneNumber || !street || !placeNumber || !neighborhood || !cep || !city || !state.data.address.state) {
-      dispatch(setErrors("Preencha todos os campos para alterar o seu perfil"));
+    if (!completeName || !phoneNumber) {
+      dispatch(setErrors("Preencha pelo menos o nome completo e telefone para alterar o seu perfil"));
     } else {
       if (completeName.length >= 255) {
         dispatch(setErrors("Nome muito longo"));
       }
 
-      if (phoneNumber.length > 15) {
+      if (phoneNumber.length <= 0 || phoneNumber.length > 15) {
         dispatch(setErrors("Número de telefone inválido"));
       }
 
-      if (street.length > 60) {
+      if (street !== undefined && street.length > 60) {
         dispatch(setErrors("Endereço inválido"));
       }
 
-      if (placeNumber > 200000.00) {
+      if (placeNumber !== undefined && placeNumber > 200000) {
         dispatch(setErrors("Número inválido"));
       }
 
-      if (complement.length > 100) {
+      if (complement !== undefined && complement.length > 100) {
         dispatch(setErrors("Complemento inválido"));
       }
 
-      if (neighborhood.length > 650) {
+      if (neighborhood !== undefined  && neighborhood.length > 650) {
         dispatch(setErrors("Bairro inválido"));
       }
 
-      if (cep.length > 10) {
+      if (cep !== undefined && cep.length > 10) {
         dispatch(setErrors("CEP inválido"));
       }
 
-      if (city.length > 100) {
+      if (city !== undefined && city.length > 100) {
         dispatch(setErrors("Nome de cidade inválido"));
       }
 
-      if (state.data.address.state.length > 2) {
+      if (state.data.address.state !== undefined && state.data.address.state.length > 2) {
         dispatch(setErrors("Nome de estado inválido"));
       }
 
       await api.post('/users/edit', JSON.stringify(state.data)).then(() => {
+        dispatch(setTitleAlert("Alteração feita com sucesso!"));
+        dispatch(setDescriptionAlert(completeName + ` sua conta foi alterada com sucesso!`));
+        dispatch(setSuccessedAlert(true));
         props.history.push('/');
       })
     }
@@ -68,7 +72,7 @@ export default function Profile(props) {
 
   return (
     <>
-      <HeaderMainPage props={props} />
+      <HeaderMainPage props={props} validate={true} />
       <div className="container-profile">
         {state.isLoading ? (<Loading />) : (
           <div className="inputs-change-profile">

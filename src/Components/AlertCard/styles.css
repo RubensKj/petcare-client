@@ -1,0 +1,82 @@
+.opened-alert-card {
+  display: block !important;
+  /* transition: all ; */
+  animation: openAndClose 5s;
+}
+
+@keyframes openAndClose {
+  0%   {display: block}
+  20%  {top: 100px}
+  95%  {
+    top: 100px;
+    opacity: 1;
+    display: block;
+  }
+  99% {
+    top: -95px;
+    opacity: 0;
+  }
+  100% {
+    display: none;
+  }
+}
+
+.alert-card {
+  display: none;
+  position: absolute;
+  top: -200px;
+  max-width: 500px;
+  width: 100%;
+  background: #fff;
+  border-radius: 5px; 
+  border: 1px solid #ebeced;
+  z-index: 999;
+  transition: 0.2s;
+}
+
+.alert-card .content-alert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+}
+
+.alert-card .content-alert .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  padding: 5px;
+  background: #fafafa;
+  margin-right: 20px;
+}
+
+.alert-card .content-alert .text-area h3 {
+  color: #3e3e3e;
+  font-size: 18px;
+}
+
+.alert-card .content-alert .text-area span {
+  color: #8b8b8b;
+  -webkit-box-orient: vertical;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 15px;
+  height: 46px;
+}
+
+.x-alert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.x-alert:hover > svg {
+  stroke: #FB4A4D;
+  transition: stroke 0.4s;
+}

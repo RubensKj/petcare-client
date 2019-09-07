@@ -26,6 +26,12 @@
   margin-left: 10px;
 }
 
+.container-list-results .content-list-results .content-list .title-results h2 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .container-list-results .content-list-results .content-list .title-results .transition-small {
   width: 25px;
   height: 3px;

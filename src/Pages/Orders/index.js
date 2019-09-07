@@ -10,7 +10,7 @@ import './styles.css';
 export default function Orders(props) {
   return (
     <>
-      <HeaderMainPage props={props} />
+      <HeaderMainPage props={props} validate={true} />
       <div className="container-orders">
         <div className="content-orders">
           <Subtitle text="Pedidos" />

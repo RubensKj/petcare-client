@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import HeaderMainPage from '../../Components/HeaderMainPage';
+import AlertCard from '../../Components/AlertCard';
 import Subtitle from '../../Components/Subtitle';
 import Loading from '../../Components/Loading';
 import CompanyCard from '../../Components/CompanyCard';
@@ -13,6 +14,7 @@ import './styles.css';
 export default function Main(props) {
   // USER
   const state = useSelector(state => state.User);
+  const alert = useSelector(state => state.Alert);
 
   // COMPANIES
   const [companies, setCompanies] = useState([]);
@@ -21,7 +23,7 @@ export default function Main(props) {
   // FAVORITES
   const [favoritesCompanies, setFavoritesCompanies] = useState([]);
   const [containsFavorites, setContainsFavorites] = useState(false);
-  
+
   // SEARCH TEXT
   const [searchText, setSearchText] = useState('');
 
@@ -40,7 +42,7 @@ export default function Main(props) {
 
   function handleSearch(e) {
     e.preventDefault();
-    if(searchText.length > 0) {
+    if (searchText.length > 0) {
       props.history.push(`/lista-resultados/${searchText}`);
     }
   }
@@ -56,8 +58,9 @@ export default function Main(props) {
 
   return (
     <>
-      <HeaderMainPage props={props} />
+      <HeaderMainPage props={props} validate={false} />
       <div className="container-main">
+        <AlertCard alert={alert} />
         {containsFavorites ? (
           <>
             <div className="favorites-petshops">

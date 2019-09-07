@@ -1,0 +1,61 @@
+.container-order-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1366px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.container-order-page .content-order-page {
+  margin-top: 25px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 8px 16px rgba(0,0,0,.1);
+  padding: 20px 20px;
+  border-radius: 10px;
+  border: 1px solid #ebeced;
+  margin-bottom: 55px;
+}
+
+.container-order-page .content-order-page .name-order-company {
+  font-size: 18px;
+  color: #7bbb5e;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.container-order-page .content-order-page .list-itens-bought {
+  display: grid;
+  grid-gap: 10px;
+  margin: 20px auto 20px;
+  grid-template-columns: 1fr;
+  width: 100%;
+  margin-top: 25px;
+  padding: 0 30px;
+  transition: all 0.2s ease 0s;
+}
+
+.container-order-page .content-order-page .list-itens-bought .product-checkout .product-checkout-information .name-and-quantity {
+  width: 100%;
+}
+
+
+.container-order-page .content-order-page .list-itens-bought .product-checkout .product-checkout-information .name-and-quantity .product-name {
+  -webkit-box-orient: vertical;
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: auto;
+  max-width: none;
+}
+
+.container-order-page .content-order-page .list-itens-bought .product-checkout .product-checkout-information .price-check {
+  white-space: nowrap;
+}

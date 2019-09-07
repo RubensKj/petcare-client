@@ -23,7 +23,7 @@
   padding: 10px;
   grid-column-gap: 15px;
   column-gap: 15px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   width: 100%;
   margin-top: 25px;
   margin-bottom: 50px;

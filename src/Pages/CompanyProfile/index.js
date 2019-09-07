@@ -153,31 +153,39 @@ export default function Preview(props) {
     }
   }, [cart, company.companyName]);
 
-  function selectItem(event, service) {
+  function selectItem(event, item) {
     if (isAuthenticated()) {
       let selectedDiv = event.currentTarget;
       let cartLocal = JSON.parse(localStorage.getItem('cartStore'));
 
       if (cartLocal !== null) {
-        addCartStoreToLocalStorage(cartLocal, service, selectedDiv);
+        addCartStoreToLocalStorage(cartLocal, item, selectedDiv);
       } else {
         localStorage.setItem('cartStore', JSON.stringify(cart));
         let newCard = JSON.parse(localStorage.getItem('cartStore'));
-        addCartStoreToLocalStorage(newCard, service, selectedDiv);
+        addCartStoreToLocalStorage(newCard, item, selectedDiv);
       }
     } else {
       props.history.push('/entrar');
     }
   }
 
-  function addCartStoreToLocalStorage(cart, service, selectDiv) {
+  function addCartStoreToLocalStorage(cart, item, selectDiv) {
     if (cart.nameCompany === "") {
-      addItemToCart(service);
+      if (services.includes(item)) {
+        addServiceToCart(item);
+      } else {
+        addProductToCart(item);
+      }
       selectDiv.classList.toggle("selectedItem");
       return;
     }
     if (cart.nameCompany === company.companyName) {
-      addItemToCart(service);
+      if (services.includes(item)) {
+        addServiceToCart(item);
+      } else {
+        addProductToCart(item);
+      }
       selectDiv.classList.toggle("selectedItem");
     } else {
       let modal = document.getElementById('id-modal-delete-cart');
@@ -185,7 +193,7 @@ export default function Preview(props) {
     }
   }
 
-  function addItemToCart(item) {
+  function addServiceToCart(item) {
     if (!cart.servicesItens.includes(item)) {
       setCart({ ...cart, nameCompany: company.companyName, subTotal: ((Math.round(cart.subTotal * 100) / 100) + item.price), total: ((Math.round(cart.subTotal * 100) / 100) + item.price), companyAddress: company.address, servicesItens: cart.servicesItens.concat(item) });
     } else {
@@ -193,10 +201,18 @@ export default function Preview(props) {
     }
   }
 
+  function addProductToCart(item) {
+    if (!cart.productsItens.includes(item)) {
+      setCart({ ...cart, nameCompany: company.companyName, subTotal: ((Math.round(cart.subTotal * 100) / 100) + item.price), total: ((Math.round(cart.subTotal * 100) / 100) + item.price), companyAddress: company.address, productsItens: cart.productsItens.concat(item) });
+    } else {
+      setCart({ ...cart, productsItens: cart.productsItens.filter(itemFromList => itemFromList !== item), subTotal: ((Math.round(cart.subTotal * 100) / 100) - item.price), total: ((Math.round(cart.subTotal * 100) / 100) - item.price) });
+    }
+  }
+
   function handleDeleteCart(e) {
     e.preventDefault();
     let modal = document.getElementById('id-modal-delete-cart');
-    
+
     localStorage.setItem('cartStore', JSON.stringify(cart));
     modal.classList.remove('openModal');
   }
@@ -204,7 +220,7 @@ export default function Preview(props) {
   async function handleFavorite(e) {
     e.preventDefault();
     if (isAuthenticated()) {
-      if (!isFavorite) {
+      if (!isFavorite && company.id !== undefined) {
         await api.post(`/users/favorite/${company.id}`);
         setIsFavorite(true);
       } else {
@@ -218,7 +234,7 @@ export default function Preview(props) {
 
   return (
     <>
-      <HeaderMainPage props={props} />
+      <HeaderMainPage props={props} validate={false} />
       <div className="container-company-profile">
         <div className="content-company-profile">
           <ModalDelete idDiv="id-modal-delete-cart" handleDeleteCart={handleDeleteCart} />
@@ -301,7 +317,7 @@ export default function Preview(props) {
                 <>
                   {products.length > 0 ? (
                     <div className="grid-products">
-                      {products.map(product => <ProductCard key={product.id} product={product} />)}
+                      {products.map(product => <ProductCard key={product.id} product={product} onClick={event => selectItem(event, product)} />)}
                     </div>
                   ) : (<EmptyContent title="Lista de produtos" description="A empresa não possui nenhum produto." svg={<svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="#dddddd" strokeWidth="2" strokeLinecap="square" strokeLinejoin="arcs"><circle cx="10" cy="20.5" r="1" /><circle cx="18" cy="20.5" r="1" /><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1" /></svg>} />)}
                   <BottomLoadMore setClassName="btn-loadProducts" text="Carregar mais produtos" onClick={() => handleLoadMoreProducts(productsActPage + 1)} />

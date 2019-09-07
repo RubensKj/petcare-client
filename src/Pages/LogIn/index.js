@@ -62,7 +62,7 @@ export default function LogIn(props) {
 
   return (
     <>
-      <HeaderMainPage props={props} />
+      <HeaderMainPage props={props} validate={false} />
       <div className="container-login">
         <div className="content-login-page">
           <div className="box-login">

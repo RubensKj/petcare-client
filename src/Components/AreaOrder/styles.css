@@ -1,0 +1,23 @@
+.area-order {
+  width: 100%;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ebeced;
+}
+
+.area-order .content-order-area {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.area-order .content-order-area .static-text {
+  color: #717171;
+  margin-right: 5px;
+}
+
+.area-order .content-order-area .info-text {
+  color: #394458;
+}

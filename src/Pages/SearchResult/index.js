@@ -1,19 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import HeaderMainPage from '../../Components/HeaderMainPage';
 import EmptyContent from '../../Components/EmptyContent';
 
+import api from '../../Services/api';
+
 import './styles.css';
 
 export default function SearchResult(props) {
+
+  const [searchParam, setSearchParam] = useState('');
+  const [searchedCompanies, setSearchedCompanies] = useState([]);
+
+  async function searchByCompanyName(text, page) {
+    await api.get(`/companies/${page}/${text}`).then(res => {
+      setSearchedCompanies(res.data.content);
+    });
+  }
+
+  useEffect(() => {
+    setSearchParam(props.match.params.search);
+    searchByCompanyName(props.match.params.search, 0);
+  }, [props.match.params.search])
+
   return (
     <>
-      <HeaderMainPage props={props} />
+      <HeaderMainPage props={props} validate={false} />
       <div className="container-list-results">
         <div className="content-list-results">
           <div className="content-list">
             <div className="title-results">
-              <h2>Lista de resultados</h2>
+              <h2>Lista de resultados com {searchParam}</h2>
               <div className="transition-small" />
             </div>
             {false ? (

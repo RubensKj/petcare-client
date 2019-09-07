@@ -17,10 +17,11 @@
   max-width: 380px;
   width: 100%;
   background: #fff;
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 10px 10px 5px;
   box-shadow: 0 8px 16px rgba(0,0,0,.1);
   border: 1px solid #ebeced;
+  border-top: 3px solid #FB4A4D;
 }
 
 .modal-delete .card-delete .content-card {

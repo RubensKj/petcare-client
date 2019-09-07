@@ -24,7 +24,7 @@ export default function Favorites(props) {
 
   return (
     <>
-      <HeaderMainPage props={props} />
+      <HeaderMainPage props={props} validate={true} />
       <div className="container-favorites">
         <div className="content-favorites">
           <div className="content-list-favorites">

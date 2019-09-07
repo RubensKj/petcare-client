@@ -4,7 +4,7 @@ import './styles.css';
 
 export default function OrderCard({ order }) {
   return (
-    <a href={`/pedidos/`} className="order-card">
+    <a href={`/pedidos/:id`} className="order-card">
       <div className="content-order">
         <div className="image-card">
           <img src="https://scontent.fcwb2-1.fna.fbcdn.net/v/t1.0-9/36919020_268531707232126_6615945512266760192_n.jpg?_nc_cat=104&_nc_oc=AQko23jqhSEdfdI0hGPYOHjdTZOoXcvXCYhUNdiqWIcHM3i7zdB2eLqlqzE4EdhKErc&_nc_ht=scontent.fcwb2-1.fna&oh=ed883d3681026683bcadcbc8a4d909b0&oe=5E134CF4" alt="Company Logo Order Card" />

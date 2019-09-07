@@ -4,7 +4,7 @@ import ProductLogo from '../../Assets/ProductAvatarDefault.svg';
 
 import './styles.css';
 
-export default function ProductCard({ product, handleDelete,actionThreeDots }) {
+export default function ProductCard({ product, handleDelete, actionThreeDots, onClick }) {
 
   function openDropDown(id) {
     let dropdownID = "#dropdown-" + id;
@@ -29,7 +29,7 @@ export default function ProductCard({ product, handleDelete,actionThreeDots }) {
   };
 
   return (
-    <div className="product" role="button">
+    <div className="product" role="button" onClick={onClick}>
       <div className="avatar-product-area">
         <img src={product.avatar ? (product.avatar) : (ProductLogo)} alt="Product Logo" />
       </div>

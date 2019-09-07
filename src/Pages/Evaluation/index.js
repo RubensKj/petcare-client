@@ -12,7 +12,7 @@ import ButtonAction from "../../Components/ButtonToOnClick";
 export default function Content(props) {
   return (
     <>
-      <HeaderMainPage props={props} />
+      <HeaderMainPage props={props} validate={true} />
       <div className="container-evaluation">
         <div className="content-evaluation">
           <TransitionOfSetting title="Deixe sua avaliação!" description="Deixe sua avaliação para o pet shop, para ajudar os outros usuários." />

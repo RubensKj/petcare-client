@@ -13,6 +13,14 @@
 }
 
 .product-checkout .product-checkout-information .name-and-quantity {
+  display: flex;
+}
+
+.product-checkout .product-checkout-information .name-and-quantity .how-many-itens {
+  white-space: nowrap;
+}
+
+.product-checkout .product-checkout-information .name-and-quantity .product-name {
   -webkit-box-orient: vertical;
   display: block;
   display: -webkit-box;
@@ -30,6 +38,7 @@
   width: 100%;
 }
 
+
 .product-checkout .btn-remove-product-checkout {
   width: fit-content;
   display: flex;
@@ -43,8 +52,13 @@
   cursor: pointer;
 }
 
-.product-checkout .btn-remove-product-checkout:hover {
+.product-checkout .btn-remove-product-checkout svg {
+  transition: 0.1s;
+}
+
+.product-checkout .btn-remove-product-checkout:hover, .product-checkout .btn-remove-product-checkout:hover > svg {
   color: #FB4A4D;
+  stroke: #FB4A4D;
 }
 
 @media only screen and (max-width: 855px) and (min-width: 700px) {

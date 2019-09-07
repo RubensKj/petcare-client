@@ -40,7 +40,7 @@ export default function Cart(props) {
 
     if (cartLocal !== null) {
       setCart(cartLocal);
-      if (cartLocal.servicesItens.length > 0) {
+      if (cartLocal.servicesItens.length > 0 || cartLocal.productsItens.length > 0) {
         setCartExistsWithItens(true);
       }
     }
@@ -50,16 +50,21 @@ export default function Cart(props) {
     localStorage.setItem('cartStore', JSON.stringify(cart));
   }, [cart]);
 
-  function handleDelete(e, item) {
+  function handleDeleteService(e, service) {
     e.preventDefault();
-    setCart({ ...cart, servicesItens: cart.servicesItens.filter(itemFromList => itemFromList !== item), subTotal: ((Math.round(cart.subTotal * 100) / 100) - item.price), total: ((Math.round(cart.subTotal * 100) / 100) - item.price) });
+    setCart({ ...cart, servicesItens: cart.servicesItens.filter(itemFromList => itemFromList !== service), subTotal: ((Math.round(cart.subTotal * 100) / 100) - service.price), total: ((Math.round(cart.subTotal * 100) / 100) - service.price) });
+  }
+
+  function handleDeleteProduct(e, product) {
+    e.preventDefault();
+    setCart({ ...cart, productsItens: cart.productsItens.filter(itemFromList => itemFromList !== product), subTotal: ((Math.round(cart.subTotal * 100) / 100) - product.price), total: ((Math.round(cart.subTotal * 100) / 100) - product.price) });
   }
 
   const address = cart.companyAddress;
 
   return (
     <>
-      <HeaderMainPage props={props} />
+      <HeaderMainPage props={props} validate={true} />
       <div className="container-cart">
         {cartExistsWithItens ? (
           <div className="content-cart">
@@ -100,7 +105,12 @@ export default function Cart(props) {
                 </div>
                 <hr />
                 <div className="products-checkout">
-                  {cart.servicesItens.length > 0 ? (cart.servicesItens.map(item => <ProductCheckout key={item.id} itemCheckout={item} handleDelete={(e) => handleDelete(e, item)} />)) : (<EmptyContent title="Seu carrinho!" description="Adicione algum serviço para aparecer aqui." />)}
+                  {cart.servicesItens.length > 0 || cart.productsItens.length > 0 ? (
+                    <>
+                      {cart.servicesItens.map(service => <ProductCheckout key={service.id} itemCheckout={service} handleDelete={(e) => handleDeleteService(e, service)} removeMethodAppear={true} hideQuantity />)}
+                      {cart.productsItens.map(product => <ProductCheckout key={product.id} itemCheckout={product} handleDelete={(e) => handleDeleteProduct(e, product)} removeMethodAppear={true} />)}
+                    </>
+                  ) : (<EmptyContent title="Seu carrinho!" description="Adicione algum serviço para aparecer aqui." />)}
                 </div>
                 <hr />
                 <div className="total-products">

@@ -23,7 +23,11 @@ export default function ModalDelete({ idDiv, handleDeleteCart }) {
         <div className="card-delete">
           <div className="content-card">
             <h1>Deletar Carrinho?</h1>
-            <span>Você tem certeza que quer deletar os itens que possuem em seu carrinho!</span>
+            <span>
+              Deletando seu carrinho você irá perder: <br />
+                - Serviços adicionados <br />
+                - Produtos adicionados
+            </span>
           </div>
           <div className="buttons-actions">
             <div className="delete-button" onClick={handleDeleteCart}>
