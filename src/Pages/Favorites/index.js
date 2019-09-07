@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import HeaderMainPage from '../../Components/HeaderMainPage';
 import CompanyCard from '../../Components/CompanyCard';
 import EmptyContent from '../../Components/EmptyContent';
+import Subtitle from '../../Components/Subtitle';
 
 import api from '../../Services/api';
 
@@ -27,10 +28,7 @@ export default function Favorites(props) {
       <div className="container-favorites">
         <div className="content-favorites">
           <div className="content-list-favorites">
-            <div className="title-list">
-              <h2>Meus favoritos</h2>
-              <div className="transition-small" />
-            </div>
+            <Subtitle text="Meus favoritos" />
             {favoritesCompanies ? (
               <>
                 <div className="list-favorites">

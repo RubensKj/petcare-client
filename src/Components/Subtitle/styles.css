@@ -1,0 +1,11 @@
+.subtitle-content {
+  text-align: left;
+  color: #394458;
+  margin-left: 10px;
+}
+
+.subtitle-content .transition-small-below-subtitle {
+  width: 25px;
+  height: 3px;
+  background: #7bbb5e;
+}

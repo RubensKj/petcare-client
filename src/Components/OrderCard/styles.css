@@ -1,0 +1,129 @@
+.order-card {
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #ebeced;
+  box-shadow: 0 8px 16px rgba(0,0,0,.1);
+  transition: background 0.2s;
+}
+
+.order-card:hover {
+  background: #f9f9f9;
+}
+
+.order-card .content-order {
+  display: flex;
+  justify-content: center;
+  padding: 10px 15px 10px 10px;
+}
+
+/* Image treatment */
+
+.order-card .content-order .image-card {
+  width: 100%;
+  max-width: 120px;
+  height: 100%;
+  max-height: 138px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.order-card .content-order .image-card img {
+  --app-header-background-front-layer_-_background-position: 0 0;
+  --app-header-background-front-layer_-_background-repeat: no-repeat;
+  --app-header-background-front-layer_-_background-size: 100% auto;
+  flex: 1;
+  overflow-x: auto;
+  border: 1px solid #ebeced;
+}
+
+/* Card information */
+
+.order-card .content-order .card-information-order {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.order-card .content-order .card-information-order .header-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 5px;
+}
+
+.order-card .content-order .card-information-order .header-card .title-card-order {
+  display: flex;
+  color: #394458;
+  font-size: 10px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11px;
+}
+
+.order-card .content-order .card-information-order .header-card .title-card-order .number-order {
+  display: flex;
+  align-self: center;
+  margin-left: 5px;
+  font-size: 17px;
+}
+
+.order-card .content-order .card-information-order .header-card .date-of-order {
+  display: flex;
+  align-items: center;
+  color: #394458;
+  font-size: 15px;
+}
+
+.order-card .content-order .card-information-order .header-card .date-of-order svg {
+  margin-right: 5px;
+  stroke: #ec910a;
+}
+
+/* Address */
+
+.order-card .content-order .card-information-order .address-area-order {
+  display: flex;
+  align-items: center;
+  color: #394458;
+  font-size: 14px;
+  padding: 10px 5px 10px 0;
+  border-top: 1px solid #ebeced;
+  border-bottom: 1px solid #ebeced;
+}
+
+.order-card .content-order .card-information-order .address-area-order .address-order {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 15px;
+}
+
+.order-card .content-order .card-information-order .address-area-order svg {
+  margin-right: 5px;
+  stroke: #ec910a;
+}
+
+/* Footer */
+
+.order-card .content-order .card-information-order .footer-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 5px 0 5px;
+}
+
+.order-card .content-order .card-information-order .footer-card .price-card {
+  display: flex;
+  color: #394458;
+}
+
+.order-card .content-order .card-information-order .footer-card .price-card .price-number {
+  margin-left: 5px;
+}
