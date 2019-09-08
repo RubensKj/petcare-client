@@ -1,3 +1,7 @@
+.finished {
+  background: #fafafa !important;
+}
+
 .order-card {
   background: #fff;
   border-radius: 10px;

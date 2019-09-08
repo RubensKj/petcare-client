@@ -1,0 +1,26 @@
+.evaluation-route {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 45px;
+  margin-top: 15px;
+  border-radius: 5px;
+  background: #ec910a;
+  border: 1px solid #ebeced;
+  transition: opacity 0.2s;
+  cursor: pointer;
+}
+
+.evaluation-route span {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.evaluation-route:hover {
+  opacity: 0.9;
+}

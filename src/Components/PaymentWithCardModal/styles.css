@@ -1,0 +1,121 @@
+.openModal-to-finish-shop {
+  display: block !important;
+}
+
+.modal-payment-with-card {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 9999;
+  padding-top: 100px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.06);
+  transition: background 0.2s;
+}
+
+
+.modal-payment-with-card .card-modal-payment {
+  margin: auto;
+  max-width: 580px;
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 10px 5px;
+  box-shadow: 0 8px 16px rgba(0,0,0,.1);
+  border: 1px solid #ebeced;
+}
+
+.modal-payment-with-card .card-modal-payment  .header-main-pet-care {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 15px;
+}
+
+.modal-payment-with-card .card-modal-payment .header-modal-payment {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 15px 15px;
+  border-top: 1px solid #ebeced;
+  border-bottom: 1px solid #ebeced;
+}
+
+.modal-payment-with-card .card-modal-payment .header-modal-payment .company-information {
+  font-size: 13px;
+  color: #ec910a;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.modal-payment-with-card .card-modal-payment .information-of-shop {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding: 15px 15px;
+  border-bottom: 1px solid #ebeced;
+  margin-bottom: 20px;
+}
+
+.modal-payment-with-card .card-modal-payment .information-of-shop .header-information-shop {
+  font-size: 14px;
+  color: #60656f;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.modal-payment-with-card .card-modal-payment .information-of-shop .info-shop .area-info-shop {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-size: 15px;
+  color: #394458;
+}
+
+.modal-payment-with-card .card-modal-payment .information-of-shop .info-shop .area-info-shop .static-text {
+  margin-right: 10px;
+}
+
+.modal-payment-with-card .card-modal-payment .information-of-shop .info-shop .area-info-shop .total-price {
+  font-weight: 600;
+}
+
+/* FORM CSS */
+
+.modal-payment-with-card .card-modal-payment .form-to-pay {
+  padding: 10px 15px;
+}
+
+.modal-payment-with-card .card-modal-payment .form-to-pay .form-finishing .card-information {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 30px;
+  grid-template-columns: 2.5fr 1fr;
+}
+
+.modal-payment-with-card .card-modal-payment .form-to-pay .form-finishing .expiration-date {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 30px;
+}
+
+@media only screen and (max-width: 430px) and (min-width: 0px) {
+  .modal-payment-with-card .card-modal-payment .form-to-pay .form-finishing .card-information {
+    grid-template-columns: 2fr 1fr !important;
+  }
+
+  .modal-payment-with-card .card-modal-payment .form-to-pay .form-finishing .card-information .input-area .input-div .input-basic {
+    margin: 0 5px !important;
+  }
+}
+
+/* .input-div .input-basic {
+  margin: 0 5px;
+} */

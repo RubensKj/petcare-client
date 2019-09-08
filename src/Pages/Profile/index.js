@@ -6,12 +6,12 @@ import TransitionOfSetting from '../../Components/TransitionOfSetting';
 import Input from '../../Components/Input';
 import ButtonForm from '../../Components/ButtonForm';
 
+import api from '../../Services/api';
 import { useSelector, useDispatch } from 'react-redux';
 import { addValue, setErrors } from '../../Store/Actions/User';
 import { setTitleAlert, setDescriptionAlert, setSuccessedAlert } from '../../Store/Actions/Alert';
 
 import './styles.css';
-import api from '../../Services/api';
 
 export default function Profile(props) {
   const state = useSelector(state => state.User);

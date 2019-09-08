@@ -32,7 +32,7 @@ const Routes = () => (
       <PrivateRoute exact path='/sacola' component={Cart} />
       <PrivateRoute exact path='/pedidos' component={Orders} />
       <PrivateRoute exact path='/pedidos/:id' component={OrderContent} />
-      <PrivateRoute exact path='/avaliacao' component={Evaluation} />
+      <PrivateRoute exact path='/avaliacao/:id' component={Evaluation} />
 
       <Route path='*' component={WrongURL} />
     </Switch>

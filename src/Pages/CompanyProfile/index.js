@@ -136,7 +136,7 @@ export default function Preview(props) {
       state: '',
       cep: '',
     },
-    email: '',
+    emailOrderUser: '',
     total: 0,
     subTotal: 0,
     servicesItens: [],
