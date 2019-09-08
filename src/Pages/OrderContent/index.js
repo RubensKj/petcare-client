@@ -49,6 +49,13 @@ export default function OrderContentNew(props) {
         default:
           return 0;
       }
+    }).catch(err => {
+      switch (err.message) {
+        case "Request failed with status code 403":
+          return props.history.push('/');
+        default:
+          return ''
+      }
     });
   }
 
@@ -66,7 +73,7 @@ export default function OrderContentNew(props) {
 
   useEffect(() => {
     loadOrderById(props.match.params.id);
-    if (order.id) {
+    if (order.id !== undefined && order.id) {
       loadServices(order.id, 0);
       loadProducts(order.id, 0);
     }
