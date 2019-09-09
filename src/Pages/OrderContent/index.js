@@ -27,38 +27,6 @@ export default function OrderContentNew(props) {
   // SERVICES
   const [services, setServices] = useState([]);
 
-  async function loadOrderById(id) {
-    await api.get(`/orders/${id}`).then(res => {
-      setOrder(res.data);
-      setIsLoading(false);
-      switch (res.data.statusOrder) {
-        case 'NOT_PAID':
-          return setStatusWord("Pendente");
-        case 'PAID':
-          setStatusWord("Pagamento aprovado");
-          return setStatus(1);
-        case 'PROCESS':
-          setStatusWord("Em andamento");
-          return setStatus(2);
-        case 'DEVELIVERYING':
-          setStatusWord("Pronto pra entrega");
-          return setStatus(3);
-        case 'FINISHED':
-          setStatusWord("Finalizado");
-          return setStatus(4);
-        default:
-          return 0;
-      }
-    }).catch(err => {
-      switch (err.message) {
-        case "Request failed with status code 403":
-          return props.history.push('/');
-        default:
-          return ''
-      }
-    });
-  }
-
   async function loadServices(id, page) {
     await api.get(`/order-services/${id}/${page}`).then(res => {
       setServices(res.data.content);
@@ -72,12 +40,43 @@ export default function OrderContentNew(props) {
   }
 
   useEffect(() => {
+    async function loadOrderById(id) {
+      await api.get(`/orders/${id}`).then(res => {
+        setOrder(res.data);
+        setIsLoading(false);
+        switch (res.data.statusOrder) {
+          case 'NOT_PAID':
+            return setStatusWord("Pendente");
+          case 'PAID':
+            setStatusWord("Pagamento aprovado");
+            return setStatus(1);
+          case 'PROCESS':
+            setStatusWord("Em andamento");
+            return setStatus(2);
+          case 'DEVELIVERYING':
+            setStatusWord("Pronto pra entrega");
+            return setStatus(3);
+          case 'FINISHED':
+            setStatusWord("Finalizado");
+            return setStatus(4);
+          default:
+            return 0;
+        }
+      }).catch(err => {
+        switch (err.message) {
+          case "Request failed with status code 403":
+            return props.history.push('/');
+          default:
+            return ''
+        }
+      });
+    }
     loadOrderById(props.match.params.id);
     if (order.id !== undefined && order.id) {
       loadServices(order.id, 0);
       loadProducts(order.id, 0);
     }
-  }, [props.match.params.id, order.id]);
+  }, [props.match.params.id, order.id, props.history]);
 
   function handleOpen(e) {
     e.preventDefault();
@@ -135,8 +134,12 @@ export default function OrderContentNew(props) {
                 </div>
               </div>
               <div id="list-products-was-bought" className="products-list">
-                {services.length > 0 ? (services.map(service => <ServiceCard key={service.id} service={service} />)) : ('')}
-                {products.length > 0 ? (products.map(product => <ServiceCard key={product.id} service={product} />)) : ('')}
+                {services.length > 0 && products.length > 0 ? (
+                  <>
+                    {services.length > 0 ? (services.map(service => <ServiceCard key={service.id} service={service} />)) : ('')}
+                    {products.length > 0 ? (products.map(product => <ServiceCard key={product.id} service={product} />)) : ('')}
+                  </>
+                ) : (<EmptyContent title="Pedido sem produtos!" description="Ocorreu algum erro durante o pedido fazendo-o não ter nenhum produto." />)}
               </div>
               <div id="information-of-order" className="information-area visible-div-infomation">
                 <div className="information-of-order visible-div-infomation">

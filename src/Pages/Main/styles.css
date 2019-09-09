@@ -1,3 +1,7 @@
+.not-visible-loadMore {
+  display: none !important;
+}
+
 #content-list-favorites::-webkit-scrollbar {
   height: 8px;
 }

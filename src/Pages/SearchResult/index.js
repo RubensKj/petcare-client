@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import HeaderMainPage from '../../Components/HeaderMainPage';
 import EmptyContent from '../../Components/EmptyContent';
+import CompanyCard from '../../Components/CompanyCard';
 
 import api from '../../Services/api';
 
@@ -13,9 +14,9 @@ export default function SearchResult(props) {
   const [searchedCompanies, setSearchedCompanies] = useState([]);
 
   async function searchByCompanyName(text, page) {
-    await api.get(`/companies/${page}/${text}`).then(res => {
+    /* await api.get(`/companies/${page}/${text}`).then(res => {
       setSearchedCompanies(res.data.content);
-    });
+    }); */
   }
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export default function SearchResult(props) {
             {false ? (
               <>
                 <div className="list-results">
-                  {/*favoritesCompanies.map(company => <CompanyCard key={company.id} company={company} />)*/}
+                  {searchedCompanies.map(company => <CompanyCard key={company.id} company={company} />)}
                 </div>
               </>
             ) : (

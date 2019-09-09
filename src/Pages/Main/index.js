@@ -5,6 +5,7 @@ import AlertCard from '../../Components/AlertCard';
 import Subtitle from '../../Components/Subtitle';
 import Loading from '../../Components/Loading';
 import CompanyCard from '../../Components/CompanyCard';
+import BottomLoadMore from '../../Components/BottomLoadMore';
 
 import api from '../../Services/api';
 import { useSelector } from 'react-redux';
@@ -18,6 +19,8 @@ export default function Main(props) {
 
   // COMPANIES
   const [companies, setCompanies] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
+  const [actPage, setActPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   // FAVORITES
@@ -30,7 +33,13 @@ export default function Main(props) {
   async function loadCompanies(page) {
     await api.get(`/companies/${page}`).then(res => {
       setCompanies(res.data.content);
+      setTotalPages(res.data.totalPages);
+      setActPage(res.data.number);
       setIsLoading(false);
+      if (res.data.totalPages <= 1) {
+        let btn = document.querySelector(".btn-loadMore-companies-main");
+        btn.classList.add("not-visible-loadMore");
+      }
     });
   }
 
@@ -54,7 +63,26 @@ export default function Main(props) {
       setContainsFavorites(true);
       loadFavorites(0);
     }
-  }, [state.data.favorites]);
+  }, [state.data.favorites, totalPages]);
+
+  useEffect(() => {
+    if ((actPage + 1) >= totalPages && isLoading === false) {
+      let btn = document.querySelector(".btn-loadMore-companies-main");
+      btn.classList.add("not-visible-loadMore");
+    }
+  }, [companies, totalPages, isLoading, actPage])
+
+  async function handleButtonLoadMore(page) {
+    await api.get(`/companies/${page}`).then(res => {
+      setCompanies(companies.concat(res.data.content));
+      setTotalPages(res.data.totalPages);
+      setActPage(res.data.number);
+      if (res.data.totalPages <= 1) {
+        let btn = document.querySelector(".btn-loadMore-companies-main");
+        btn.classList.add("not-visible-loadMore");
+      }
+    });
+  }
 
   return (
     <>
@@ -92,9 +120,12 @@ export default function Main(props) {
             </div>
           </div>
           {isLoading ? (<Loading />) : (
-            <div className="list-petshops">
-              {companies.map(company => <CompanyCard key={company.id} company={company} />)}
-            </div>
+            <>
+              <div className="list-petshops">
+                {companies.map(company => <CompanyCard key={company.id} company={company} />)}
+              </div>
+              <BottomLoadMore setClassName="btn-loadMore-companies-main" text="Carregar mais empresas" onClick={() => handleButtonLoadMore(actPage + 1)} />
+            </>
           )}
         </div>
       </div>

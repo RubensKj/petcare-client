@@ -1,3 +1,7 @@
+.not-visible-loadMore-orders {
+  display: none !important;
+}
+
 .container-orders {
   display: flex;
   flex-direction: column;

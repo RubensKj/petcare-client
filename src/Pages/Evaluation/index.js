@@ -7,7 +7,6 @@ import TransitionOfSetting from "../../Components/TransitionOfSetting";
 import Paw from "../../Assets/PawLogoForEvaluation";
 import TextArea from "../../Components/TextArea";
 import ButtonForm from "../../Components/ButtonForm";
-import ButtonAction from "../../Components/ButtonToOnClick";
 import RedirectButton from "../../Components/RedirectButton";
 
 export default function Content(props) {
