@@ -20,7 +20,6 @@ export default function HeaderMainPage({ props, validate }) {
     useEffect(() => {
         if (isAuthenticated()) {
             setIsAuth(true);
-            dispatch(setIsLoading(true));
             async function loadUserLogged() {
                 await api.get('/users/profile-user').then(res => {
                     dispatch(setUser(res.data));

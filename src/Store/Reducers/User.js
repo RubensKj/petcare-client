@@ -16,7 +16,7 @@ const INITIAL_STATE = {
     },
     favorites: [],
   },
-  isLoading: false,
+  isLoading: true,
   errors: '',
 };
 
