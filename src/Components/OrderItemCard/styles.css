@@ -1,0 +1,46 @@
+.order-item-card {
+  max-width: 300px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #ebeced;
+  box-shadow: 0 8px 16px rgba(0,0,0,.1);
+  padding: 5px 15px;
+}
+
+.order-item-card .item-header {
+  width: 100%;
+  font-size: 18px;
+  color: #ec910a;
+  margin-top: 5px;
+}
+
+.order-item-card .item-header h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.order-item-card .item-content {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #394458;
+  font-size: 16px;
+  margin-top: 5px;
+  padding: 2px 4px;
+}
+
+.order-item-card .item-content span {
+  width: 100%;
+}
+
+.order-item-card .item-content .price-area-of-item {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.order-item-card .item-content .price-area-of-item .price-sign {
+  margin-right: 5px;
+}

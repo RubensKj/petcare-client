@@ -6,6 +6,7 @@ import EmptyContent from '../../Components/EmptyContent';
 import AreaOrder from '../../Components/AreaOrder';
 import PriceArea from '../../Components/PriceArea';
 import ServiceCard from '../../Components/ServiceCardToUser';
+import OrderItemCard from '../../Components/OrderItemCard';
 import RedirectButton from '../../Components/RedirectButton';
 
 import api from '../../Services/api';
@@ -134,12 +135,8 @@ export default function OrderContentNew(props) {
                 </div>
               </div>
               <div id="list-products-was-bought" className="products-list">
-                {services.length > 0 && products.length > 0 ? (
-                  <>
-                    {services.length > 0 ? (services.map(service => <ServiceCard key={service.id} service={service} />)) : ('')}
-                    {products.length > 0 ? (products.map(product => <ServiceCard key={product.id} service={product} />)) : ('')}
-                  </>
-                ) : (<EmptyContent title="Pedido sem produtos!" description="Ocorreu algum erro durante o pedido fazendo-o não ter nenhum produto." />)}
+                {services.length > 0 ? (services.map(service => <OrderItemCard key={service.id} item={service} />)) : ('')}
+                {products.length > 0 ? (products.map(product => <OrderItemCard key={product.id} item={product} />)) : ('')}
               </div>
               <div id="information-of-order" className="information-area visible-div-infomation">
                 <div className="information-of-order visible-div-infomation">

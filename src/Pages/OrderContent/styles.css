@@ -108,6 +108,7 @@
   grid-gap: 15px;
   padding: 5px 25px;
   grid-template-columns: 1fr;
+  height: fit-content;
   margin-bottom: 50px;
 }
 
