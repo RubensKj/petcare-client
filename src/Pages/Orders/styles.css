@@ -15,6 +15,13 @@
   width: 100%;
 }
 
+.container-orders .content-orders .loading-api {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 55px;
+}
+
 .container-orders .content-orders .list-orders {
   max-width: 920px;
   display: grid;
