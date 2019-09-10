@@ -22,7 +22,7 @@ export default function CompanyCard({ company }) {
           </div>
           <div className="paws-status">
             <div className="rate-paw">
-              <span>{company.rate}</span>
+              <span>{company.rate.toFixed(1)}</span>
               <PawLogo height="16" width="16" />
             </div>
             <div className="transition-dot" />

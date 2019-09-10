@@ -263,7 +263,7 @@ export default function Preview(props) {
                       <PawLogo className="paw-preview" />
                       <PawLogo className="paw-preview" />
                       <PawLogo className="paw-preview" />
-                      <span>{company.rate === 5 ? ("5.0") : (company.rate)}</span>
+                      <span>{company.rate !== undefined ? (company.rate.toFixed(1)) : ('5.0')}</span>
                     </div>
                   </>
                 )}
