@@ -51,4 +51,8 @@
   .container-orders .content-orders .list-orders {
     grid-template-columns: repeat(1, 1fr);
   }
+
+  .container-order .content-order .products-list {
+    padding: 5px 10px !important;
+  }
 }

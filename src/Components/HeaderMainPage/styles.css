@@ -93,6 +93,10 @@
 }
 
 @media only screen and (max-width: 425px) and (min-width: 0px) {
+  .header-main-container .content-header {
+    padding: 0 15px !important;
+  }
+
   .header-main-container {
     padding: 0 10px !important;
   }
@@ -108,5 +112,25 @@
 
   .header-main-container .nav-header-main .cadastrar-btn {
     font-size: 15px;
+  }
+
+  .a-logo-petclient .logo-petcare .petcare-logo {
+    max-width: 25px;
+    max-height: 25px;
+  }
+
+  .header-main-container .nav-header-main .actions-header {
+    gap: 10px !important;
+  }
+}
+
+@media only screen and (max-width: 320px) and (min-width: 0px) {
+  .a-logo-petclient .logo-petcare .petcare-logo {
+    max-width: 25px;
+    max-height: 25px;
+  }
+
+  .header-main-container .nav-header-main .actions-header {
+    gap: 5px !important;
   }
 }

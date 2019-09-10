@@ -82,10 +82,11 @@ export default function SignUp(props) {
         return;
       }
 
-      await api.post("/auth/signup", JSON.stringify(user)).then(() => {
+      await api.post("/auth/signup", JSON.stringify(user)).then(res => {
         setErrors('');
         props.history.push('/entrar');
       }).catch(error => {
+        console.log(JSON.stringify(error))
         switch (error.message) {
           case "Network Error":
             return setErrors("O servidor está temporariamente desligado");

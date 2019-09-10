@@ -1,5 +1,5 @@
 .order-item-card {
-  max-width: 300px;
+  /*max-width: 300px; */
   background: #fff;
   border-radius: 8px;
   border: 1px solid #ebeced;
@@ -43,4 +43,10 @@
 
 .order-item-card .item-content .price-area-of-item .price-sign-real {
   margin-right: 5px;
+}
+
+@media only screen and (max-width: 1024px) and (min-width: 0px) {
+  .order-item-card {
+    max-width: none !important;
+  }
 }

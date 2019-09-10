@@ -36,7 +36,9 @@ export default function Orders(props) {
       setIsLoading(false);
       if (res.data.totalPages <= 1) {
         let btn = document.querySelector('.btn-loadMore-orders');
-        btn.classList.add('not-visible-loadMore-orders');
+        if (btn !== null) {
+          btn.classList.add('not-visible-loadMore-orders');
+        }
       }
     });
   }

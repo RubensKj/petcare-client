@@ -33,31 +33,31 @@ export default function Profile(props) {
         dispatch(setErrors("Número de telefone inválido"));
       }
 
-      if (street !== undefined && street.length > 60) {
+      if (street !== null && street.length > 60) {
         dispatch(setErrors("Endereço inválido"));
       }
 
-      if (placeNumber !== undefined && placeNumber > 200000) {
+      if (placeNumber !== null && placeNumber > 200000) {
         dispatch(setErrors("Número inválido"));
       }
 
-      if (complement !== undefined && complement.length > 100) {
+      if (complement !== null && complement.length > 100) {
         dispatch(setErrors("Complemento inválido"));
       }
 
-      if (neighborhood !== undefined  && neighborhood.length > 650) {
+      if (neighborhood !== null  && neighborhood.length > 650) {
         dispatch(setErrors("Bairro inválido"));
       }
 
-      if (cep !== undefined && cep.length > 10) {
+      if (cep !== null && cep.length > 10) {
         dispatch(setErrors("CEP inválido"));
       }
 
-      if (city !== undefined && city.length > 100) {
+      if (city !== null && city.length > 100) {
         dispatch(setErrors("Nome de cidade inválido"));
       }
 
-      if (state.data.address.state !== undefined && state.data.address.state.length > 2) {
+      if (state.data.address.state !== null && state.data.address.state.length > 2) {
         dispatch(setErrors("Nome de estado inválido"));
       }
 

@@ -114,6 +114,11 @@
   .modal-payment-with-card .card-modal-payment .form-to-pay .form-finishing .card-information .input-area .input-div .input-basic {
     margin: 0 5px !important;
   }
+
+  .modal-payment-with-card {
+    padding: 5px !important;
+    padding-top: 50px !important;
+  }
 }
 
 /* .input-div .input-basic {
