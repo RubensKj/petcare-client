@@ -17,6 +17,7 @@ import Evaluation from './Pages/Evaluation';
 import SearchResult from './Pages/SearchResult';
 
 import WrongURL from './Pages/WrongURL';
+import NotOrErrorLoading from './Pages/NotOrErrorLoading';
 
 const Routes = () => (
   <BrowserRouter>
@@ -34,6 +35,7 @@ const Routes = () => (
       <PrivateRoute exact path='/pedidos/:id' component={OrderContent} />
       <PrivateRoute exact path='/avaliacao/:id' component={Evaluation} />
 
+      <Route path='/erro-no-carregamento' component={NotOrErrorLoading} />
       <Route path='*' component={WrongURL} />
     </Switch>
   </BrowserRouter>

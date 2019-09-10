@@ -27,6 +27,10 @@ export default function HeaderMainPage({ props, validate }) {
                 }).catch(err => {
                     console.log(JSON.stringify(err));
                     console.log(JSON.stringify(err.message));
+                    if (err.message === "Network Error") {
+                        props.history.push('/erro-no-carregamento');
+                    }
+
                     if (err.message === "Request failed with status code 401" && validate) {
                         logout();
                         props.history.push('/entrar');

@@ -1,0 +1,23 @@
+.container-not-or-error-loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1366px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.container-not-or-error-loading .content-error-loading {
+  margin-top: 25px;
+  max-width: 920px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-not-or-error-loading .content-error-loading .error-area {
+  max-width: 400px;
+}
