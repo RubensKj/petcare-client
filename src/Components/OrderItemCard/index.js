@@ -11,7 +11,7 @@ export default function OrderItemCard({ item }) {
       <div className="item-content">
         <span>{item.description}</span>
         <div className="price-area-of-item">
-          <span className="price-sign">R$</span>
+          <span className="price-sign-real">R$</span>
           <span className="price-quantity">{item.price}</span>
         </div>
       </div>
