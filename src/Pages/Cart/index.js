@@ -14,6 +14,7 @@ import './styles.css';
 import api from '../../Services/api';
 import { useSelector, useDispatch } from 'react-redux';
 import { setTitleAlert, setDescriptionAlert, setSuccessedAlert } from '../../Store/Actions/Alert';
+import { CARD_STATE_INITIAL } from '../../INITIALS_STATES';
 
 export default function Cart(props) {
 
@@ -22,27 +23,8 @@ export default function Cart(props) {
   const alert = useSelector(state => state.Alert);
   const dispatch = useDispatch();
 
-  // CARD STATE
-  const INITIAL_STATE_CARD = {
-    nameCompany: '',
-    companyAddress: {
-      street: '',
-      placeNumber: '',
-      city: '',
-      complement: '',
-      neighborhood: '',
-      state: '',
-      cep: '',
-    },
-    emailOrderUser: '',
-    total: 0,
-    subTotal: 0,
-    servicesItens: [],
-    productsItens: [],
-  }
-
   // CART
-  const [cart, setCart] = useState(INITIAL_STATE_CARD);
+  const [cart, setCart] = useState(CARD_STATE_INITIAL);
   const [cartExistsWithItens, setCartExistsWithItens] = useState(false);
 
   // To Finish the order
@@ -98,8 +80,11 @@ export default function Cart(props) {
   async function handleFinish(e) {
     e.preventDefault();
 
+    // Cart that will go to API to get the information there
     const cartToAPI = {
       nameCompany: cart.nameCompany,
+      cnpj: cart.cnpj,
+      userCompleteName: user.completeName,
       companyOrderAddress: {
         street: cart.companyAddress.street,
         placeNumber: cart.companyAddress.placeNumber,
@@ -129,7 +114,7 @@ export default function Cart(props) {
     if (paymentMethod === 'MONEY') {
       if (cart.servicesItens.length > 0 || cart.productsItens.length > 0) {
         await api.post('/finishing-order', JSON.stringify(cartToAPI)).then(res => {
-          localStorage.setItem('cartStore', JSON.stringify(INITIAL_STATE_CARD));
+          localStorage.setItem('cartStore', JSON.stringify(CARD_STATE_INITIAL));
           dispatch(setTitleAlert('Obrigado por comprar com ' + cart.nameCompany));
           dispatch(setDescriptionAlert('Sua compra foi feita!! Você pode vê-la em seus pedidos.'));
           dispatch(setSuccessedAlert(true));

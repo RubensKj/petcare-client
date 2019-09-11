@@ -25,8 +25,6 @@ export default function HeaderMainPage({ props, validate }) {
                     dispatch(setUser(res.data));
                     dispatch(setIsLoading(false));
                 }).catch(err => {
-                    console.log(JSON.stringify(err));
-                    console.log(JSON.stringify(err.message));
                     if (err.message === "Network Error") {
                         props.history.push('/erro-no-carregamento');
                     }

@@ -173,7 +173,7 @@ export default function OrderContentNew(props) {
                 </div>
                 <div className="information">
                   <div className="info-circle">
-                    <span>Não autorizado!</span>
+                    <span>Pendente!</span>
                   </div>
                   <div className="info-circle">
                     <span>Pago!</span>

@@ -19,6 +19,7 @@ import { useSelector } from 'react-redux';
 
 import './styles.css';
 import { isAuthenticated } from '../../Services/auth';
+import { CARD_STATE_INITIAL } from '../../INITIALS_STATES';
 
 export default function Preview(props) {
   // USER
@@ -124,27 +125,8 @@ export default function Preview(props) {
     }
   }
 
-  // CARD STATE
-  const INITIAL_STATE_CARD = {
-    nameCompany: '',
-    companyAddress: {
-      street: '',
-      placeNumber: '',
-      city: '',
-      complement: '',
-      neighborhood: '',
-      state: '',
-      cep: '',
-    },
-    emailOrderUser: '',
-    total: 0,
-    subTotal: 0,
-    servicesItens: [],
-    productsItens: [],
-  }
-
   // // STATE FOR THE CARD OF SERVICES
-  const [cart, setCart] = useState(INITIAL_STATE_CARD);
+  const [cart, setCart] = useState(CARD_STATE_INITIAL);
 
   // // EVERYTIME CART IS CHANGED IT WILL BE SETTED ON LOCALSTORAGE
   useEffect(() => {
@@ -195,7 +177,7 @@ export default function Preview(props) {
 
   function addServiceToCart(item) {
     if (!cart.servicesItens.includes(item)) {
-      setCart({ ...cart, nameCompany: company.companyName, subTotal: ((Math.round(cart.subTotal * 100) / 100) + item.price), total: ((Math.round(cart.subTotal * 100) / 100) + item.price), companyAddress: company.address, servicesItens: cart.servicesItens.concat(item) });
+      setCart({ ...cart, nameCompany: company.companyName, cnpj: company.cnpj, subTotal: ((Math.round(cart.subTotal * 100) / 100) + item.price), total: ((Math.round(cart.subTotal * 100) / 100) + item.price), companyAddress: company.address, servicesItens: cart.servicesItens.concat(item) });
     } else {
       setCart({ ...cart, servicesItens: cart.servicesItens.filter(itemFromList => itemFromList !== item), subTotal: ((Math.round(cart.subTotal * 100) / 100) - item.price), total: ((Math.round(cart.subTotal * 100) / 100) - item.price) });
     }
