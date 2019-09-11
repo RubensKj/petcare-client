@@ -30,6 +30,9 @@ export default function Main(props) {
   // SEARCH TEXT
   const [searchText, setSearchText] = useState('');
 
+  // NEARBY
+  // const [actPageNearby, setActPageNearby] = useState(0);
+
   async function loadCompanies(page) {
     await api.get(`/companies/${page}`).then(res => {
       setCompanies(res.data.content);
@@ -84,6 +87,26 @@ export default function Main(props) {
     });
   }
 
+  async function handleNearbyButton(page) {
+    await api.get(`/companies-nearby/${page}`).then(res => {
+      setCompanies(res.data.content);
+      if (res.data.totalPages <= 1) {
+        let btn = document.querySelector(".btn-loadMore-companies-main");
+        btn.classList.add("not-visible-loadMore");
+      }
+    });
+  }
+
+  async function handleMostRateds(page) {
+    await api.get(`/companies-most-rated/${page}`).then(res => {
+      setCompanies(res.data.content);
+      if (res.data.totalPages <= 1) {
+        let btn = document.querySelector(".btn-loadMore-companies-main");
+        btn.classList.add("not-visible-loadMore");
+      }
+    });
+  }
+
   return (
     <>
       <HeaderMainPage props={props} validate={false} />
@@ -108,8 +131,8 @@ export default function Main(props) {
             <Subtitle text="Pet shops" />
             <div className="actions-content-list-petshop">
               <div className="btn-actions-search">
-                <button>Relevância</button>
-                <button>Próximos</button>
+                <button onClick={() => handleMostRateds(0)}>Relevância</button>
+                <button onClick={() => handleNearbyButton(0)}>Próximos</button>
               </div>
               <div className="search-listpetshop">
                 <form className="form-search" onSubmit={(e) => handleSearch(e)}>

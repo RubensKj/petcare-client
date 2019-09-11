@@ -2,10 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import HeaderMainPage from '../../Components/HeaderMainPage';
 import Loading from '../../Components/Loading';
-import EmptyContent from '../../Components/EmptyContent';
 import AreaOrder from '../../Components/AreaOrder';
 import PriceArea from '../../Components/PriceArea';
-import ServiceCard from '../../Components/ServiceCardToUser';
 import OrderItemCard from '../../Components/OrderItemCard';
 import RedirectButton from '../../Components/RedirectButton';
 
