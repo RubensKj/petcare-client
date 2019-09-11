@@ -16,6 +16,12 @@ import './styles.css';
 export default function Orders(props) {
   const alert = useSelector(state => state.Alert);
 
+  // NAME OF DIVS
+  const btnLoadMoreOrders = '.btn-loadMore-orders';
+  const btnLoadMoreOrdersFinished = '.btn-loadMore-orders-finished';
+  // CSS CLASS THAT HIDE THE BUTTON
+  const hideButtons = 'not-visible-loadMore-orders';
+
   // ORDER NOT CONTAINING FINISHED
   const [ordersInProcess, setOrdersInProcess] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
@@ -26,6 +32,7 @@ export default function Orders(props) {
   const [ordersIsFinished, setOrdersIsFinished] = useState([]);
   const [totalPagesFinished, setTotalPagesFinished] = useState(0);
   const [actPageFinished, setActPageFinished] = useState(0);
+  const [isLoadingOrdersFinished, setIsLoadingOrdersFinished] = useState(true);
 
 
   async function getOrdersFromAPI(page) {
@@ -35,9 +42,9 @@ export default function Orders(props) {
       setActPage(res.data.number);
       setIsLoading(false);
       if (res.data.totalPages <= 1) {
-        let btn = document.querySelector('.btn-loadMore-orders');
+        let btn = document.querySelector(btnLoadMoreOrders);
         if (btn !== null) {
-          btn.classList.add('not-visible-loadMore-orders');
+          btn.classList.add(hideButtons);
         }
       }
     });
@@ -48,9 +55,12 @@ export default function Orders(props) {
       setOrdersIsFinished(res.data.content);
       setTotalPagesFinished(res.data.totalPages);
       setActPageFinished(res.data.number);
+      setIsLoadingOrdersFinished(false);
       if (res.data.totalPages <= 1) {
-        let btn = document.querySelector('.btn-loadMore-orders-finished');
-        //btn.classList.add('not-visible-loadMore-orders');
+        let btn = document.querySelector(btnLoadMoreOrdersFinished);
+        if (btn !== null) {
+          btn.classList.add(hideButtons);
+        }
       }
     });
   }
@@ -59,6 +69,52 @@ export default function Orders(props) {
     getOrdersFromAPI(0);
     getOrdersFinishedFromAPI(0);
   }, []);
+
+  useEffect(() => {
+    if ((actPage + 1) >= totalPages && isLoading === false) {
+      let btn = document.querySelector(btnLoadMoreOrders);
+      if (btn !== null) {
+        btn.classList.add(hideButtons);
+      }
+    }
+  }, [actPage, totalPages, isLoading]);
+
+  async function loadMoreOrdersNotFinished(page) {
+    await api.get(`/get-orders/${page}`).then(res => {
+      setOrdersInProcess(ordersInProcess.concat(res.data.content));
+      setActPage(res.data.number);
+      setIsLoading(false);
+      if (res.data.totalPages <= 1) {
+        let btn = document.querySelector(btnLoadMoreOrders);
+        if (btn !== null) {
+          btn.classList.add(hideButtons);
+        }
+      }
+    });
+  }
+
+  useEffect(() => {
+    if ((actPageFinished + 1) >= totalPagesFinished && isLoadingOrdersFinished === false) {
+      let btn = document.querySelector(btnLoadMoreOrdersFinished);
+      if (btn !== null) {
+        btn.classList.add(hideButtons);
+      }
+    }
+  }, [actPageFinished, totalPagesFinished, isLoadingOrdersFinished]);
+
+  async function loadMoreOrdersFinished(page) {
+    await api.get(`/get-orders-finished/${page}`).then(res => {
+      setOrdersIsFinished(ordersIsFinished.concat(res.data.content));
+      setActPageFinished(res.data.number);
+      setActPageFinished(false);
+      if (res.data.totalPages <= 1) {
+        let btn = document.querySelector(btnLoadMoreOrdersFinished);
+        if (btn !== null) {
+          btn.classList.add(hideButtons);
+        }
+      }
+    });
+  }
 
   return (
     <>
@@ -74,7 +130,7 @@ export default function Orders(props) {
                   <div className="list-orders">
                     {ordersInProcess.map(order => <OrderCard key={order.id} order={order} />)}
                   </div>
-                  <BottomLoadMore setClassName="btn-loadMore-orders" text="Carregar mais pedidos." />
+                  <BottomLoadMore onClick={() => loadMoreOrdersNotFinished(actPage + 1)} setClassName="btn-loadMore-orders" text="Carregar mais pedidos." />
                 </>
               ) : (<EmptyContent title="Seus pedidos!" description="Você não possui nenhum pedido ainda, faça seu pedido em algum pet shop para que ele apareça aqui." />)}
             </>
@@ -85,7 +141,7 @@ export default function Orders(props) {
               <div className="list-orders">
                 {ordersIsFinished.map(orderFinished => <OrderCard key={orderFinished.id} order={orderFinished} finished />)}
               </div>
-              <BottomLoadMore setClassName="btn-loadMore-orders-finished" text="Carregar mais pedidos." />
+              <BottomLoadMore onClick={() => loadMoreOrdersFinished(actPageFinished + 1)} setClassName="btn-loadMore-orders-finished" text="Carregar mais pedidos." />
             </>
           ) : ('')}
         </div>
