@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 import HeaderMainPage from '../../Components/HeaderMainPage';
+import ModalEvaluation from '../../Components/ModalEvaluation';
 import Loading from '../../Components/Loading';
 import AreaOrder from '../../Components/AreaOrder';
 import PriceArea from '../../Components/PriceArea';
 import OrderItemCard from '../../Components/OrderItemCard';
-import RedirectButton from '../../Components/RedirectButton';
+import ButtonToOnClick from '../../Components/ButtonToOnClick';
 
 import api from '../../Services/api';
 
@@ -101,6 +102,13 @@ export default function OrderContentNew(props) {
     }
   }
 
+  function openModalEvaluation() {
+    let modalEvaluation = document.getElementById('id-modal-evaluation');
+    if(modalEvaluation !== null) {
+      modalEvaluation.classList.add('openModalEvaluation');
+    }
+  }
+
   return (
     <>
       <HeaderMainPage props={props} validate={true} />
@@ -108,6 +116,7 @@ export default function OrderContentNew(props) {
         <div className="content-order">
           {isLoading ? (<Loading />) : (
             <>
+              <ModalEvaluation idDiv="id-modal-evaluation" orderInfo={order} />
               <div className="card-info-order">
                 <div className="header-info-order">
                   <h2>{order.nameCompany}</h2>
@@ -126,7 +135,7 @@ export default function OrderContentNew(props) {
                     <PriceArea staticText="Total:" info={'R$ ' + order.total} />
                     {status >= 4 ? (
                       <>
-                        <RedirectButton href={`/avaliacao/${order.id}`} text="Avaliar" />
+                        <ButtonToOnClick text="Avaliar" onClick={openModalEvaluation} />
                       </>
                     ) : ('')}
                   </div>

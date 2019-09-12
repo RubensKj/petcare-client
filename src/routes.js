@@ -13,7 +13,6 @@ import Favorites from './Pages/Favorites';
 import Cart from './Pages/Cart';
 import Orders from './Pages/Orders';
 import OrderContent from './Pages/OrderContent';
-import Evaluation from './Pages/Evaluation';
 import SearchResult from './Pages/SearchResult';
 
 import WrongURL from './Pages/WrongURL';
@@ -33,7 +32,6 @@ const Routes = () => (
       <PrivateRoute exact path='/sacola' component={Cart} />
       <PrivateRoute exact path='/pedidos' component={Orders} />
       <PrivateRoute exact path='/pedidos/:id' component={OrderContent} />
-      <PrivateRoute exact path='/avaliacao/:id' component={Evaluation} />
 
       <Route path='/erro-no-carregamento' component={NotOrErrorLoading} />
       <Route path='*' component={WrongURL} />
