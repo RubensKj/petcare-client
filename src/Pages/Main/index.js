@@ -8,7 +8,9 @@ import CompanyCard from '../../Components/CompanyCard';
 import BottomLoadMore from '../../Components/BottomLoadMore';
 
 import api from '../../Services/api';
-import { useSelector } from 'react-redux';
+import { isAuthenticated } from '../../Services/auth';
+import { setTitleAlert, setDescriptionAlert, setSuccessedAlert } from '../../Store/Actions/Alert';
+import { useSelector, useDispatch } from 'react-redux';
 
 import './styles.css';
 
@@ -16,6 +18,7 @@ export default function Main(props) {
   // USER
   const state = useSelector(state => state.User);
   const alert = useSelector(state => state.Alert);
+  const dispatch = useDispatch();
 
   // COMPANIES
   const [companies, setCompanies] = useState([]);
@@ -88,13 +91,19 @@ export default function Main(props) {
   }
 
   async function handleNearbyButton(page) {
-    await api.get(`/companies-nearby/${page}`).then(res => {
-      setCompanies(res.data.content);
-      if (res.data.totalPages <= 1) {
-        let btn = document.querySelector(".btn-loadMore-companies-main");
-        btn.classList.add("not-visible-loadMore");
-      }
-    });
+    if (isAuthenticated()) {
+      await api.get(`/companies-nearby/${page}`).then(res => {
+        setCompanies(res.data.content);
+        if (res.data.totalPages <= 1) {
+          let btn = document.querySelector(".btn-loadMore-companies-main");
+          btn.classList.add("not-visible-loadMore");
+        }
+      });
+    } else {
+      dispatch(setTitleAlert('Necessário estar autenticado!'));
+      dispatch(setDescriptionAlert('Para aparecer os pet shops mais próximos é necessário estar autenticado na aplicação e com usuário com endereço cadastrado!'));
+      dispatch(setSuccessedAlert(false));
+    }
   }
 
   async function handleMostRateds(page) {

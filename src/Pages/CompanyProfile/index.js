@@ -12,7 +12,7 @@ import ProductCard from '../../Components/ProductCard';
 import BottomLoadMore from '../../Components/BottomLoadMore';
 
 import PawLogo from '../../Assets/PawLogo';
-import PetShopDogLogo from '../../Assets/ProfileCompanyLogoDefault.png';
+import PetShopDogLogo from '../../Assets/CompanyLogoDefault2.png';
 
 import api from '../../Services/api';
 import { useSelector } from 'react-redux';

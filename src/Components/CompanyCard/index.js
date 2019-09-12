@@ -2,7 +2,7 @@ import React from 'react';
 
 import PawLogo from '../../Assets/PawLogo';
 // import PetShopDogLogo from '../../Assets/PetShopCompanyLogo.svg';
-import PetShopDogLogo from '../../Assets/CompanyLogoDefault.png';
+import PetShopDogLogo from '../../Assets/CompanyLogoDefault2.png';
 
 import './styles.css';
 
