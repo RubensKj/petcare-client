@@ -7,6 +7,7 @@ import AreaOrder from '../../Components/AreaOrder';
 import PriceArea from '../../Components/PriceArea';
 import OrderItemCard from '../../Components/OrderItemCard';
 import ButtonToOnClick from '../../Components/ButtonToOnClick';
+import ButtonNotClickable from '../../Components/ButtonNotClickable';
 
 import api from '../../Services/api';
 
@@ -116,7 +117,7 @@ export default function OrderContentNew(props) {
         <div className="content-order">
           {isLoading ? (<Loading />) : (
             <>
-              <ModalEvaluation idDiv="id-modal-evaluation" orderInfo={order} />
+              {order.evaluated ? ('') : (<ModalEvaluation props={props} idDiv="id-modal-evaluation" orderInfo={order} isEvaluated={order.evaluated} />)}
               <div className="card-info-order">
                 <div className="header-info-order">
                   <h2>{order.nameCompany}</h2>
@@ -135,7 +136,7 @@ export default function OrderContentNew(props) {
                     <PriceArea staticText="Total:" info={'R$ ' + order.total} />
                     {status >= 4 ? (
                       <>
-                        <ButtonToOnClick text="Avaliar" onClick={openModalEvaluation} />
+                        {order.evaluated ? (<ButtonNotClickable text="Avaliar" />) : (<ButtonToOnClick text="Avaliar" onClick={openModalEvaluation} />)}
                       </>
                     ) : ('')}
                   </div>

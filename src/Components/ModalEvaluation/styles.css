@@ -61,6 +61,15 @@
   text-align: center;
 }
 
+.modal-evaluation .form-evaluation .errors-evaluation {
+  font-size: 18px;
+  color: #FB4A4D;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 10px;
+  transition: 0.2s all;
+}
+
 .modal-evaluation .form-evaluation .info-form {
   width: 100%;
   padding: 5px 15px;
@@ -76,7 +85,7 @@
   width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 .modal-evaluation .form-evaluation .info-form h4 {

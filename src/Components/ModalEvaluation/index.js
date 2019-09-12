@@ -4,12 +4,20 @@ import Paw from "../../Assets/PawLogoForEvaluation";
 import TextArea from "../TextArea";
 import ButtonForm from "../ButtonForm";
 import ButtonToOnClick from "../ButtonToOnClick";
+import ButtonNotClickable from "../ButtonNotClickable";
+
+import { useSelector } from 'react-redux';
 
 import './styles.css';
+import api from '../../Services/api';
 
-export default function ModalEvaluation({ idDiv, orderInfo }) {
+export default function ModalEvaluation({ props, idDiv, orderInfo, isEvaluated }) {
+
+  const user = useSelector(state => state.User.data);
 
   const [ratePaws, setRatePaws] = useState(0);
+  const [description, setDescription] = useState('');
+  const [errors, setErrors] = useState('');
   const modal = document.getElementById(idDiv);
 
 
@@ -44,11 +52,11 @@ export default function ModalEvaluation({ idDiv, orderInfo }) {
     let paws = document.querySelectorAll('.paw-evaluation');
 
     paws.forEach(paw => paw.classList.remove('rateSelectedPaws'));
-    
+
     for (var i = 0; i < number; i++) {
       paws[i].classList.add('rateSelectedPaws');
     }
-    
+
     switch (number) {
       case 1:
         return setRatePaws(1);
@@ -65,12 +73,43 @@ export default function ModalEvaluation({ idDiv, orderInfo }) {
     }
   }
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!isEvaluated) {
+      if (ratePaws <= 0 || ratePaws > 5) {
+        setErrors('Por favor é obrigatório uma nota!');
+        return;
+      }
+
+      let evaluation = {
+        idOfOrder: orderInfo.id,
+        idFromUserEvaluated: user.id,
+        nameOfUser: user.completeName,
+        rate: ratePaws,
+        description: description,
+      }
+
+      let cnpj = orderInfo.cnpj;
+
+      if (cnpj !== undefined) {
+        await api.post(`/evaluation-create/${cnpj}`, JSON.stringify(evaluation)).then(res => {
+          props.history.push('/pedidos');
+        });
+      }
+    } else {
+      setErrors('A empresa já foi avaliada!');
+      return;
+    }
+  }
+
   return (
     <div id={idDiv} className="modal-evaluation">
-      <form className="form-evaluation">
+      <form className="form-evaluation" onSubmit={e => handleSubmit(e)}>
         <div className="company-name-area">
           <h2>{orderInfo.nameCompany}</h2>
         </div>
+        <span className="errors-evaluation">{errors}</span>
         <div className="info-form">
           <h2>Quantas patinhas o pet shop merece?</h2>
           <div className="image-paw">
@@ -81,8 +120,8 @@ export default function ModalEvaluation({ idDiv, orderInfo }) {
             <Paw width="25px" height="25px" onClick={() => handleRatePaws(5)} onMouseEnter={() => handleOnMouseEnter(5)} onMouseLeave={() => handleOnMouseLeave(5)} />
           </div>
           <h4 className="message-before-text-area">Deixe um comentário</h4>
-          <TextArea placeholder="Mensagem (Opcional)" />
-          <ButtonForm text="Avaliar" />
+          <TextArea placeholder="Mensagem (Opcional)" onChange={e => setDescription(e.target.value)} />
+          {isEvaluated ? (<ButtonNotClickable text="Avaliar" />) : (<ButtonForm text="Avaliar" />)}
           <ButtonToOnClick text="Cancelar" onClick={(e) => cancelEvaluation(e)} />
         </div>
       </form>
