@@ -102,8 +102,15 @@ export default function Cart(props) {
       productsIdsCart: [],
     }
 
-    cart.servicesItens.forEach(service => { cartToAPI.servicesIdsCart.push(service.id); })
-    cart.productsItens.forEach(product => { cartToAPI.productsIdsCart.push(product.id); })
+    if(cartToAPI.cnpj === null || cartToAPI.cnpj === undefined || cartToAPI.cnpj.length <= 0) {
+      dispatch(setTitleAlert('Informação faltando!'));
+      dispatch(setDescriptionAlert('O CNPJ da empresa não foi preenchido durante a selação dos itens, por favor tente solucioná-los novamente.'));
+      dispatch(setSuccessedAlert(false));
+      return;
+    }
+
+    cart.servicesItens.forEach(service => { cartToAPI.servicesIdsCart.push(service.id); });
+    cart.productsItens.forEach(product => { cartToAPI.productsIdsCart.push(product.id); });
 
     if (paymentMethod === null || paymentMethod === '') {
       dispatch(setTitleAlert('Informação faltando!'));

@@ -82,18 +82,20 @@ export default function ModalEvaluation({ props, idDiv, orderInfo, isEvaluated }
         return;
       }
 
+      let cnpj = orderInfo.cnpj;
+
       let evaluation = {
         idOfOrder: orderInfo.id,
         idFromUserEvaluated: user.id,
         nameOfUser: user.completeName,
         rate: ratePaws,
         description: description,
+        cnpj: cnpj,
       }
 
-      let cnpj = orderInfo.cnpj;
 
       if (cnpj !== undefined) {
-        await api.post(`/evaluation-create/${cnpj}`, JSON.stringify(evaluation)).then(res => {
+        await api.post(`/evaluation-create`, JSON.stringify(evaluation)).then(res => {
           props.history.push('/pedidos');
         });
       }
