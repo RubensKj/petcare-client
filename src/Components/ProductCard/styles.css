@@ -75,6 +75,10 @@
   color: #394458;
 }
 
+.product .product-infomation .description-product-area p {
+  white-space: pre-wrap;
+}
+
 .product .product-infomation .utilities-product-area {
   display: flex;
   justify-content: space-between;

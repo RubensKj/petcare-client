@@ -1,5 +1,5 @@
 .order-item-card {
-  /*max-width: 300px; */
+  max-width: 300px;
   background: #fff;
   border-radius: 8px;
   border: 1px solid #ebeced;
@@ -22,7 +22,6 @@
 
 .order-item-card .item-content {
   width: 100%;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color: #394458;
@@ -33,6 +32,7 @@
 
 .order-item-card .item-content span {
   width: 100%;
+  white-space: pre-wrap;
 }
 
 .order-item-card .item-content .price-area-of-item {
