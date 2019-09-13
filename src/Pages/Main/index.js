@@ -93,10 +93,16 @@ export default function Main(props) {
   async function handleNearbyButton(page) {
     if (isAuthenticated()) {
       await api.get(`/companies-nearby/${page}`).then(res => {
-        setCompanies(res.data.content);
-        if (res.data.totalPages <= 1) {
-          let btn = document.querySelector(".btn-loadMore-companies-main");
-          btn.classList.add("not-visible-loadMore");
+        if(res.data !== "") {
+          setCompanies(res.data.content);
+          if (res.data.totalPages <= 1) {
+            let btn = document.querySelector(".btn-loadMore-companies-main");
+            btn.classList.add("not-visible-loadMore");
+          }
+        } else {
+          dispatch(setTitleAlert('Endereço faltando no perfil!'));
+          dispatch(setDescriptionAlert('Por favor edite as informações sobre o endereço em seu perfil para utilizar desta função!'));
+          dispatch(setSuccessedAlert(false));
         }
       });
     } else {
