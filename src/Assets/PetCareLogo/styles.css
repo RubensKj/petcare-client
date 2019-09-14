@@ -11,6 +11,7 @@
   max-width: 45px;
   max-height: 45px;
   width: 100%;
+  transition: 0.2s;
 }
 
 .a-logo-petclient .logo-petcare span {

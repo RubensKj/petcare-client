@@ -117,6 +117,7 @@
   .a-logo-petclient .logo-petcare .petcare-logo {
     max-width: 25px;
     max-height: 25px;
+    transition: 0.2s;
   }
 
   .header-main-container .nav-header-main .actions-header {
@@ -128,6 +129,7 @@
   .a-logo-petclient .logo-petcare .petcare-logo {
     max-width: 25px;
     max-height: 25px;
+    transition: 0.2s;
   }
 
   .header-main-container .nav-header-main .actions-header {
