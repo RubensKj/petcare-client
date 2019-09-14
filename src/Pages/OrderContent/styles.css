@@ -114,7 +114,7 @@
   width: fit-content;
   grid-gap: 15px;
   padding: 5px 25px;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(298px, 1fr));
   height: fit-content;
   margin-bottom: 50px;
 }
@@ -171,12 +171,18 @@
     max-width: none;
     margin-right: 0;
   }
-
+  
   .container-order .content-order .card-info-order .header-info-order .nav-order button {
     padding: 5px 10px;
   }
-
+  
   .container-order .content-order {
     flex-direction: column;
   }
+}
+
+@media only screen and (max-width: 558px) and (min-width: 0px) {
+  .container-order .content-order .products-list {
+    grid-template-columns: repeat(auto-fill, minmax(224px, 1fr));
+  }            
 }
