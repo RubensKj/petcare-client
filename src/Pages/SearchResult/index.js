@@ -25,7 +25,6 @@ export default function SearchResult(props) {
   async function searchByCompanyName(text, page) {
     if (text.length > 0) {
       await api.get(`/companies-searched/${page}/${text}`).then(res => {
-        console.log(res.data);
         setSearchedCompanies(res.data.content);
         setTotalPages(res.data.totalPages);
         setActPage(res.data.number);

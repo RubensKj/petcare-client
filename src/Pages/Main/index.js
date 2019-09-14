@@ -57,7 +57,7 @@ export default function Main(props) {
 
   function handleSearch(e) {
     e.preventDefault();
-    if (searchText.length > 0) {
+    if (searchText.length > 0 && searchText.trim()) {
       props.history.push(`/lista-resultados/${searchText}`);
     }
   }
