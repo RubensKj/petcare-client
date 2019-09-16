@@ -29,7 +29,7 @@ export default function HeaderMainPage({ props, validate }) {
                         props.history.push('/erro-no-carregamento');
                     }
 
-                    if (err.message === "Request failed with status code 401" && validate) {
+                    if (err.message === "Request failed with status code 401" && isAuthenticated()) {
                         logout();
                         props.history.push('/entrar');
                     }

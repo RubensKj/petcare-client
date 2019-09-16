@@ -41,7 +41,7 @@ export default function Profile(props) {
         dispatch(setErrors("Número inválido"));
       }
 
-      if (complement !== null && complement.length > 100) {
+      if (complement !== null && complement !== undefined && complement.length > 100) {
         dispatch(setErrors("Complemento inválido"));
       }
 

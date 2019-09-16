@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import HeaderMainPage from '../../Components/HeaderMainPage';
-import Loading from '../../Components/Loading';
+import ListSkeletonsCards from '../../Components/ListSkeletonsCards';
 import CompanyCard from '../../Components/CompanyCard';
 import EmptyContent from '../../Components/EmptyContent';
 import Subtitle from '../../Components/Subtitle';
@@ -32,7 +32,7 @@ export default function Favorites(props) {
         <div className="content-favorites">
           <div className="content-list-favorites">
             <Subtitle text="Meus favoritos" />
-            {isLoading ? (<Loading />) : (
+            {isLoading ? (<ListSkeletonsCards numberCards={6} />) : (
               <>
                 {favoritesCompanies ? (
                   <>

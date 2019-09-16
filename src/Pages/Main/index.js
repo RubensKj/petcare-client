@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import HeaderMainPage from '../../Components/HeaderMainPage';
 import AlertCard from '../../Components/AlertCard';
 import Subtitle from '../../Components/Subtitle';
-import Loading from '../../Components/Loading';
+import ListSkeletonsCards from '../../Components/ListSkeletonsCards';
 import CompanyCard from '../../Components/CompanyCard';
 import BottomLoadMore from '../../Components/BottomLoadMore';
 
@@ -44,7 +44,9 @@ export default function Main(props) {
       setIsLoading(false);
       if (res.data.totalPages <= 1) {
         let btn = document.querySelector(".btn-loadMore-companies-main");
-        btn.classList.add("not-visible-loadMore");
+        if (btn !== null) {
+          btn.classList.add("not-visible-loadMore");
+        }
       }
     });
   }
@@ -157,7 +159,7 @@ export default function Main(props) {
               </div>
             </div>
           </div>
-          {isLoading ? (<Loading />) : (
+          {isLoading ? (<ListSkeletonsCards numberCards={6} />) : (
             <>
               <div className="list-petshops">
                 {companies.map(company => <CompanyCard key={company.id} company={company} />)}
