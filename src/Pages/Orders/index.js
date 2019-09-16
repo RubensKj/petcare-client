@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import HeaderMainPage from '../../Components/HeaderMainPage';
-import Loading from '../../Components/Loading';
+import ListSkeletonsOrdersLoad from '../../Components/ListSkeletonsOrdersLoad';
 import AlertCard from '../../Components/AlertCard';
 import EmptyContent from '../../Components/EmptyContent';
 import BottomLoadMore from '../../Components/BottomLoadMore';
@@ -123,7 +123,7 @@ export default function Orders(props) {
         <AlertCard alert={alert} />
         <div className="content-orders">
           <Subtitle text="Pedidos" />
-          {isLoading ? (<Loading />) : (
+          {isLoading ? (<ListSkeletonsOrdersLoad numberCards={4} />) : (
             <>
               {ordersInProcess.length > 0 ? (
                 <>

@@ -1,0 +1,89 @@
+.skeleton-order-card {
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #ebeced;
+  transition: background 0.2s;
+  height: 192px;
+}
+
+.skeleton-order-card .content-skeleton-card  {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10px 15px 10px 10px;
+}
+
+.skeleton-order-card .content-skeleton-card .title-area {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.skeleton-order-card .content-skeleton-card .title-area .load-title {
+  background: #ebeced;
+  border-radius: 5px;
+  height: 30px;
+  width: 70%;
+  background-size: 600px;
+  background-repeat: no-repeat;
+  animation: loading 1.6s infinite linear;
+}
+
+.skeleton-order-card .content-skeleton-card .content-area-order-load {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.skeleton-order-card .content-skeleton-card .content-area-order-load .area-load {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.skeleton-order-card .content-skeleton-card .content-area-order-load .area-load .load-cont {
+  background: #ebeced;
+  border-radius: 5px;
+  height: 18px;
+  width: 100%;
+  background-size: 600px;
+  background-repeat: no-repeat;
+  animation: loadingBiggerBar 1.6s infinite linear;
+}
+
+/* ANIMATION IN THE TITLE */
+
+@keyframes loading {
+  0% {
+    background-image: linear-gradient(90deg, #ebeced 0px, #f5f5f5 40px, #ebeced 80px);
+    background-position: -100px;
+  }
+
+  40%, 100% {
+    background-image: linear-gradient(90deg, #ebeced 0px, #f5f5f5 40px, #ebeced 80px);
+    background-position: 250px;
+  }
+}
+
+/* ANIMATION TO THE BAR ON THE BOTTOM OF TITTLE */
+
+@keyframes loadingBiggerBar {
+  0% {
+    background-image: linear-gradient(90deg, #ebeced 0px, #f5f5f5 40px, #ebeced 80px);
+    background-position: -100px;
+  }
+
+  40%, 100% {
+    background-image: linear-gradient(90deg, #ebeced 0px, #f5f5f5 40px, #ebeced 80px);
+    background-position: 400px;
+  }
+}

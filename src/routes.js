@@ -3,6 +3,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import { PrivateRoute } from './Components/PrivateRoute';
 
+import TestURL from './Pages/TestURL';
+
 import LogIn from './Pages/LogIn';
 import SignUp from './Pages/SignUp';
 
@@ -21,6 +23,8 @@ import NotOrErrorLoading from './Pages/NotOrErrorLoading';
 const Routes = () => (
   <BrowserRouter>
     <Switch>
+      <Route path='/test' component={TestURL} />
+
       <Route path='/entrar' component={LogIn} />
       <Route path='/cadastrar' component={SignUp} />
 

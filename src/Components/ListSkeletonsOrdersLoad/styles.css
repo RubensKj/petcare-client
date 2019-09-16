@@ -1,0 +1,20 @@
+.list-skeleton-orders-card {
+  max-width: 920px;
+  display: grid;
+  grid-gap: 15px;
+  margin: 20px auto 20px;
+  padding: 10px;
+  grid-column-gap: 15px;
+  column-gap: 15px;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  margin-top: 25px;
+  margin-bottom: 50px;
+  transition: all 0.2s ease 0s;
+}
+
+@media only screen and (max-width: 760px) and (min-width: 0px) {
+  .list-skeleton-orders-card {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
