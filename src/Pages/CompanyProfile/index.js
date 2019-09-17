@@ -10,6 +10,7 @@ import StatusInfo from '../../Components/StatusInfo';
 import ServiceCardToUser from '../../Components/ServiceCardToUser';
 import ProductCard from '../../Components/ProductCard';
 import BottomLoadMore from '../../Components/BottomLoadMore';
+import BottomCart from '../../Components/BottomCart';
 
 import PawLogo from '../../Assets/PawLogo';
 import PetShopDogLogo from '../../Assets/CompanyLogoDefault2.png';
@@ -44,6 +45,9 @@ export default function Preview(props) {
   const [productsActPage, setProductsActPage] = useState(0);
   const [productsTotalPage, setProductsTotalPage] = useState(0);
   const [isLoadingProducts, setIsLoadingProducts] = useState(false);
+
+  // STATE FOR THE CARD OF SERVICES
+  const [cart, setCart] = useState(CARD_STATE_INITIAL);
 
   async function loadServicesFromCompanies(id, page) {
     setIsLoadingServices(true);
@@ -97,6 +101,17 @@ export default function Preview(props) {
   }, [props.match.params.id, company.id, company.rate, state.data])
 
 
+  // THIS USEEFFECT IS USED TO SET THE CART WHEN USER 
+  // OPEN THE COMPANY PROFILE TO BOTTOM CART GET THE INFORMATION.
+  useEffect(() => {
+    let oldCart = JSON.parse(localStorage.getItem('cartStore'));
+    if (oldCart) {
+      if(oldCart.nameCompany !== cart.nameCompany) {
+        setCart(oldCart);
+      }
+    }
+  }, [cart.nameCompany]);
+
   // FUNCTIONS
 
   async function handleLoadMoreServices(page) {
@@ -125,15 +140,13 @@ export default function Preview(props) {
     }
   }
 
-  // // STATE FOR THE CARD OF SERVICES
-  const [cart, setCart] = useState(CARD_STATE_INITIAL);
-
-  // // EVERYTIME CART IS CHANGED IT WILL BE SETTED ON LOCALSTORAGE
+  // EVERYTIME CART IS CHANGED IT WILL BE SETTED ON LOCALSTORAGE
   useEffect(() => {
     if (company.companyName === cart.nameCompany) {
       localStorage.setItem('cartStore', JSON.stringify(cart));
     }
   }, [cart, company.companyName]);
+
 
   function selectItem(event, item) {
     if (isAuthenticated()) {
@@ -195,7 +208,8 @@ export default function Preview(props) {
     e.preventDefault();
     let modal = document.getElementById('id-modal-delete-cart');
 
-    localStorage.setItem('cartStore', JSON.stringify(cart));
+    localStorage.setItem('cartStore', JSON.stringify(CARD_STATE_INITIAL));
+    setCart(CARD_STATE_INITIAL);
     modal.classList.remove('openModal');
   }
 
@@ -307,6 +321,7 @@ export default function Preview(props) {
               )}
             </div>
           </div>
+          <BottomCart cart={cart} />
         </div>
       </div>
     </>

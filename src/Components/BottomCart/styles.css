@@ -1,0 +1,74 @@
+.opened-cart-bottom {
+  height: 40px !important;
+}
+
+.bottom-card-cart {
+  width: 100%;
+  height: 0px;
+  position: fixed;
+  bottom: 0;
+  background: #ec910a;
+  transition: height 0.2s;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.bottom-card-cart .area-cart {
+  max-width: 920px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.bottom-card-cart .area-cart .info-of-area {
+  max-width: 920px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 40px;
+}
+
+.bottom-card-cart .area-cart .info-of-area .header-left {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.bottom-card-cart .area-cart .info-of-area .header-left .cart-title {
+  margin-right: 5px;
+}
+
+.bottom-card-cart .area-cart .info-of-area .header-left .company-name {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bottom-card-cart .area-cart .info-of-area .informations-carts {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bottom-card-cart .area-cart .info-of-area .informations-carts .total-itens-number {
+  margin-right: 15px;
+  white-space: nowrap;
+}
+
+.bottom-card-cart .area-cart .info-of-area .informations-carts .total-price .area-total-price {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bottom-card-cart .area-cart .info-of-area .informations-carts .total-price .area-total-price span {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
