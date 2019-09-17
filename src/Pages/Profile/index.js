@@ -29,7 +29,7 @@ export default function Profile(props) {
         dispatch(setErrors("Nome muito longo"));
       }
 
-      if (phoneNumber.length <= 0 || phoneNumber.length > 15) {
+      if (phoneNumber.length <= 0 || phoneNumber.length > 13) {
         dispatch(setErrors("Número de telefone inválido"));
       }
 
