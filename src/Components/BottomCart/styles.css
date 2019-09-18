@@ -72,3 +72,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+@media only screen and (max-width: 500px) and (min-width: 0px) {
+  .bottom-card-cart .area-cart .info-of-area .header-left .cart-title {
+    display: none;
+  }
+
+  .bottom-card-cart .area-cart .info-of-area {
+    padding: 8px 10px !important;
+  }
+}

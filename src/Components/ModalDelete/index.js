@@ -2,9 +2,9 @@ import React from 'react';
 
 import './styles.css';
 
-export default function ModalDelete({ idDiv, handleDeleteCart }) {
+export default function ModalDelete({ handleDeleteCart }) {
 
-  const modal = document.getElementById(idDiv);
+  const modal = document.getElementById('id-modal-delete-cart');
 
   window.onclick = function(event) {
     if (event.target === modal) {
@@ -19,7 +19,7 @@ export default function ModalDelete({ idDiv, handleDeleteCart }) {
 
   return (
     <>
-      <div id={idDiv} className="modal-delete">
+      <div id="id-modal-delete-cart" className="modal-delete">
         <div className="card-delete">
           <div className="content-card">
             <h1>Deletar Carrinho?</h1>

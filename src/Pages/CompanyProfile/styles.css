@@ -269,6 +269,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 55px;
 }
 
 .content-company .products-area {

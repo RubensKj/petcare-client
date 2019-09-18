@@ -233,7 +233,7 @@ export default function Preview(props) {
       <HeaderMainPage props={props} validate={false} />
       <div className="container-company-profile">
         <div className="content-company-profile">
-          <ModalDelete idDiv="id-modal-delete-cart" handleDeleteCart={handleDeleteCart} />
+          <ModalDelete handleDeleteCart={handleDeleteCart} />
           <div className="box-color-area" />
           <div className="content-preview">
             <div className="buttons-actions">
