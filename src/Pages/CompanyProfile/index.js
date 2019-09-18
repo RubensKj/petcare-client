@@ -105,7 +105,7 @@ export default function Preview(props) {
   // OPEN THE COMPANY PROFILE TO BOTTOM CART GET THE INFORMATION.
   useEffect(() => {
     let oldCart = JSON.parse(localStorage.getItem('cartStore'));
-    if (oldCart) {
+    if (oldCart !== null) {
       if(oldCart.nameCompany !== cart.nameCompany) {
         setCart(oldCart);
       }
@@ -166,16 +166,7 @@ export default function Preview(props) {
   }
 
   function addCartStoreToLocalStorage(cart, item, selectDiv) {
-    if (cart.nameCompany === "") {
-      if (services.includes(item)) {
-        addServiceToCart(item);
-      } else {
-        addProductToCart(item);
-      }
-      selectDiv.classList.toggle("selectedItem");
-      return;
-    }
-    if (cart.nameCompany === company.companyName) {
+    if (cart.nameCompany === company.companyName || cart.nameCompany === "") {
       if (services.includes(item)) {
         addServiceToCart(item);
       } else {
@@ -190,16 +181,24 @@ export default function Preview(props) {
 
   function addServiceToCart(item) {
     if (!cart.servicesItens.includes(item)) {
+      console.log(`Alouuuuu2`)
+      console.log(item)
+      console.log(cart)
+      console.log(cart.servicesItens.includes(item))
       setCart({ ...cart, nameCompany: company.companyName, cnpj: company.cnpj, subTotal: ((Math.round(cart.subTotal * 100) / 100) + item.price), total: ((Math.round(cart.subTotal * 100) / 100) + item.price), companyAddress: company.address, servicesItens: cart.servicesItens.concat(item) });
     } else {
+      console.log(`Alouuuuu3`)
       setCart({ ...cart, servicesItens: cart.servicesItens.filter(itemFromList => itemFromList !== item), subTotal: ((Math.round(cart.subTotal * 100) / 100) - item.price), total: ((Math.round(cart.subTotal * 100) / 100) - item.price) });
     }
   }
 
   function addProductToCart(item) {
+    console.log(cart);
     if (!cart.productsItens.includes(item)) {
+      console.log(`Alouuuuu4`)
       setCart({ ...cart, nameCompany: company.companyName, cnpj: company.cnpj, subTotal: ((Math.round(cart.subTotal * 100) / 100) + item.price), total: ((Math.round(cart.subTotal * 100) / 100) + item.price), companyAddress: company.address, productsItens: cart.productsItens.concat(item) });
     } else {
+      console.log(`Alouuuuu5`)
       setCart({ ...cart, productsItens: cart.productsItens.filter(itemFromList => itemFromList !== item), subTotal: ((Math.round(cart.subTotal * 100) / 100) - item.price), total: ((Math.round(cart.subTotal * 100) / 100) - item.price) });
     }
   }

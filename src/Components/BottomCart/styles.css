@@ -81,4 +81,8 @@
   .bottom-card-cart .area-cart .info-of-area {
     padding: 8px 10px !important;
   }
+
+  .bottom-card-cart .area-cart .info-of-area .informations-carts .total-itens-number {
+    display: none;
+  }
 }
