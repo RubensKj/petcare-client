@@ -48,6 +48,7 @@ export default function Preview(props) {
 
   // STATE FOR THE CARD OF SERVICES
   const [cart, setCart] = useState(CARD_STATE_INITIAL);
+  const [cartBottom, setCartBottom] = useState(CARD_STATE_INITIAL);
 
   async function loadServicesFromCompanies(id, page) {
     setIsLoadingServices(true);
@@ -106,8 +107,8 @@ export default function Preview(props) {
   useEffect(() => {
     let oldCart = JSON.parse(localStorage.getItem('cartStore'));
     if (oldCart !== null) {
-      if(oldCart.nameCompany !== cart.nameCompany) {
-        setCart(oldCart);
+      if (oldCart.nameCompany !== cart.nameCompany) {
+        setCartBottom(oldCart);
       }
     }
   }, [cart.nameCompany]);
@@ -144,6 +145,7 @@ export default function Preview(props) {
   useEffect(() => {
     if (company.companyName === cart.nameCompany) {
       localStorage.setItem('cartStore', JSON.stringify(cart));
+      setCartBottom(cart);
     }
   }, [cart, company.companyName]);
 
@@ -181,24 +183,16 @@ export default function Preview(props) {
 
   function addServiceToCart(item) {
     if (!cart.servicesItens.includes(item)) {
-      console.log(`Alouuuuu2`)
-      console.log(item)
-      console.log(cart)
-      console.log(cart.servicesItens.includes(item))
       setCart({ ...cart, nameCompany: company.companyName, cnpj: company.cnpj, subTotal: ((Math.round(cart.subTotal * 100) / 100) + item.price), total: ((Math.round(cart.subTotal * 100) / 100) + item.price), companyAddress: company.address, servicesItens: cart.servicesItens.concat(item) });
     } else {
-      console.log(`Alouuuuu3`)
       setCart({ ...cart, servicesItens: cart.servicesItens.filter(itemFromList => itemFromList !== item), subTotal: ((Math.round(cart.subTotal * 100) / 100) - item.price), total: ((Math.round(cart.subTotal * 100) / 100) - item.price) });
     }
   }
 
   function addProductToCart(item) {
-    console.log(cart);
     if (!cart.productsItens.includes(item)) {
-      console.log(`Alouuuuu4`)
       setCart({ ...cart, nameCompany: company.companyName, cnpj: company.cnpj, subTotal: ((Math.round(cart.subTotal * 100) / 100) + item.price), total: ((Math.round(cart.subTotal * 100) / 100) + item.price), companyAddress: company.address, productsItens: cart.productsItens.concat(item) });
     } else {
-      console.log(`Alouuuuu5`)
       setCart({ ...cart, productsItens: cart.productsItens.filter(itemFromList => itemFromList !== item), subTotal: ((Math.round(cart.subTotal * 100) / 100) - item.price), total: ((Math.round(cart.subTotal * 100) / 100) - item.price) });
     }
   }
@@ -208,7 +202,7 @@ export default function Preview(props) {
     let modal = document.getElementById('id-modal-delete-cart');
 
     localStorage.setItem('cartStore', JSON.stringify(CARD_STATE_INITIAL));
-    setCart(CARD_STATE_INITIAL);
+    setCartBottom(CARD_STATE_INITIAL);
     modal.classList.remove('openModal');
   }
 
@@ -320,7 +314,7 @@ export default function Preview(props) {
               )}
             </div>
           </div>
-          <BottomCart cart={cart} />
+          <BottomCart cart={cartBottom} />
         </div>
       </div>
     </>

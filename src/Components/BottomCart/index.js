@@ -7,7 +7,7 @@ export default function BottomCart({ cart }) {
   let totalItens = (cart.productsItens.length + cart.servicesItens.length)
 
   return (
-    <a href="/sacola" className={cart.nameCompany !== null && cart.nameCompany.length > 0 ? ('bottom-card-cart opened-cart-bottom') : ('bottom-card-cart')}>
+    <a href="/sacola" className={cart.nameCompany !== null && cart.nameCompany.length > 0 && totalItens > 0 ? ('bottom-card-cart opened-cart-bottom') : ('bottom-card-cart')}>
       <div className="area-cart">
         <div className="info-of-area">
           <div className="header-left">
