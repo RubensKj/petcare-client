@@ -320,13 +320,13 @@
   transform: translateY(-2px);
 }
 
-.content-company .products-area .grid-products .product {
+/*.content-company .products-area .grid-products .product {
   display: flex;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0,0,0,.1);
   border: 1px solid #ebeced;
-}
+}*/
 
 .content-company .products-area .grid-products .product .avatar-area {
   margin: auto 0;

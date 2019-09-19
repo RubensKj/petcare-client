@@ -4,17 +4,28 @@
   background: #fafafa;
 }
 
+/* Area product */
+.area-product {
+  position: relative;
+}
+
 /* Product CSS */
 
-.product {
+.product-card-with-bottom-to-show-info {
   display: flex;
-  max-height: 137px;
+  flex-direction: column;
+  max-height: 165px;
   position: relative;
   background: #fff;
   border-radius: 10px;
   border: 1px solid #ebeced;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.16);
   cursor: pointer;
+}
+
+.product-card-with-bottom-to-show-info .product {
+  display: flex;
+  border-radius: 10px;
 }
 
 .product .avatar-product-area {

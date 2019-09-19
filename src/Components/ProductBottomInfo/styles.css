@@ -1,0 +1,81 @@
+.open-info-product {
+  padding: 25px 15px 10px;
+  margin-top: -5px;
+  display: block !important;
+}
+
+.info-product {
+  display: none;
+  margin-top: 160px;
+  position: absolute;
+  background: #ffffff;
+  box-shadow: 0 8px 16px rgba(0,0,0,.1);
+  border: 1px solid #ebeced;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+  z-index: 999;
+  margin-bottom: 55px;
+}
+
+.info-product .button-close {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 1px 12px;
+  border: 1px solid #ec910a;
+  width: fit-content;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.info-product .button-close svg {
+  margin-right: 5px;
+}
+
+.info-product .button-close span {
+  color: #ec910a;
+  font-size: 16px;
+}
+
+.info-product .information-product-in-card {
+  margin-top: 5px;
+}
+
+.info-product .information-product-in-card .description-area-hover {
+  display: flex;
+  flex-direction: column;
+  white-space: pre-wrap;
+  padding: 5px;
+  color: #394458;
+  border-bottom: 1px solid #ebeced;
+  margin-bottom: 10px;
+}
+
+.info-product .information-product-in-card .static-text-title {
+  font-size: 16px;
+  color: #2D2D2D;
+}
+
+.info-product .information-product-in-card .transgenic-area, .info-product .information-product-in-card .fot-which-pet-area {
+  padding: 5px 5px 15px;
+  color: #394458;
+  border-bottom: 1px solid #ebeced;
+  margin-bottom: 10px;
+}
+
+.info-product .information-product-in-card .static-text {
+  margin-right: 5px;
+  color: #2D2D2D;
+}
+
+.info-product .information-product-in-card .composition-area {
+  display: flex;
+  flex-direction: column;
+  white-space: pre-wrap;
+  padding: 5px;
+  color: #394458;
+  margin-bottom: 10px;
+}
+
