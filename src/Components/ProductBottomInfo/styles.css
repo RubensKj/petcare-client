@@ -1,21 +1,34 @@
 .open-info-product {
-  padding: 25px 15px 10px;
-  margin-top: -5px;
   display: block !important;
+}
+
+.modal-to-exit {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  transition: background 0.2s;
+  cursor: inherit !important;
+  z-index: 50;
 }
 
 .info-product {
   display: none;
-  margin-top: 160px;
-  position: absolute;
+  height: 100%;
+  width: 360px;
+  top: 0;
+  right: 0;
+  position: fixed;
   background: #ffffff;
   box-shadow: 0 8px 16px rgba(0,0,0,.1);
   border: 1px solid #ebeced;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
   overflow: hidden;
-  z-index: 999;
-  margin-bottom: 55px;
+  z-index: 50;
+  padding: 65px 0 25px;
+  transition: height 0.2s;
 }
 
 .info-product .button-close {
@@ -40,7 +53,7 @@
 }
 
 .info-product .information-product-in-card {
-  margin-top: 5px;
+  padding: 25px 15px;
 }
 
 .info-product .information-product-in-card .description-area-hover {

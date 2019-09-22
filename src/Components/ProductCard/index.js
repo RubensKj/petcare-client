@@ -7,7 +7,6 @@ import './styles.css';
 
 export default function ProductCard({ product, onClick }) {
 
-
   return (
     <div className="area-product">
       <div className="product-card-with-bottom-to-show-info">

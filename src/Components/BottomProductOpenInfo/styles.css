@@ -1,13 +1,13 @@
 .bottom-to-show-info {
   padding: 9px;
-  border-top: 1px solid #ebeced;
+  border: 1px solid #ebeced;
   display: flex;
   justify-content: center;
   align-items: center;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   transition: background 0.2s;
-  z-index: 200;
+  z-index: 45;
 }
 
 .bottom-to-show-info .button-close {

@@ -1,37 +1,28 @@
 .opened-alert-card {
-  display: block !important;
-  /* transition: all ; */
-  animation: openAndClose 5s;
+  animation: openAndClose 2s;
+  animation-fill-mode: forwards;
 }
 
 @keyframes openAndClose {
-  0%   {display: block}
-  20%  {top: 100px}
-  95%  {
-    top: 100px;
-    opacity: 1;
-    display: block;
-  }
-  99% {
-    top: -95px;
-    opacity: 0;
+  0% {
+    left: -600px;
   }
   100% {
-    display: none;
+    left: 30px;
   }
 }
 
 .alert-card {
-  display: none;
-  position: absolute;
-  top: -200px;
-  max-width: 500px;
+  position: fixed;
+  left: -600px;
+  bottom: 25px;
+  max-width: 415px;
   width: 100%;
   background: #fff;
   border-radius: 5px; 
   border: 1px solid #ebeced;
   z-index: 999;
-  transition: 0.2s;
+  transition: left 0.2s;
 }
 
 .alert-card .content-alert {
@@ -79,4 +70,22 @@
 .x-alert:hover > svg {
   stroke: #FB4A4D;
   transition: stroke 0.4s;
+}
+
+@media only screen and (max-width: 500px) and (min-width: 0px) {
+  .alert-card {
+    max-width: 350px !important; 
+  }
+}
+
+@media only screen and (max-width: 400px) and (min-width: 0px) {
+  .alert-card {
+    max-width: 315px !important;
+  }
+}
+
+@media only screen and (max-width: 320px) and (min-width: 0px) {
+  .alert-card {
+    max-width: 260px !important;
+  }
 }

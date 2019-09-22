@@ -18,14 +18,19 @@
   position: relative;
   background: #fff;
   border-radius: 10px;
-  border: 1px solid #ebeced;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.16);
   cursor: pointer;
 }
 
 .product-card-with-bottom-to-show-info .product {
+  height: 130px;
   display: flex;
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top: 1px solid #ebeced;
+  border-left: 1px solid #ebeced;
+  border-right: 1px solid #ebeced;
+  border-bottom: 1px solid #ffffff;
 }
 
 .product .avatar-product-area {
