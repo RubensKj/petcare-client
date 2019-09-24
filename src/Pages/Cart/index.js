@@ -80,6 +80,13 @@ export default function Cart(props) {
   async function handleFinish(e) {
     e.preventDefault();
 
+    if (user !== null && user !== undefined && (user.completeName === null || user.completeName === undefined)) {
+      dispatch(setTitleAlert('Informação faltando!'));
+      dispatch(setDescriptionAlert('Não foi possivel completar a comprar, devido a seu perfil estã faltando informação.'));
+      dispatch(setSuccessedAlert(false));
+      return;
+    }
+
     // Cart that will go to API to get the information there
     const cartToAPI = {
       nameCompany: cart.nameCompany,
