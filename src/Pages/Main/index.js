@@ -6,6 +6,7 @@ import Subtitle from '../../Components/Subtitle';
 import ListSkeletonsCards from '../../Components/ListSkeletonsCards';
 import CompanyCard from '../../Components/CompanyCard';
 import BottomLoadMore from '../../Components/BottomLoadMore';
+import BottomCart from '../../Components/BottomCart';
 
 import api from '../../Services/api';
 import { isAuthenticated } from '../../Services/auth';
@@ -35,6 +36,8 @@ export default function Main(props) {
 
   // NEARBY
   // const [actPageNearby, setActPageNearby] = useState(0);
+
+  let cartLocal = JSON.parse(localStorage.getItem('cartStore'));
 
   async function loadCompanies(page) {
     await api.get(`/companies/${page}`).then(res => {
@@ -95,7 +98,7 @@ export default function Main(props) {
   async function handleNearbyButton(page) {
     if (isAuthenticated()) {
       await api.get(`/companies-nearby/${page}`).then(res => {
-        if(res.data !== "") {
+        if (res.data !== "") {
           setCompanies(res.data.content);
           if (res.data.totalPages <= 1) {
             let btn = document.querySelector(".btn-loadMore-companies-main");
@@ -169,6 +172,7 @@ export default function Main(props) {
           )}
         </div>
       </div>
+      <BottomCart cart={cartLocal} />
     </>
   );
 }
