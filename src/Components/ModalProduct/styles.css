@@ -115,3 +115,21 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+@media only screen and (max-width: 650px) and (min-width: 0) {
+    .modal-product-item {
+        padding-top: 5px !important;
+        background-color: rgba(0,0,0,0.09);
+    }
+
+    .modal-product-item .card-product-item .information-card-product {
+        align-items: center;
+        flex-direction: column;
+        max-height: 600px !important;
+    }
+
+    .modal-product-item .card-product-item .information-card-product .product-info-card-modal {
+        padding: 5px 15px;
+    }
+
+}
