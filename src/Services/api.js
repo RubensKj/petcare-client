@@ -3,7 +3,7 @@ import { getToken } from "./auth";
 
 const api = axios.create({
   // baseURL: 'http://192.168.25.17:9000/api',
-  baseURL: 'https://aw-petcare-api.herokuapp.com/api',
+  baseURL: process.env.REACT_APP_URL_API,
   headers: { 'Content-Type': 'application/json' },
 });
 
