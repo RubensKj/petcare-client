@@ -109,7 +109,7 @@ export default function Cart(props) {
       productsIdsCart: [],
     }
 
-    if(cartToAPI.cnpj === null || cartToAPI.cnpj === undefined || cartToAPI.cnpj.length <= 0) {
+    if (cartToAPI.cnpj === null || cartToAPI.cnpj === undefined || cartToAPI.cnpj.length <= 0) {
       dispatch(setTitleAlert('Informação faltando!'));
       dispatch(setDescriptionAlert('O CNPJ da empresa não foi preenchido durante a selação dos itens, por favor tente solucioná-los novamente.'));
       dispatch(setSuccessedAlert(false));
@@ -126,19 +126,32 @@ export default function Cart(props) {
     }
 
     if (paymentMethod === 'MONEY') {
-      if (cart.servicesItens.length > 0 || cart.productsItens.length > 0) {
-        await api.post('/finishing-order', JSON.stringify(cartToAPI)).then(res => {
-          localStorage.setItem('cartStore', JSON.stringify(CARD_STATE_INITIAL));
-          dispatch(setTitleAlert('Obrigado por comprar com ' + cart.nameCompany));
-          dispatch(setDescriptionAlert('Sua compra foi feita!! Você pode vê-la em seus pedidos.'));
-          dispatch(setSuccessedAlert(true));
-          props.history.push('/pedidos');
-        });
-      } else {
-        dispatch(setTitleAlert('Sacola vázia!'));
-        dispatch(setDescriptionAlert('Não foi possivel completar a comprar, devido a sua sacola estar vázia.'));
-        dispatch(setSuccessedAlert(false));
-      }
+      await api.get(`/validate-is-open?cnpj=${cartToAPI.cnpj}`).then(res => {
+        if (res.data === false) {
+          dispatch(setTitleAlert('Pet Shop Fechado!'));
+          dispatch(setDescriptionAlert('Não foi possivel concluir a compra devido ao pet shop estar fechado.'));
+          dispatch(setSuccessedAlert(false));
+          return;
+        } else {
+          // After validate if company is open, finish the order
+
+          // Here is the validation to check if cart contains some items
+          if (cart.servicesItens.length > 0 || cart.productsItens.length > 0) {
+            // Mading the request to finish the order
+            api.post('/finishing-order', JSON.stringify(cartToAPI)).then(res => {
+              localStorage.setItem('cartStore', JSON.stringify(CARD_STATE_INITIAL));
+              dispatch(setTitleAlert('Obrigado por comprar com ' + cart.nameCompany));
+              dispatch(setDescriptionAlert('Sua compra foi feita!! Você pode vê-la em seus pedidos.'));
+              dispatch(setSuccessedAlert(true));
+              props.history.push('/pedidos');
+            });
+          } else {
+            dispatch(setTitleAlert('Sacola vázia!'));
+            dispatch(setDescriptionAlert('Não foi possivel completar a comprar, devido a sua sacola estar vázia.'));
+            dispatch(setSuccessedAlert(false));
+          }
+        }
+      });
     }
     if (paymentMethod === 'CREDIT_CARD' || paymentMethod === 'DEBIT_CARD') {
       let modal = document.getElementById('id-payment-card-info');
