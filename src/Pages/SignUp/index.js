@@ -41,6 +41,7 @@ export default function SignUp(props) {
       setErrors("Preencha todos os dados para se cadastrar");
       addAnimationToInput();
     } else {
+      setErrors("");
       if (!(email.includes('@') && email.includes('.com'))) {
         setErrors("Este email não é válido");
         addAnimationToInput();
@@ -53,7 +54,15 @@ export default function SignUp(props) {
         return;
       }
 
-      if(cpf.length > 11) {
+      let cpfWithoutPonto = cpf;
+      if (cpfWithoutPonto.includes(".")) {
+        cpfWithoutPonto = cpfWithoutPonto.split(".").join("");
+      }
+      if (cpfWithoutPonto.includes("-")) {
+        cpfWithoutPonto = cpfWithoutPonto.split("-").join("");
+      }
+
+      if (cpfWithoutPonto.length > 11) {
         setErrors("Este CPF não é válido");
         return;
       }
@@ -61,23 +70,26 @@ export default function SignUp(props) {
       var Soma;
       var Resto;
       Soma = 0;
-      if (cpf === "00000000000") {
+      if (cpfWithoutPonto === "00000000000" || cpfWithoutPonto === "000.000.000-00") {
         setErrors("Este CPF não é válido");
         return;
       }
 
-      for (var i = 1; i <= 9; i++) Soma = Soma + parseInt(cpf.substring(i - 1, i)) * (11 - i);
+      for (var i = 1; i <= 9; i++) Soma = Soma + parseInt(cpfWithoutPonto.substring(i - 1, i)) * (11 - i);
       Resto = (Soma * 10) % 11;
 
       if ((Resto === 10) || (Resto === 11)) Resto = 0;
-      if (Resto !== parseInt(cpf.substring(9, 10))) return false;
+      if (Resto !== parseInt(cpfWithoutPonto.substring(9, 10))) {
+        setErrors("Este CPF não é válido");
+        return;
+      };
 
       Soma = 0;
-      for (i = 1; i <= 10; i++) Soma = Soma + parseInt(cpf.substring(i - 1, i)) * (12 - i);
+      for (i = 1; i <= 10; i++) Soma = Soma + parseInt(cpfWithoutPonto.substring(i - 1, i)) * (12 - i);
       Resto = (Soma * 10) % 11;
 
       if ((Resto === 10) || (Resto === 11)) Resto = 0;
-      if (Resto !== parseInt(cpf.substring(10, 11))) {
+      if (Resto !== parseInt(cpfWithoutPonto.substring(10, 11))) {
         setErrors("Este CPF não é válido");
         return;
       }
@@ -97,6 +109,16 @@ export default function SignUp(props) {
         }
       });
     }
+  }
+
+  // VALIDATE CPF
+  function handleChangeCPFAndMask(cpf) {
+    cpf = cpf.replace(/\D/g, '') // substitui qualquer caracter que nao seja numero por nada
+      .replace(/(\d{3})(\d)/, '$1.$2') // captura 2 grupos de numero o primeiro de 3 e o segundo de 1, apos capturar o primeiro grupo ele adiciona um ponto antes do segundo grupo de numero
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+      .replace(/(-\d{2})\d+?$/, '$1') // captura 2 numeros seguidos de um traço e não deixa ser digitado mais nada
+    setUser({ ...user, cpf: cpf });
   }
 
   return (
@@ -119,7 +141,7 @@ export default function SignUp(props) {
             </div>
             <div className="input-area">
               <label>CPF: </label>
-              <Input type="text" name="cpf" onChange={e => setUser({ ...user, cpf: e.target.value })} messageBottom="CPF do dono desta conta." />
+              <Input type="text" name="cpf" value={user.cpf} onChange={e => handleChangeCPFAndMask(e.target.value)} messageBottom="CPF do dono desta conta." />
             </div>
             <ButtonForm text="Cadastrar" />
           </form>
