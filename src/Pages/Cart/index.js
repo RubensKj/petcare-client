@@ -126,7 +126,7 @@ export default function Cart(props) {
     }
 
     if (paymentMethod === 'MONEY') {
-      await api.get(`/validate-is-open?cnpj=${cartToAPI.cnpj}`).then(res => {
+      await api.post(`/validate-is-open`, JSON.stringify(cartToAPI.cnpj)).then(res => {
         if (res.data === false) {
           dispatch(setTitleAlert('Pet Shop Fechado!'));
           dispatch(setDescriptionAlert('Não foi possivel concluir a compra devido ao pet shop estar fechado.'));
