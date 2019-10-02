@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import HeaderMainPage from '../../Components/HeaderMainPage';
 import EmptyContent from '../../Components/EmptyContent';
 import ModalDelete from '../../Components/ModalDelete';
+import ModalQuantityStore from '../../Components/ModalQuantityStore';
 import Loading from '../../Components/Loading';
 import FavoriteButton from '../../Components/FavoriteButton';
 import AddressInfo from '../../Components/AddressInfo';
@@ -49,6 +50,9 @@ export default function Preview(props) {
   // STATE FOR THE CARD OF SERVICES
   const [cart, setCart] = useState(CARD_STATE_INITIAL);
   const [cartBottom, setCartBottom] = useState(CARD_STATE_INITIAL);
+
+  // STATE FOR MODAL IS OPEN
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   async function loadServicesFromCompanies(id, page) {
     setIsLoadingServices(true);
@@ -196,9 +200,7 @@ export default function Preview(props) {
         selectDiv.classList.toggle("selectedItem");
       } else {
         // Add here if product quantity store is negative (Modal saying it can't be add on cart the product)
-
-        console.log("Produto não pode ser adicionado pois não possui quantidade em estoque.")
-
+        setIsOpenModal(!isOpenModal);
         // This return is necessary to not select the product
         return;
       }
@@ -237,6 +239,7 @@ export default function Preview(props) {
       <div className="container-company-profile">
         <div className="content-company-profile">
           <ModalDelete handleDeleteCart={handleDeleteCart} />
+          <ModalQuantityStore isOpen={isOpenModal} setIsOpen={setIsOpenModal} />
           <div className="box-color-area" />
           <div className="content-preview">
             <div className="buttons-actions">

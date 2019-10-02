@@ -1,7 +1,7 @@
 import React from 'react';
 
 import HeaderMainPage from '../../Components/HeaderMainPage';
-import ListSkeletonsOrdersLoad from '../../Components/ListSkeletonsOrdersLoad';
+import ModalQuantityStore from '../../Components/ModalQuantityStore';
 
 import './styles.css';
 
@@ -11,7 +11,7 @@ export default function TestingOrderCardLoad(props) {
       <HeaderMainPage props={props} />
       <div className="container-test">
         <div className="content-test">
-          <ListSkeletonsOrdersLoad numberCards={4} />
+          <ModalQuantityStore />
         </div>
       </div>
     </>
