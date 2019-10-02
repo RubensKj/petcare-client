@@ -196,6 +196,11 @@ export default function Preview(props) {
           setCart({ ...cart, nameCompany: company.companyName, cnpj: company.cnpj, subTotal: ((Math.round(cart.subTotal * 100) / 100) + item.price), total: ((Math.round(cart.subTotal * 100) / 100) + item.price), companyAddress: company.address, productsItens: cart.productsItens.concat(item) });
         } else {
           // Add here if product quantity store is negative (Modal saying it can't be add on cart the product)
+
+          console.log("Produto não pode ser adicionado pois não possui quantidade em estoque.")
+
+          // This return is necessary to not select the product
+          return;
         }
       })
     } else {
