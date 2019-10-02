@@ -17,7 +17,7 @@ export default function ModalQuantityStore({ isOpen, setIsOpen }) {
         <div className="information-area-quantity-store">
           <div className="content-quantity">
             <h3>Produto fora de estoque!</h3>
-            <span>A empresa está em falta deste produto.</span>
+            <span>Desculpe pela inconveniência, o produto solicitado está em falta no momento. A empresa estará resolvendo o quanto antes.</span>
           </div>
           <div className="button-close" role="button" onClick={handleCloseModal}>
             <span>Fechar</span>
