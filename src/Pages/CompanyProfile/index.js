@@ -191,19 +191,17 @@ export default function Preview(props) {
 
   async function addProductToCart(item, selectDiv) {
     if (!cart.productsItens.includes(item)) {
-      await api.get(`/validate-ifCanAddOnCart/${item.id}`).then(res => {
-        if (res.data === true) {
-          setCart({ ...cart, nameCompany: company.companyName, cnpj: company.cnpj, subTotal: ((Math.round(cart.subTotal * 100) / 100) + item.price), total: ((Math.round(cart.subTotal * 100) / 100) + item.price), companyAddress: company.address, productsItens: cart.productsItens.concat(item) });
-          selectDiv.classList.toggle("selectedItem");
-        } else {
-          // Add here if product quantity store is negative (Modal saying it can't be add on cart the product)
+      if ((item.quantityStore - 1) >= 0) {
+        setCart({ ...cart, nameCompany: company.companyName, cnpj: company.cnpj, subTotal: ((Math.round(cart.subTotal * 100) / 100) + item.price), total: ((Math.round(cart.subTotal * 100) / 100) + item.price), companyAddress: company.address, productsItens: cart.productsItens.concat(item) });
+        selectDiv.classList.toggle("selectedItem");
+      } else {
+        // Add here if product quantity store is negative (Modal saying it can't be add on cart the product)
 
-          console.log("Produto não pode ser adicionado pois não possui quantidade em estoque.")
+        console.log("Produto não pode ser adicionado pois não possui quantidade em estoque.")
 
-          // This return is necessary to not select the product
-          return;
-        }
-      })
+        // This return is necessary to not select the product
+        return;
+      }
     } else {
       setCart({ ...cart, productsItens: cart.productsItens.filter(itemFromList => itemFromList !== item), subTotal: ((Math.round(cart.subTotal * 100) / 100) - item.price), total: ((Math.round(cart.subTotal * 100) / 100) - item.price) });
     }
