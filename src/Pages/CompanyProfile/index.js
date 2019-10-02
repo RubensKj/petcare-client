@@ -171,10 +171,10 @@ export default function Preview(props) {
     if (cart.nameCompany === company.companyName || cart.nameCompany === "") {
       if (services.includes(item)) {
         addServiceToCart(item);
+        selectDiv.classList.toggle("selectedItem");
       } else {
-        addProductToCart(item);
+        addProductToCart(item, selectDiv);
       }
-      selectDiv.classList.toggle("selectedItem");
     } else {
       let modal = document.getElementById('id-modal-delete-cart');
       modal.classList.add('openModal');
@@ -189,11 +189,12 @@ export default function Preview(props) {
     }
   }
 
-  async function addProductToCart(item) {
+  async function addProductToCart(item, selectDiv) {
     if (!cart.productsItens.includes(item)) {
       await api.get(`/validate-ifCanAddOnCart/${item.id}`).then(res => {
         if (res.data === true) {
           setCart({ ...cart, nameCompany: company.companyName, cnpj: company.cnpj, subTotal: ((Math.round(cart.subTotal * 100) / 100) + item.price), total: ((Math.round(cart.subTotal * 100) / 100) + item.price), companyAddress: company.address, productsItens: cart.productsItens.concat(item) });
+          selectDiv.classList.toggle("selectedItem");
         } else {
           // Add here if product quantity store is negative (Modal saying it can't be add on cart the product)
 
