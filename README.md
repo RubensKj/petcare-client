@@ -10,7 +10,7 @@
 [![Forks](https://img.shields.io/github/forks/RubensKj/petcare-client?color=00cc74&style=flat-square)](https://github.com/RubensKj/petcare-client/network/members)
 [![Contributors](https://img.shields.io/github/contributors/RubensKj/petcare-client?color=00cc74&style=flat-square)](https://github.com/RubensKj/petcare-client/graphs/contributors)
 
-> Taking a better care to yout pet :penguin:
+> Taking a better care to your pet :penguin:
 
 <p>PetCare client is a website where you can hire services of petshop, and buy products either. PetCare makes everything close to you and your pet.</p>
 
