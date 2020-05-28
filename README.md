@@ -11,7 +11,7 @@
 [![Forks](https://img.shields.io/github/forks/RubensKj/petcare-client?color=%00cc74&style=flat-square)](https://github.com/RubensKj/petcare-client/network/members)
 [![Contributors](https://img.shields.io/github/contributors/RubensKj/petcare-client?color=00cc74&style=flat-square)](https://github.com/RubensKj/petcare-client/graphs/contributors)
 
-> Taking a better care to yout pet ;)
+> Taking a better care to yout pet :penguin:
 
 <p>PetCare client is a website where you can hire services of petshop, and buy products either. PetCare makes everything close to you and your pet.</p>
 
@@ -39,13 +39,13 @@
 
 To clone this project with HTTPS run this command on Prompt.
 
-```console
+```git
 git clone https://github.com/RubensKj/petcare-client.git
 ```
 
 Use to install the dependencies
 
-```console
+```git
 yarn install
 ```
 
@@ -53,7 +53,7 @@ In order to get the data, you should set `.env` file url for your cloned [PetCar
 
 Then run this command
 
-```console
+```git
 yarn start
 ```
 
