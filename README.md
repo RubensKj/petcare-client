@@ -5,9 +5,9 @@
 # PetCare Client
 
 [![Author](https://img.shields.io/badge/author-RubensKj-00cc74?style=flat-square)](https://github.com/RubensKj)
-[![Languages](https://img.shields.io/github/languages/count/RubensKj/petcare-client?color=%00cc74&style=flat-square)](#)
-[![License](https://img.shields.io/github/license/RubensKj/petcare-client?color=%00cc74&style=flat-square)](https://github.com/RubensKj/petcare-client/LICENSE)
-[![Forks](https://img.shields.io/github/forks/RubensKj/petcare-client?color=%00cc74&style=flat-square)](https://github.com/RubensKj/petcare-client/network/members)
+[![Languages](https://img.shields.io/github/languages/count/RubensKj/petcare-client?color=00cc74&style=flat-square)](#)
+[![License](https://img.shields.io/github/license/RubensKj/petcare-client?color=00cc74&style=flat-square)](https://github.com/RubensKj/petcare-client/LICENSE)
+[![Forks](https://img.shields.io/github/forks/RubensKj/petcare-client?color=00cc74&style=flat-square)](https://github.com/RubensKj/petcare-client/network/members)
 [![Contributors](https://img.shields.io/github/contributors/RubensKj/petcare-client?color=00cc74&style=flat-square)](https://github.com/RubensKj/petcare-client/graphs/contributors)
 
 > Taking a better care to yout pet :penguin:
