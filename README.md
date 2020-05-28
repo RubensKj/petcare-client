@@ -15,7 +15,7 @@
 
 <p>PetCare client is a website where you can hire services of petshop, and buy products either. PetCare makes everything close to you and your pet.</p>
 
-<p align="left">
+<p align="center">
   <p><img src="https://raw.githubusercontent.com/RubensKj/petcare-client/master/.github/main_page.gif"/></p>
   <p><img src="https://raw.githubusercontent.com/RubensKj/petcare-client/master/.github/company_page.gif"/></p>
   <p><img src="https://raw.githubusercontent.com/RubensKj/petcare-client/master/.github/product_detail.png" width: 87.5%; /></p>
