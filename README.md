@@ -1,68 +1,71 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+   <img src=".github/logo.png" width="200"/>
+</p>
 
-## Available Scripts
+# PetCare Client
 
-In the project directory, you can run:
+[![Author](https://img.shields.io/badge/author-RubensKj-00cc74?style=flat-square)](https://github.com/RubensKj)
+[![Languages](https://img.shields.io/github/languages/count/RubensKj/petcare-client?color=%00cc74&style=flat-square)](#)
+[![License](https://img.shields.io/github/license/RubensKj/petcare-client?color=%00cc74&style=flat-square)](https://github.com/RubensKj/petcare-client/LICENSE)
+[![Stars](https://img.shields.io/github/stars/RubensKj/petcare-client?color=00cc74&style=flat-square)](https://github.com/RubensKj/petcare-client/stargazers)
+[![Forks](https://img.shields.io/github/forks/RubensKj/petcare-client?color=%00cc74&style=flat-square)](https://github.com/RubensKj/petcare-client/network/members)
+[![Contributors](https://img.shields.io/github/contributors/RubensKj/petcare-client?color=00cc74&style=flat-square)](https://github.com/RubensKj/petcare-client/graphs/contributors)
 
-### `npm start`
+> Taking a better care to yout pet ;)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<p>PetCare client is a website where you can hire services of petshop, and buy products either. PetCare makes everything close to you and your pet.</p>
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+<p align="left">
+  <p><img src="https://raw.githubusercontent.com/RubensKj/petcare-client/master/.github/main_page.gif"/></p>
+  <p><img src="https://raw.githubusercontent.com/RubensKj/petcare-client/master/.github/company_page.gif"/></p>
+  <p><img src="https://raw.githubusercontent.com/RubensKj/petcare-client/master/.github/product_detail.png"/></p>
+</p>
+<br/>
 
-### `npm test`
+# 🐦 Direct Links
+ * 🏗 [Dependencies](#building_construction-dependencies)
+ * 🚀 [Getting Started](#rocket-getting-started)
+ * 📦 [Deployment](#package-deployment)
+ * 🎉 [Want to Contribute?](#tada-want-to-contribute)
+ * 📕 [License](#closed_book-license)
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+# :building_construction: Dependencies
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [Node.js](https://nodejs.org/en/)
+- [Yarn](https://yarnpkg.com/getting-started/install)
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+# :rocket: Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To clone this project with HTTPS run this command on Prompt.
 
-### `npm run eject`
+```console
+git clone https://github.com/RubensKj/petcare-client.git
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Use to install the dependencies
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```console
+yarn install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+In order to get the data, you should set `.env` file url for your cloned [PetCare API](https://github.com/RubensKj/petcare-api) 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Then run this command
 
-## Learn More
+```console
+yarn start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# :package: Deploy
 
-### Code Splitting
+You can reach the application by accessing [PetCare Client Website](https://petcare-client.now.sh/). 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+# :tada: Want to Contribute?
 
-### Analyzing the Bundle Size
+Make your pull request following the [contributing](https://github.com/RubensKj/petcare-client/blob/master/CONTRIBUTING.md) instructions and I'll accept :).
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+# :closed_book: License
 
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+License used in this project is [MIT license](https://github.com/RubensKj/petcare-client/blob/master/LICENSE)
