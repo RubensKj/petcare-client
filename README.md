@@ -18,7 +18,7 @@
 <p align="left">
   <p><img src="https://raw.githubusercontent.com/RubensKj/petcare-client/master/.github/main_page.gif"/></p>
   <p><img src="https://raw.githubusercontent.com/RubensKj/petcare-client/master/.github/company_page.gif"/></p>
-  <p><img style="max-width:87.5%;" src="https://raw.githubusercontent.com/RubensKj/petcare-client/master/.github/product_detail.png"/></p>
+  <p><img style="width:87.5%;" src="https://raw.githubusercontent.com/RubensKj/petcare-client/master/.github/product_detail.png"/></p>
 </p>
 <br/>
 
