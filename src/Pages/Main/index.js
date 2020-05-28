@@ -165,7 +165,7 @@ export default function Main(props) {
           {isLoading ? (<ListSkeletonsCards numberCards={6} />) : (
             <>
               <div className="list-petshops">
-                {companies.map(company => <CompanyCard key={company.id} company={company} />)}
+                {companies && companies.map(company => <CompanyCard key={company.id} company={company} />)}
               </div>
               <BottomLoadMore setClassName="btn-loadMore-companies-main" text="Carregar mais empresas" onClick={() => handleButtonLoadMore(actPage + 1)} />
             </>
