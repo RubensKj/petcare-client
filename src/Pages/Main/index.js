@@ -70,7 +70,7 @@ export default function Main(props) {
   useEffect(() => {
     setIsLoading(true);
     loadCompanies(0);
-    if (state.data.favorites.length >= 1) {
+    if (state.data.favorites && state.data.favorites.length >= 1) {
       setContainsFavorites(true);
       loadFavorites(0);
     }
