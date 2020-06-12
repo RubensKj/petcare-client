@@ -21,7 +21,7 @@
 # 🐦 Direct Links
  * 🏗 [Dependencies](#building_construction-dependencies)
  * 🚀 [Getting Started](#rocket-getting-started)
- * 📦 [Deployment](#package-deployment)
+ * 📦 [Deploy](#package-deploy)
  * 🎉 [Want to Contribute?](#tada-want-to-contribute)
  * 📕 [License](#closed_book-license)
 
